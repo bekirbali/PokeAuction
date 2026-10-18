@@ -27,7 +27,7 @@ export default function BattleArena({
   const [p1FaintedCount, setP1FaintedCount] = useState(0);
   const [p2FaintedCount, setP2FaintedCount] = useState(0);
 
-  const [announcement, setAnnouncement] = useState('Pokemon Ligi Şampiyonası Başlıyor...');
+  const [announcement, setAnnouncement] = useState('Pokémon Ligi Şampiyonası Başlıyor...');
   const [damagePopup, setDamagePopup] = useState(null);
   const [shakeTarget, setShakeTarget] = useState(null);
   const [lungeSide, setLungeSide] = useState(null);
@@ -149,12 +149,34 @@ export default function BattleArena({
     return 'bg-red-500';
   };
 
+  const getSpriteSize = (pokemon, isBack = false) => {
+    if (!pokemon) return 'w-32 h-32 md:w-36 md:h-36';
+    if (pokemon.tier === 'Legendary') {
+      return isBack ? 'w-48 h-48 md:w-60 md:h-60' : 'w-44 h-44 md:w-54 md:h-54';
+    }
+    if (pokemon.tier === 'Epic') {
+      return isBack ? 'w-40 h-40 md:w-48 md:h-48' : 'w-36 h-36 md:w-42 md:h-42';
+    }
+    return isBack ? 'w-36 h-36 md:w-44 md:h-44' : 'w-32 h-32 md:w-36 md:h-36';
+  };
+
+  const getAuraClass = (pokemon) => {
+    if (!pokemon) return '';
+    if (pokemon.tier === 'Legendary') {
+      return 'drop-shadow-[0_0_20px_rgba(250,204,21,0.65)]';
+    }
+    if (pokemon.tier === 'Epic') {
+      return 'drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]';
+    }
+    return '';
+  };
+
   // Dynamic Player Perspective (Sol taraf veya sağ taraf oyuncunun kendi kimliğine göre SEN / RAKİP olur)
   const isP1You = team1.id === playerId;
   const isP2You = team2.id === playerId;
 
-  const p1Label = isP1You ? `SEN · ${team1.name}` : isP2You ? `RAKİP · ${team1.name}` : `1. OYUNCU · ${team1.name}`;
-  const p2Label = isP2You ? `SEN · ${team2.name}` : isP1You ? `RAKİP · ${team2.name}` : `2. OYUNCU · ${team2.name}`;
+  const p1Label = isP1You ? `SEN • ${team1.name}` : isP2You ? `RAKİP • ${team1.name}` : `1. OYUNCU • ${team1.name}`;
+  const p2Label = isP2You ? `SEN • ${team2.name}` : isP1You ? `RAKİP • ${team2.name}` : `2. OYUNCU • ${team2.name}`;
 
   const p1IsYou = isP1You || (!isP1You && !isP2You);
   const p2IsYou = isP2You;
@@ -367,7 +389,7 @@ export default function BattleArena({
               <img
                 src={p1Active.spriteBack || p1Active.sprite}
                 alt={p1Active.name}
-                className={`w-36 h-36 md:w-44 md:h-44 object-contain drop-shadow-[0_25px_30px_rgba(0,0,0,0.95)] transition-all duration-300 ${
+                className={`${getSpriteSize(p1Active, true)} ${getAuraClass(p1Active)} object-contain transition-all duration-300 pointer-events-none select-none ${
                   lungeSide === 'p1' ? 'attacker-lunge-right' : ''
                 } ${
                   shakeTarget === 'p1' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
@@ -377,7 +399,7 @@ export default function BattleArena({
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
-            <div className={`w-56 h-20 -mt-7 ${p1IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
+            <div className={`${p1Active?.tier === 'Legendary' ? 'w-64 h-24 -mt-9' : 'w-56 h-20 -mt-7'} ${p1IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
           </div>
 
           {/* Player 2 Combatant Group (Top-Right: Sprite directly standing on glowing blue pedestal) */}
@@ -395,7 +417,7 @@ export default function BattleArena({
               <img
                 src={p2Active.sprite}
                 alt={p2Active.name}
-                className={`w-32 h-32 md:w-36 md:h-36 object-contain drop-shadow-[0_20px_25px_rgba(0,0,0,0.9)] transition-all duration-300 ${
+                className={`${getSpriteSize(p2Active, false)} ${getAuraClass(p2Active)} object-contain transition-all duration-300 pointer-events-none select-none ${
                   lungeSide === 'p2' ? 'attacker-lunge-left' : ''
                 } ${
                   shakeTarget === 'p2' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
@@ -405,7 +427,7 @@ export default function BattleArena({
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
-            <div className={`w-48 h-16 -mt-6 ${p2IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
+            <div className={`${p2Active?.tier === 'Legendary' ? 'w-56 h-20 -mt-8' : 'w-48 h-16 -mt-6'} ${p2IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
           </div>
         </div>
 

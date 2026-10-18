@@ -71,6 +71,27 @@ io.on('connection', (socket) => {
     roomManager.broadcastRoom(result.room);
   });
 
+  socket.on('START_BOT_GAME', ({ name, difficulty }) => {
+    const result = roomManager.createBotRoom(name, socket, difficulty);
+    socket.emit('ROOM_CREATED', {
+      code: result.room.code,
+      playerId: socket.id
+    });
+    roomManager.broadcastRoom(result.room);
+  });
+
+  socket.on('ADD_BOT_TO_ROOM', ({ code, difficulty }) => {
+    const room = roomManager.addBotToRoom(code, difficulty);
+    if (room) {
+      roomManager.broadcastRoom(room);
+    }
+  });
+
+  socket.on('LEAVE_ROOM', () => {
+    roomManager.removePlayer(socket.id);
+    socket.emit('ROOM_LEFT');
+  });
+
   socket.on('START_GAME', () => {
     const room = roomManager.getRoomBySocket(socket.id);
     if (!room) return;

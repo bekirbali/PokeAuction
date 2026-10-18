@@ -1,3 +1,4 @@
+import { BotAI } from './BotAI.js';
 ﻿import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -42,7 +43,7 @@ export class RoomManager {
         {
           id: socket.id,
           name: hostName || 'Eğitmen 1',
-          gold: 100,
+          gold: 20,
           team: [],
           passed: false,
           ready: false,
@@ -59,7 +60,10 @@ export class RoomManager {
       openingPlayerIdx: 0,
       timer: 8,
       timerInterval: null,
-      isResolving: false, // Guard against double execution / race conditions
+      isResolving: false,
+      botActionTimeout: null,
+      isBotGame: false,
+      botDifficulty: 'medium', // Guard against double execution / race conditions
       history: [],
       battleResult: null,
       starvationMode: null
@@ -68,6 +72,78 @@ export class RoomManager {
     this.rooms.set(code, room);
     socket.join(code);
     return room;
+  }
+
+    createBotRoom(hostName, socket, difficulty = 'medium') {
+    const room = this.createRoom(hostName, socket);
+    room.isBotGame = true;
+    room.botDifficulty = difficulty;
+
+    const config = BotAI.getDifficultyConfig(difficulty);
+    const botPlayer = {
+      id: 'bot_' + Math.random().toString(36).substring(2, 9),
+      name: config.name,
+      gold: 20,
+      team: [],
+      passed: false,
+      ready: true,
+      lineup: [],
+      isBot: true,
+      difficulty
+    };
+
+    room.players.push(botPlayer);
+    this.startAuction(room);
+    return { room, botPlayer };
+  }
+
+  addBotToRoom(code, difficulty = 'medium') {
+    const room = this.rooms.get(code.toUpperCase());
+    if (!room || room.players.length !== 1 || room.state !== 'LOBBY') return null;
+
+    room.isBotGame = true;
+    room.botDifficulty = difficulty;
+
+    const config = BotAI.getDifficultyConfig(difficulty);
+    const botPlayer = {
+      id: 'bot_' + Math.random().toString(36).substring(2, 9),
+      name: config.name,
+      gold: 20,
+      team: [],
+      passed: false,
+      ready: true,
+      lineup: [],
+      isBot: true,
+      difficulty
+    };
+
+    room.players.push(botPlayer);
+    return room;
+  }
+
+  scheduleBotAction(room) {
+    if (!room || room.state !== 'AUCTION' || room.isResolving) return;
+    const activePlayer = room.players.find(p => p.id === room.activeTurnPlayerId);
+    if (!activePlayer || !activePlayer.isBot) return;
+
+    if (room.botActionTimeout) clearTimeout(room.botActionTimeout);
+
+    const delay = BotAI.getRandomDelay(activePlayer.difficulty || 'medium');
+    room.botActionTimeout = setTimeout(() => {
+      if (!room || room.isResolving || room.state !== 'AUCTION') return;
+      if (room.activeTurnPlayerId !== activePlayer.id) return;
+
+      if (room.roundPhase === 'OPENING') {
+        this.handleOpeningBid(room, activePlayer.id, 1);
+      } else {
+        const decision = BotAI.decideBid(room, activePlayer, activePlayer.difficulty);
+        if (decision.action === 'BID') {
+          this.handleBid(room, activePlayer.id, decision.amount);
+        } else {
+          this.handlePass(room, activePlayer.id);
+        }
+      }
+    }, delay);
   }
 
   joinRoom(code, playerName, socket) {
@@ -79,7 +155,7 @@ export class RoomManager {
     const player = {
       id: socket.id,
       name: playerName || 'Eğitmen 2',
-      gold: 100,
+      gold: 20,
       team: [],
       passed: false,
       ready: false,
@@ -100,26 +176,61 @@ export class RoomManager {
     return null;
   }
 
-  // --- SAFE POKEMON POPPER (Ensures uniqueness) ---
+  // --- PROGRESSIVE POKEMON DRAFTING ENGINE ---
+  // Turlar ilerledikçe Epik ve Efsanevi Pokémon çıkma olasılığı katlanarak artar!
   getUniquePokemon(room) {
-    while (room.pool.length > 0) {
-      const candidate = room.pool.pop();
-      if (!room.usedPokemonIds.has(candidate.id)) {
-        room.usedPokemonIds.add(candidate.id);
-        return candidate;
+    const draftedCount = room.players.reduce((sum, p) => sum + p.team.length, 0);
+    const available = ALL_POKEMON.filter(p => !room.usedPokemonIds.has(p.id));
+
+    if (available.length === 0) {
+      return ALL_POKEMON[0];
+    }
+
+    // Aşamalı İhtimal Dağılımı (Kademeli Rarity Eğrisi)
+    // 0-3 Drafted (Erken Turlar): Common & Meme ağırlıklı, altın biriktirme dönemi
+    // 4-6 Drafted (Orta Turlar): Rare ağırlıklı, ilk Epik'ler görünür
+    // 7-8 Drafted (Geç Turlar): Epik ve Efsanevi şansı ciddi oranda yükselir
+    // 9+ Drafted (Final Turları): Mewtwo, Dragonite, Efsanevi Kuşlar ve Starter son formları!
+    let tierWeights;
+    if (draftedCount <= 3) {
+      tierWeights = { Meme: 15, Common: 65, Rare: 20, Epic: 0, Legendary: 0 };
+    } else if (draftedCount <= 6) {
+      tierWeights = { Meme: 5, Common: 25, Rare: 50, Epic: 20, Legendary: 0 };
+    } else if (draftedCount <= 8) {
+      tierWeights = { Meme: 0, Common: 10, Rare: 25, Epic: 45, Legendary: 20 };
+    } else {
+      tierWeights = { Meme: 0, Common: 0, Rare: 10, Epic: 45, Legendary: 45 };
+    }
+
+    const roll = Math.random() * 100;
+    let cumulative = 0;
+    let selectedTier = 'Common';
+    for (const [tier, weight] of Object.entries(tierWeights)) {
+      cumulative += weight;
+      if (roll <= cumulative) {
+        selectedTier = tier;
+        break;
       }
     }
-    // If pool exhausted, reshuffle unused
-    const allIds = new Set(room.usedPokemonIds);
-    const fresh = ALL_POKEMON.filter(p => !allIds.has(p.id));
-    if (fresh.length > 0) {
-      room.pool = this.shuffle(fresh);
-      const chosen = room.pool.pop();
-      room.usedPokemonIds.add(chosen.id);
-      return chosen;
+
+    // Seçilen tier'dan kullanılmamış bir Pokémon bul
+    let candidates = available.filter(p => p.tier === selectedTier);
+
+    // Seçilen tier tükendiyse en yakın uygun tier'dan seç
+    if (candidates.length === 0) {
+      const fallbackOrder = ['Legendary', 'Epic', 'Rare', 'Common', 'Meme'];
+      for (const t of fallbackOrder) {
+        const fallbacks = available.filter(p => p.tier === t);
+        if (fallbacks.length > 0) {
+          candidates = fallbacks;
+          break;
+        }
+      }
     }
-    // Fallback if all 151 somehow used
-    return room.pool.pop() || ALL_POKEMON[0];
+
+    const chosen = candidates[Math.floor(Math.random() * candidates.length)] || available[0];
+    room.usedPokemonIds.add(chosen.id);
+    return chosen;
   }
 
   // Safe team adder (Strictly prevents duplicate Pokemon on a team)
@@ -199,9 +310,16 @@ export class RoomManager {
         brokePlayerId: brokePlayer.id
       };
       room.activeTurnPlayerId = richPlayer.id;
-      room.timer = 10;
+      room.timer = this.getTimerDuration(room, 'STARVATION');
       this.startStarvationTimer(room);
       this.broadcastRoom(room);
+      if (richPlayer.isBot) {
+        setTimeout(() => {
+          if (!room.starvationMode || room.isResolving) return;
+          const decision = BotAI.decideStarvation(room, richPlayer, richPlayer.difficulty);
+          this.handleStarvationDecision(room, richPlayer.id, decision);
+        }, 1500);
+      }
       return;
     }
 
@@ -216,13 +334,33 @@ export class RoomManager {
     room.highestBidder = null;
 
     room.activeTurnPlayerId = opener.id;
-    room.timer = 8;
+    room.timer = this.getTimerDuration(room, 'OPENING');
 
     // Switch opener index for the next round
     room.openingPlayerIdx = 1 - room.openingPlayerIdx;
 
     this.startAuctionTimer(room);
     this.broadcastRoom(room);
+    this.scheduleBotAction(room);
+  }
+
+  // Dynamic Timer Durations (Solo Bot vs PvP)
+  getTimerDuration(room, phase) {
+    const hasBot = room.players.some(p => p.isBot);
+    switch (phase) {
+      case 'OPENING':
+        return hasBot ? 8 : 15;
+      case 'RESPONSE':
+        return hasBot ? 8 : 12;
+      case 'RAISE':
+        return hasBot ? 6 : 10;
+      case 'STARVATION':
+        return hasBot ? 10 : 15;
+      case 'LINEUP':
+        return hasBot ? 20 : 35;
+      default:
+        return 10;
+    }
   }
 
   startAuctionTimer(room) {
@@ -260,7 +398,7 @@ export class RoomManager {
 
     const responder = room.players.find(p => p.id !== socketId);
     room.activeTurnPlayerId = responder.id;
-    room.timer = 8;
+    room.timer = this.getTimerDuration(room, 'RESPONSE');
 
     this.startAuctionTimer(room);
     this.broadcastRoom(room);
@@ -271,6 +409,7 @@ export class RoomManager {
       isOpening: true,
       pokemon: room.currentPokemon
     });
+    this.scheduleBotAction(room);
   }
 
   startStarvationTimer(room) {
@@ -311,7 +450,7 @@ export class RoomManager {
 
     const opponent = room.players.find(p => p.id !== socketId);
     room.activeTurnPlayerId = opponent.id;
-    room.timer = 6;
+    room.timer = this.getTimerDuration(room, 'RAISE');
 
     this.startAuctionTimer(room);
     this.broadcastRoom(room);
@@ -321,11 +460,13 @@ export class RoomManager {
       amount,
       pokemon: room.currentPokemon
     });
+    this.scheduleBotAction(room);
   }
 
   handlePass(room, socketId) {
     if (room.state !== 'AUCTION' || room.starvationMode || room.isResolving) return;
     if (room.activeTurnPlayerId !== socketId) return;
+    if (room.botActionTimeout) clearTimeout(room.botActionTimeout);
 
     if (room.roundPhase === 'OPENING') {
       this.handleOpeningBid(room, socketId, 1);
@@ -408,11 +549,25 @@ export class RoomManager {
   startLineupPhase(room) {
     if (room.timerInterval) clearInterval(room.timerInterval);
     room.state = 'LINEUP';
-    room.timer = 20;
+    room.timer = this.getTimerDuration(room, 'LINEUP');
     room.players.forEach(p => {
       p.ready = false;
       p.lineup = [...p.team];
     });
+
+    const bot = room.players.find(p => p.isBot);
+    if (bot) {
+      bot.lineup = BotAI.decideLineup(bot);
+      setTimeout(() => {
+        if (room.state !== 'LINEUP') return;
+        bot.ready = true;
+        this.broadcastRoom(room);
+        if (room.players.every(p => p.ready)) {
+          if (room.timerInterval) clearInterval(room.timerInterval);
+          this.startBattlePhase(room);
+        }
+      }, 1500);
+    }
 
     this.broadcastRoom(room);
 
@@ -487,7 +642,7 @@ export class RoomManager {
     room.openingPlayerIdx = 0;
     room.isResolving = false;
     room.players.forEach(p => {
-      p.gold = 100;
+      p.gold = 20;
       p.team = [];
       p.lineup = [];
       p.ready = false;
@@ -504,7 +659,8 @@ export class RoomManager {
     if (room.timerInterval) clearInterval(room.timerInterval);
     room.players = room.players.filter(p => p.id !== socketId);
 
-    if (room.players.length === 0) {
+    if (room.botActionTimeout) clearTimeout(room.botActionTimeout);
+    if (room.players.length === 0 || room.players.every(p => p.isBot)) {
       this.rooms.delete(room.code);
     } else {
       this.io.to(room.code).emit('OPPONENT_DISCONNECTED');

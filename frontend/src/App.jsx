@@ -55,6 +55,12 @@ export default function App() {
       setRoom(prev => prev ? { ...prev, timer } : prev);
     });
 
+    socket.on('ROOM_LEFT', () => {
+      setRoom(null);
+      setBattleData(null);
+      setBattleResult(null);
+    });
+
     socket.on('OPPONENT_DISCONNECTED', () => {
       triggerNotification('⚠️ Rakibin bağlantısı koptu! Lobiye dönüldü.');
       setBattleData(null);

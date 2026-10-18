@@ -1,5 +1,5 @@
-﻿import React, { useState } from 'react';
-import { Play, Users, Copy, Check, Sparkles, Swords, Volume2, VolumeX } from 'lucide-react';
+import React, { useState } from 'react';
+import { Play, Users, Copy, Check, Swords, Volume2, VolumeX, Bot, ArrowLeft, Shield, Zap, Flame, Coins, TrendingUp, AlertTriangle } from 'lucide-react';
 import { sound } from '../utils/sound.js';
 
 export default function Lobby({
@@ -7,9 +7,12 @@ export default function Lobby({
   socket,
   playerId,
   onMuteToggle,
-  isMuted
+  isMuted,
+  onLeaveRoom
 }) {
   const [name, setName] = useState(localStorage.getItem('poke_name') || 'Eğitmen');
+  const [gameMode, setGameMode] = useState('solo'); // 'solo' | 'multiplayer'
+  const [difficulty, setDifficulty] = useState('medium'); // 'easy' | 'medium' | 'hard'
   const [joinCode, setJoinCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
@@ -36,6 +39,25 @@ export default function Lobby({
     socket.emit('JOIN_ROOM', { code: joinCode.trim().toUpperCase(), name: name.trim() });
   };
 
+  const handleStartBotGame = () => {
+    if (!name.trim()) return setError('Lütfen bir eğitmen adı girin!');
+    setError('');
+    sound.playBid();
+    socket.emit('START_BOT_GAME', {
+      name: name.trim(),
+      difficulty
+    });
+  };
+
+  const handleAddBotToRoom = () => {
+    if (!room) return;
+    sound.playBid();
+    socket.emit('ADD_BOT_TO_ROOM', {
+      code: room.code,
+      difficulty
+    });
+  };
+
   const handleCopyCode = () => {
     if (!room) return;
     navigator.clipboard.writeText(room.code);
@@ -53,174 +75,364 @@ export default function Lobby({
   const isReadyToStart = room?.players?.length === 2;
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      {/* Top Navbar */}
-      <div className="flex justify-between items-center mb-10">
+    <div className="max-w-4xl w-full mx-auto px-4 py-4 md:py-8 select-none">
+      
+      {/* --- TOP BRANDING HEADER --- */}
+      <div className="flex justify-between items-center mb-6 pb-4 border-b border-slate-800/80">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-red-600 to-amber-500 flex items-center justify-center shadow-lg shadow-red-500/30">
-            <Swords className="w-6 h-6 text-white" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-600 to-rose-700 flex items-center justify-center shadow-lg shadow-red-600/30 border border-red-500/30">
+            <Swords className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-black tracking-tight text-white flex items-center gap-2">
-              PokéAuction
-              <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-full bg-red-500/20 text-red-400 border border-red-500/30">
-                GEN 1 LIVE
+            <div className="flex items-center gap-2">
+              <h1 className="text-xl md:text-2xl font-black text-white tracking-wider">
+                POKÉAUCTION
+              </h1>
+              <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-amber-400 border border-slate-700">
+                KANTO LEAGUE
               </span>
-            </h1>
-            <p className="text-xs text-slate-400">Kör Açık Artırma & Otomatik Dövüş Arenası</p>
+            </div>
+            <p className="text-xs text-slate-400 font-medium">
+              1v1 Canlı Kör Takım Açık Artırması & Savaş Simülatörü
+            </p>
           </div>
         </div>
 
         <button
           onClick={onMuteToggle}
-          className="p-2.5 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-slate-300 hover:text-white transition"
+          className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition cursor-pointer"
           title={isMuted ? 'Sesi Aç' : 'Sesi Kapat'}
         >
-          {isMuted ? <VolumeX className="w-5 h-5 text-red-400" /> : <Volume2 className="w-5 h-5 text-emerald-400" />}
+          {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
         </button>
       </div>
 
       {!room ? (
-        /* Not in room: Create or Join */
-        <div className="grid md:grid-cols-2 gap-8 items-start">
-          {/* Left: Info Card */}
-          <div className="bg-slate-900/60 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl shadow-2xl">
-            <h2 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-400" />
-              Nasıl Oynanır?
-            </h2>
-            <ul className="space-y-3 text-sm text-slate-300">
-              <li className="flex gap-2">
-                <span className="font-bold text-amber-400 font-mono">1.</span>
-                <span>Her eğitmen maça <strong>100 Altın</strong> bütçeyle başlar.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-bold text-amber-400 font-mono">2.</span>
-                <span>Ortaya çıkan Gen 1 Pokemon'lar için süre işlerken canlı teklif savaşına girin.</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-bold text-amber-400 font-mono">3.</span>
-                <span><strong>İflas Kuralı:</strong> Parası biten teklif veremez; parası olan Pokemon'u ya bedava alır ya da rakibe zorla iteler!</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="font-bold text-amber-400 font-mono">4.</span>
-                <span>5'e 5 takımlar kurulunca gizli dizilim yapılır ve <strong>Meydan Savaşı</strong> başlar!</span>
-              </li>
-            </ul>
-
-            <div className="mt-6 pt-5 border-t border-slate-800 flex items-center gap-4">
-              <div className="text-xs text-slate-400">
-                <span className="text-white font-bold">151</span> Kanto Pokemon'u · Canlı WebSocket Eşleşmesi
+        /* --- MAIN DASHBOARD: EQUAL HEIGHT COLUMNS, MOBILE REVERSED ORDER --- */
+        <div className="grid md:grid-cols-2 gap-6 items-stretch">
+          
+          {/* LEFT: Game Mechanics Overview (Mobile: order-2, Desktop: order-1) */}
+          <div className="order-2 md:order-1 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 md:p-6 backdrop-blur-md shadow-xl flex flex-col justify-between h-full">
+            <div>
+              <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-800/80">
+                <Shield className="w-4 h-4 text-amber-400" />
+                <h2 className="text-sm font-black uppercase text-slate-200 tracking-wider">
+                  Turnuva Dinamikleri
+                </h2>
               </div>
+
+              {/* 4 Sleek Game Rule Tiles */}
+              <div className="space-y-3">
+                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Coins className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                    <span className="text-xs font-bold text-white">20 Altın Başlangıç Bütçesi</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed pl-6">
+                    Her antrenör maça 20 altınla başlar. Teklif verirken bütçeni 5 Pokémon'luk kadroya yetecek şekilde paylaştırmalısın.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition">
+                  <div className="flex items-center gap-2 mb-1">
+                    <TrendingUp className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                    <span className="text-xs font-bold text-white">Kademeli Havuz & Ödüllendirme</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed pl-6">
+                    Turlar ilerledikçe Epik ve Efsanevi Pokémon ihtimali katlanarak artar. Altınını idareli kullanan antrenör son turlarda ödüllendirilir.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition">
+                  <div className="flex items-center gap-2 mb-1">
+                    <AlertTriangle className="w-4 h-4 text-rose-400 flex-shrink-0" />
+                    <span className="text-xs font-bold text-white">İflas & Zorunlu İteleme Cezası</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed pl-6">
+                    Parası biten teklif veremez. Parası olan rakip, çıkan Pokémon'u ya bedava alır ya da rakibin kadrosuna zorla zayıf kart öteler.
+                  </p>
+                </div>
+
+                <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-slate-700 transition">
+                  <div className="flex items-center gap-2 mb-1">
+                    <Swords className="w-4 h-4 text-blue-400 flex-shrink-0" />
+                    <span className="text-xs font-bold text-white">5v5 Otomatik Meydan Savaşı</span>
+                  </div>
+                  <p className="text-[11px] text-slate-400 leading-relaxed pl-6">
+                    Kadrolar tamamlandığında gizli taktik dizilimi yapılır ve resmi hasar/tür animasyonlarıyla 5v5 otomatik şampiyona maçı simüle edilir.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+              <span>FORMAT: 1v1 BLIND DRAFT</span>
+              <span>151 KANTO GEN 1</span>
             </div>
           </div>
 
-          {/* Right: Actions */}
-          <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 backdrop-blur-xl shadow-2xl space-y-6">
+          {/* RIGHT: Actions & Setup (Mobile: order-1, Desktop: order-2) */}
+          <div className="order-1 md:order-2 bg-slate-900/90 border border-slate-800 rounded-2xl p-5 md:p-6 backdrop-blur-md shadow-xl flex flex-col justify-between h-full space-y-5">
             <div>
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider mb-2">
-                Eğitmen Adın
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={handleNameChange}
-                maxLength={16}
-                placeholder="Örn: Ash Ketchum"
-                className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white font-semibold focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500"
-              />
-            </div>
-
-            {error && (
-              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-semibold">
-                {error}
-              </div>
-            )}
-
-            {/* Create Room Button */}
-            <button
-              onClick={handleCreateRoom}
-              className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white font-bold shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5"
-            >
-              <Sparkles className="w-5 h-5 text-amber-300" />
-              Yeni Oda Kur
-            </button>
-
-            <div className="relative flex items-center justify-center">
-              <div className="border-t border-slate-800 w-full" />
-              <span className="bg-slate-900 px-3 text-xs text-slate-500 uppercase font-bold">veya</span>
-            </div>
-
-            {/* Join Room Form */}
-            <form onSubmit={handleJoinRoom} className="space-y-3">
-              <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
-                Var Olan Odaya Katıl
-              </label>
-              <div className="flex gap-2">
+              {/* Trainer Name Input */}
+              <div className="mb-4">
+                <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                  Eğitmen Adı
+                </label>
                 <input
                   type="text"
-                  value={joinCode}
-                  onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
-                  maxLength={4}
-                  placeholder="KOD (Örn: XY7K)"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-white font-mono font-black tracking-widest text-lg uppercase focus:outline-none focus:border-blue-500"
+                  value={name}
+                  onChange={handleNameChange}
+                  maxLength={16}
+                  placeholder="Eğitmen adını yaz..."
+                  className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-semibold text-sm focus:outline-none focus:border-red-500 transition"
                 />
+              </div>
+
+              {error && (
+                <div className="mb-4 p-2.5 rounded-xl bg-red-950/40 border border-red-500/40 text-red-400 text-xs font-semibold">
+                  {error}
+                </div>
+              )}
+
+              {/* Segmented Mode Selector: Solo vs Multiplayer */}
+              <div className="grid grid-cols-2 gap-1 bg-slate-950 p-1 rounded-xl border border-slate-800 mb-4">
                 <button
-                  type="submit"
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition shadow-lg shadow-blue-600/30"
+                  type="button"
+                  onClick={() => setGameMode('solo')}
+                  className={`py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
+                    gameMode === 'solo'
+                      ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
                 >
-                  Katıl
+                  <Bot className="w-3.5 h-3.5 text-indigo-400" />
+                  Tek Kişilik (AI)
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setGameMode('multiplayer')}
+                  className={`py-2 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 cursor-pointer ${
+                    gameMode === 'multiplayer'
+                      ? 'bg-slate-800 text-white shadow-sm border border-slate-700'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <Users className="w-3.5 h-3.5 text-blue-400" />
+                  Çok Oyunculu
                 </button>
               </div>
-            </form>
+
+              {/* Mode-Specific Content */}
+              {gameMode === 'solo' ? (
+                /* --- SOLO MODE CONTROLS --- */
+                <div className="space-y-3">
+                  <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                    Rakip Eğitmen & Zorluk
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2">
+                    {/* Brock */}
+                    <button
+                      type="button"
+                      onClick={() => setDifficulty('easy')}
+                      className={`p-2.5 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        difficulty === 'easy'
+                          ? 'bg-emerald-950/30 border-emerald-500/70 text-white'
+                          : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center gap-1 mb-1">
+                        <Shield className="w-3 h-3 text-emerald-400" />
+                        <span className="text-xs font-black">Brock</span>
+                      </div>
+                      <span className="text-[10px] text-emerald-400 font-mono">Çaylak</span>
+                      <span className="text-[9px] text-slate-500 mt-0.5">Temkinli</span>
+                    </button>
+
+                    {/* Gary */}
+                    <button
+                      type="button"
+                      onClick={() => setDifficulty('medium')}
+                      className={`p-2.5 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        difficulty === 'medium'
+                          ? 'bg-amber-950/30 border-amber-500/70 text-white'
+                          : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center gap-1 mb-1">
+                        <Zap className="w-3 h-3 text-amber-400" />
+                        <span className="text-xs font-black">Gary</span>
+                      </div>
+                      <span className="text-[10px] text-amber-400 font-mono">Kurnaz</span>
+                      <span className="text-[9px] text-slate-500 mt-0.5">Blöfçü</span>
+                    </button>
+
+                    {/* Red */}
+                    <button
+                      type="button"
+                      onClick={() => setDifficulty('hard')}
+                      className={`p-2.5 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                        difficulty === 'hard'
+                          ? 'bg-rose-950/30 border-rose-500/70 text-white'
+                          : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
+                      }`}
+                    >
+                      <div className="flex items-center gap-1 mb-1">
+                        <Flame className="w-3 h-3 text-rose-400" />
+                        <span className="text-xs font-black">Red</span>
+                      </div>
+                      <span className="text-[10px] text-rose-400 font-mono">Şampiyon</span>
+                      <span className="text-[9px] text-slate-500 mt-0.5">Agresif</span>
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleStartBotGame}
+                    className="w-full mt-2 py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition cursor-pointer flex items-center justify-center gap-2"
+                  >
+                    <Bot className="w-4 h-4" />
+                    Antrenmana Başla
+                  </button>
+                </div>
+              ) : (
+                /* --- MULTIPLAYER CONTROLS --- */
+                <div className="space-y-4">
+                  {/* Create Room Button (Clean, no sparkle emoji) */}
+                  <button
+                    type="button"
+                    onClick={handleCreateRoom}
+                    className="w-full py-3 px-4 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-sm shadow-lg shadow-red-600/30 transition cursor-pointer"
+                  >
+                    Yeni Oda Oluştur
+                  </button>
+
+                  <div className="relative flex items-center justify-center">
+                    <div className="border-t border-slate-800 w-full" />
+                    <span className="bg-slate-900 px-2 text-[10px] text-slate-500 uppercase font-mono">veya kod ile katıl</span>
+                  </div>
+
+                  {/* Join Room Form */}
+                  <form onSubmit={handleJoinRoom} className="space-y-2">
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={joinCode}
+                        onChange={(e) => setJoinCode(e.target.value.toUpperCase())}
+                        maxLength={4}
+                        placeholder="ODA KODU"
+                        className="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-center text-white font-mono font-black tracking-widest text-base uppercase focus:outline-none focus:border-blue-500 transition"
+                      />
+                      <button
+                        type="submit"
+                        className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition shadow-md shadow-blue-600/30 cursor-pointer flex-shrink-0"
+                      >
+                        Katıl
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              )}
+            </div>
+
+            <div className="text-[11px] text-slate-500 text-center pt-2 border-t border-slate-800/80">
+              {gameMode === 'solo' 
+                ? 'Bot rakipler gerçek zamanlı teklif verir ve bütçelerini yönetir.'
+                : 'Oda kodunu arkadaşınla paylaşarak hemen kapışabilirsin.'}
+            </div>
           </div>
         </div>
       ) : (
-        /* Inside Room Waiting Lobby */
-        <div className="max-w-2xl mx-auto bg-slate-900/80 border border-slate-800 rounded-3xl p-8 backdrop-blur-xl shadow-2xl text-center space-y-8">
+        /* --- INSIDE WAITING ROOM: WITH CLEAN BACK BUTTON --- */
+        <div className="max-w-xl mx-auto bg-slate-900/90 border border-slate-800 rounded-2xl p-6 backdrop-blur-md shadow-2xl text-center space-y-6">
+          
+          {/* Room Top Bar with Back Button */}
+          <div className="flex justify-between items-center pb-4 border-b border-slate-800">
+            <button
+              type="button"
+              onClick={onLeaveRoom}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition border border-slate-700 cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              Ana Sayfaya Dön
+            </button>
+
+            <span className="text-[11px] font-mono text-slate-400">
+              BEKLEME SALONU
+            </span>
+          </div>
+
+          {/* Room Code Display */}
           <div>
-            <div className="text-xs uppercase font-bold text-slate-400 tracking-widest mb-1">Oda Kodu</div>
-            <div className="inline-flex items-center gap-3 bg-black/50 border border-slate-700/80 rounded-2xl px-6 py-3">
-              <span className="font-mono text-3xl font-black text-amber-400 tracking-widest">{room.code}</span>
+            <div className="text-[10px] uppercase font-bold text-slate-400 tracking-widest mb-1.5">
+              Oda Kodu
+            </div>
+            <div className="inline-flex items-center gap-3 bg-slate-950 border border-slate-700 rounded-xl px-5 py-2.5 shadow-inner">
+              <span className="font-mono text-2xl font-black text-amber-400 tracking-widest">
+                {room.code}
+              </span>
               <button
+                type="button"
                 onClick={handleCopyCode}
-                className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition"
+                className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition cursor-pointer"
                 title="Kodu Kopyala"
               >
-                {copied ? <Check className="w-5 h-5 text-emerald-400" /> : <Copy className="w-5 h-5" />}
+                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
               </button>
             </div>
-            <p className="text-xs text-slate-400 mt-2">Bu kodu arkadaşına göndererek odaya katılmasını sağla.</p>
+            <p className="text-xs text-slate-500 mt-2">
+              Bu kodu arkadaşına göndererek odaya katılmasını sağla.
+            </p>
           </div>
 
           {/* Player Matchup Pods */}
-          <div className="grid grid-cols-2 gap-4">
-            {/* Player 1 (Red Corner) */}
-            <div className="bg-red-950/30 border border-red-500/40 rounded-2xl p-5 text-left relative overflow-hidden">
-              <div className="text-[10px] uppercase font-bold text-red-400 tracking-wider mb-2">1. Eğitmen (Kırmızı)</div>
-              <div className="text-lg font-black text-white truncate">{room.players[0]?.name}</div>
+          <div className="grid grid-cols-2 gap-3 text-left">
+            {/* Player 1 */}
+            <div className="bg-red-950/20 border border-red-500/40 rounded-xl p-4">
+              <div className="text-[9px] uppercase font-bold text-red-400 tracking-wider mb-1">
+                1. Antrenör (Kırmızı)
+              </div>
+              <div className="text-base font-black text-white truncate">
+                {room.players[0]?.name}
+              </div>
               <div className="text-xs text-emerald-400 font-semibold mt-1 flex items-center gap-1">
-                <Check className="w-3.5 h-3.5" /> Hazır
+                <Check className="w-3 h-3" /> Hazır
               </div>
             </div>
 
-            {/* Player 2 (Blue Corner) */}
-            <div className={`rounded-2xl p-5 text-left border relative overflow-hidden transition-all ${
+            {/* Player 2 */}
+            <div className={`rounded-xl p-4 border transition-all ${
               room.players[1]
-                ? 'bg-blue-950/30 border-blue-500/40'
-                : 'bg-slate-950/50 border-dashed border-slate-700 animate-pulse'
+                ? 'bg-blue-950/20 border-blue-500/40'
+                : 'bg-slate-950/50 border-dashed border-slate-700'
             }`}>
-              <div className="text-[10px] uppercase font-bold text-blue-400 tracking-wider mb-2">2. Eğitmen (Mavi)</div>
+              <div className="text-[9px] uppercase font-bold text-blue-400 tracking-wider mb-1">
+                2. Antrenör (Mavi)
+              </div>
               {room.players[1] ? (
                 <>
-                  <div className="text-lg font-black text-white truncate">{room.players[1].name}</div>
+                  <div className="text-base font-black text-white truncate">
+                    {room.players[1].name}
+                  </div>
                   <div className="text-xs text-emerald-400 font-semibold mt-1 flex items-center gap-1">
-                    <Check className="w-3.5 h-3.5" /> Katıldı
+                    <Check className="w-3 h-3" /> Katıldı
                   </div>
                 </>
               ) : (
-                <div className="text-sm font-semibold text-slate-500 py-2">
-                  Arkadaşın bekleniyor...
+                <div className="space-y-2 py-0.5">
+                  <div className="text-xs font-semibold text-slate-500">
+                    Arkadaşın bekleniyor...
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleAddBotToRoom}
+                    className="px-2.5 py-1 rounded-lg bg-indigo-600/30 border border-indigo-500/40 hover:bg-indigo-600/50 text-indigo-300 text-xs font-bold transition flex items-center gap-1 cursor-pointer"
+                  >
+                    <Bot className="w-3 h-3" />
+                    Bot Çağır
+                  </button>
                 </div>
               )}
             </div>
@@ -229,19 +441,20 @@ export default function Lobby({
           {/* Action Button */}
           {isHost ? (
             <button
+              type="button"
               onClick={handleStartGame}
               disabled={!isReadyToStart}
-              className={`w-full py-4 px-6 rounded-2xl font-black text-lg transition-all shadow-xl flex items-center justify-center gap-2 ${
+              className={`w-full py-3.5 px-6 rounded-xl font-black text-base transition-all shadow-xl flex items-center justify-center gap-2 cursor-pointer ${
                 isReadyToStart
-                  ? 'bg-gradient-to-r from-red-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white shadow-red-600/40 transform hover:-translate-y-0.5 cursor-pointer'
+                  ? 'bg-red-600 hover:bg-red-500 text-white shadow-red-600/30'
                   : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
               }`}
             >
-              <Play className="w-6 h-6 fill-current" />
+              <Play className="w-5 h-5 fill-current" />
               {isReadyToStart ? 'AÇIK ARTIRMAYI BAŞLAT' : '2. Oyuncu Bekleniyor'}
             </button>
           ) : (
-            <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 text-slate-400 text-sm font-semibold flex items-center justify-center gap-2">
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-400 text-xs font-semibold flex items-center justify-center gap-2">
               <Users className="w-4 h-4 text-blue-400 animate-spin" />
               Oda kurucusunun oyunu başlatması bekleniyor...
             </div>

@@ -289,7 +289,7 @@ export default function AuctionArena({
               }`}>
                 {/* Quick Add Buttons */}
                 <div className="grid grid-cols-4 gap-1.5">
-                  {[1, 2, 5, 10].map(inc => {
+                  {[1, 2, 3, 5].map(inc => {
                     const nextVal = (room.currentBid || 0) + inc;
                     const canAfford = nextVal <= me.gold;
                     return (
