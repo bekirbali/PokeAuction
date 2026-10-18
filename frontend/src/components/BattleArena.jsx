@@ -149,6 +149,28 @@ export default function BattleArena({
     return 'bg-red-500';
   };
 
+  // Dynamic Player Perspective (Sol taraf veya sağ taraf oyuncunun kendi kimliğine göre SEN / RAKİP olur)
+  const isP1You = team1.id === playerId;
+  const isP2You = team2.id === playerId;
+
+  const p1Label = isP1You ? `SEN · ${team1.name}` : isP2You ? `RAKİP · ${team1.name}` : `1. OYUNCU · ${team1.name}`;
+  const p2Label = isP2You ? `SEN · ${team2.name}` : isP1You ? `RAKİP · ${team2.name}` : `2. OYUNCU · ${team2.name}`;
+
+  const p1IsYou = isP1You || (!isP1You && !isP2You);
+  const p2IsYou = isP2You;
+
+  const p1CardBorder = p1IsYou ? 'border-emerald-500/60' : 'border-blue-500/60';
+  const p1BadgeClass = p1IsYou
+    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+    : 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+  const p1BallActive = p1IsYou ? 'bg-emerald-500 shadow-emerald-500/50' : 'bg-blue-500 shadow-blue-500/50';
+
+  const p2CardBorder = p2IsYou ? 'border-emerald-500/60' : 'border-blue-500/60';
+  const p2BadgeClass = p2IsYou
+    ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30'
+    : 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+  const p2BallActive = p2IsYou ? 'bg-emerald-500 shadow-emerald-500/50' : 'bg-blue-500 shadow-blue-500/50';
+
   return (
     <div className="h-full max-h-[calc(100vh-2rem)] flex flex-col justify-between max-w-6xl w-full mx-auto px-4 py-2 overflow-hidden select-none">
       {/* Top Header: Controls & Status */}
@@ -232,10 +254,10 @@ export default function BattleArena({
         {/* --- TOP ROW: UNIFIED CARDS (LEFT = SEN / PLAYER 1, RIGHT = RAKİP / PLAYER 2) --- */}
         <div className="flex justify-between items-start z-10">
           {/* LEFT: Player 1 (You / Sen) Complete Battle Plate */}
-          <div className="bg-slate-900/95 border-2 border-emerald-500/60 rounded-2xl p-3 shadow-2xl backdrop-blur-md w-72 transform -skew-x-2">
+          <div className={`bg-slate-900/95 border-2 ${p1CardBorder} rounded-2xl p-3 shadow-2xl backdrop-blur-md w-72 transform -skew-x-2`}>
             <div className="flex justify-between items-center mb-1.5 pb-1 border-b border-slate-800">
-              <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                SEN · {team1.name}
+              <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-md border ${p1BadgeClass}`}>
+                {p1Label}
               </span>
               <div className="flex gap-1">
                 {[0, 1, 2, 3, 4].map(i => (
@@ -244,7 +266,7 @@ export default function BattleArena({
                     className={`w-3 h-3 rounded-full border transition-all ${
                       i < p1FaintedCount
                         ? 'bg-slate-800 border-slate-700 opacity-30'
-                        : 'bg-emerald-500 border-white shadow-sm shadow-emerald-500/50'
+                        : `${p1BallActive} border-white shadow-sm`
                     }`}
                     title={i < p1FaintedCount ? 'Bayıldı' : 'Hazır'}
                   />
@@ -280,10 +302,10 @@ export default function BattleArena({
           </div>
 
           {/* RIGHT: Player 2 (Opponent / Rakip) Complete Battle Plate */}
-          <div className="bg-slate-900/95 border-2 border-blue-500/60 rounded-2xl p-3 shadow-2xl backdrop-blur-md w-72 transform skew-x-2">
+          <div className={`bg-slate-900/95 border-2 ${p2CardBorder} rounded-2xl p-3 shadow-2xl backdrop-blur-md w-72 transform skew-x-2`}>
             <div className="flex justify-between items-center mb-1.5 pb-1 border-b border-slate-800">
-              <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-md bg-blue-500/20 text-blue-400 border border-blue-500/30">
-                RAKİP · {team2.name}
+              <span className={`text-[10px] font-black uppercase px-2 py-0.5 rounded-md border ${p2BadgeClass}`}>
+                {p2Label}
               </span>
               <div className="flex gap-1">
                 {[0, 1, 2, 3, 4].map(i => (
@@ -292,7 +314,7 @@ export default function BattleArena({
                     className={`w-3 h-3 rounded-full border transition-all ${
                       i < p2FaintedCount
                         ? 'bg-slate-800 border-slate-700 opacity-30'
-                        : 'bg-blue-500 border-white shadow-sm shadow-blue-500/50'
+                        : `${p2BallActive} border-white shadow-sm`
                     }`}
                     title={i < p2FaintedCount ? 'Bayıldı' : 'Hazır'}
                   />
@@ -355,7 +377,7 @@ export default function BattleArena({
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
-            <div className="w-56 h-20 -mt-7 battle-pad-p1 border-2 border-emerald-400/80 pointer-events-none" />
+            <div className={`w-56 h-20 -mt-7 ${p1IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
           </div>
 
           {/* Player 2 Combatant Group (Top-Right: Sprite directly standing on glowing blue pedestal) */}
@@ -383,7 +405,7 @@ export default function BattleArena({
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
-            <div className="w-48 h-16 -mt-6 battle-pad-p2 border-2 border-blue-400/80 pointer-events-none" />
+            <div className={`w-48 h-16 -mt-6 ${p2IsYou ? 'battle-pad-p1 border-emerald-400/80' : 'battle-pad-p2 border-blue-400/80'} border-2 pointer-events-none`} />
           </div>
         </div>
 
@@ -400,4 +422,5 @@ export default function BattleArena({
     </div>
   );
 }
+
 
