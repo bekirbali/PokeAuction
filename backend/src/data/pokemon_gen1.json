@@ -1,0 +1,7914 @@
+[
+  {
+    "id": 1,
+    "name": "Bulbasaur",
+    "slug": "bulbasaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 49,
+      "defense": 49,
+      "sp_attack": 65,
+      "sp_defense": 65,
+      "speed": 45
+    },
+    "totalStats": 318,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/bulbasaur.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/1.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Ivysaur",
+    "slug": "ivysaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 62,
+      "defense": 63,
+      "sp_attack": 80,
+      "sp_defense": 80,
+      "speed": 60
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/ivysaur.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ivysaur.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/2.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Venusaur",
+    "slug": "venusaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 83,
+      "sp_attack": 100,
+      "sp_defense": 100,
+      "speed": 80
+    },
+    "totalStats": 525,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/venusaur.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/venusaur.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/3.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Charmander",
+    "slug": "charmander",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 39,
+      "attack": 52,
+      "defense": 43,
+      "sp_attack": 60,
+      "sp_defense": 50,
+      "speed": 65
+    },
+    "totalStats": 309,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/charmander.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/charmander.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/4.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Charmeleon",
+    "slug": "charmeleon",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 64,
+      "defense": 58,
+      "sp_attack": 80,
+      "sp_defense": 65,
+      "speed": 80
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/charmeleon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/charmeleon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/5.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Charizard",
+    "slug": "charizard",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 84,
+      "defense": 78,
+      "sp_attack": 109,
+      "sp_defense": 85,
+      "speed": 100
+    },
+    "totalStats": 534,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/charizard.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/charizard.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/6.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Squirtle",
+    "slug": "squirtle",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 44,
+      "attack": 48,
+      "defense": 65,
+      "sp_attack": 50,
+      "sp_defense": 64,
+      "speed": 43
+    },
+    "totalStats": 314,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/squirtle.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/squirtle.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/7.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Wartortle",
+    "slug": "wartortle",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 59,
+      "attack": 63,
+      "defense": 80,
+      "sp_attack": 65,
+      "sp_defense": 80,
+      "speed": 58
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/wartortle.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/wartortle.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/8.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Blastoise",
+    "slug": "blastoise",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 79,
+      "attack": 83,
+      "defense": 100,
+      "sp_attack": 85,
+      "sp_defense": 105,
+      "speed": 78
+    },
+    "totalStats": 530,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/blastoise.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/blastoise.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/9.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Caterpie",
+    "slug": "caterpie",
+    "types": [
+      "Bug"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 30,
+      "defense": 35,
+      "sp_attack": 20,
+      "sp_defense": 20,
+      "speed": 45
+    },
+    "totalStats": 195,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/caterpie.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/caterpie.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/10.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Metapod",
+    "slug": "metapod",
+    "types": [
+      "Bug"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 20,
+      "defense": 55,
+      "sp_attack": 25,
+      "sp_defense": 25,
+      "speed": 30
+    },
+    "totalStats": 205,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/metapod.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/metapod.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/11.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/11.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Butterfree",
+    "slug": "butterfree",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 45,
+      "defense": 50,
+      "sp_attack": 90,
+      "sp_defense": 80,
+      "speed": 70
+    },
+    "totalStats": 395,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/butterfree.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/butterfree.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/12.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Weedle",
+    "slug": "weedle",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 35,
+      "defense": 30,
+      "sp_attack": 20,
+      "sp_defense": 20,
+      "speed": 50
+    },
+    "totalStats": 195,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/weedle.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/weedle.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/13.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Kakuna",
+    "slug": "kakuna",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 25,
+      "defense": 50,
+      "sp_attack": 25,
+      "sp_defense": 25,
+      "speed": 35
+    },
+    "totalStats": 205,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kakuna.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kakuna.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/14.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Beedrill",
+    "slug": "beedrill",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 40,
+      "sp_attack": 45,
+      "sp_defense": 80,
+      "speed": 75
+    },
+    "totalStats": 395,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/beedrill.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/beedrill.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/15.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/15.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Pidgey",
+    "slug": "pidgey",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 45,
+      "defense": 40,
+      "sp_attack": 35,
+      "sp_defense": 35,
+      "speed": 56
+    },
+    "totalStats": 251,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/pidgey.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/pidgey.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/16.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Pidgeotto",
+    "slug": "pidgeotto",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 63,
+      "attack": 60,
+      "defense": 55,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 71
+    },
+    "totalStats": 349,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/pidgeotto.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/pidgeotto.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/17.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/17.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Pidgeot",
+    "slug": "pidgeot",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 83,
+      "attack": 80,
+      "defense": 75,
+      "sp_attack": 70,
+      "sp_defense": 70,
+      "speed": 101
+    },
+    "totalStats": 479,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/pidgeot.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/pidgeot.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/18.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Rattata",
+    "slug": "rattata",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 56,
+      "defense": 35,
+      "sp_attack": 25,
+      "sp_defense": 35,
+      "speed": 72
+    },
+    "totalStats": 253,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/rattata.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/rattata.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/19.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/19.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Raticate",
+    "slug": "raticate",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 81,
+      "defense": 60,
+      "sp_attack": 50,
+      "sp_defense": 70,
+      "speed": 97
+    },
+    "totalStats": 413,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/raticate.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/raticate.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/20.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/20.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Spearow",
+    "slug": "spearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 60,
+      "defense": 30,
+      "sp_attack": 31,
+      "sp_defense": 31,
+      "speed": 70
+    },
+    "totalStats": 262,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/spearow.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/spearow.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/21.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/21.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Fearow",
+    "slug": "fearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 65,
+      "sp_attack": 61,
+      "sp_defense": 61,
+      "speed": 100
+    },
+    "totalStats": 442,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/fearow.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/fearow.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/22.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/22.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Ekans",
+    "slug": "ekans",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 60,
+      "defense": 44,
+      "sp_attack": 40,
+      "sp_defense": 54,
+      "speed": 55
+    },
+    "totalStats": 288,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/ekans.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ekans.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/23.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/23.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Arbok",
+    "slug": "arbok",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 95,
+      "defense": 69,
+      "sp_attack": 65,
+      "sp_defense": 79,
+      "speed": 80
+    },
+    "totalStats": 448,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/arbok.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/arbok.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/24.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Pikachu",
+    "slug": "pikachu",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 55,
+      "defense": 40,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 90
+    },
+    "totalStats": 320,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/pikachu.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/pikachu.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/25.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Raichu",
+    "slug": "raichu",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 90,
+      "defense": 55,
+      "sp_attack": 90,
+      "sp_defense": 80,
+      "speed": 110
+    },
+    "totalStats": 485,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/raichu.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/raichu.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/26.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Sandshrew",
+    "slug": "sandshrew",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 85,
+      "sp_attack": 20,
+      "sp_defense": 30,
+      "speed": 40
+    },
+    "totalStats": 300,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/sandshrew.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/sandshrew.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/27.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Sandslash",
+    "slug": "sandslash",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 100,
+      "defense": 110,
+      "sp_attack": 45,
+      "sp_defense": 55,
+      "speed": 65
+    },
+    "totalStats": 450,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/sandslash.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/sandslash.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/28.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Nidoran♀",
+    "slug": "nidoranf",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 47,
+      "defense": 52,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 41
+    },
+    "totalStats": 275,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidoranf.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidoranf.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/29.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Nidorina",
+    "slug": "nidorina",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 62,
+      "defense": 67,
+      "sp_attack": 55,
+      "sp_defense": 55,
+      "speed": 56
+    },
+    "totalStats": 365,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidorina.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidorina.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/30.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Nidoqueen",
+    "slug": "nidoqueen",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 92,
+      "defense": 87,
+      "sp_attack": 75,
+      "sp_defense": 85,
+      "speed": 76
+    },
+    "totalStats": 505,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidoqueen.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidoqueen.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/31.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Nidoran♂",
+    "slug": "nidoranm",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 46,
+      "attack": 57,
+      "defense": 40,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 50
+    },
+    "totalStats": 273,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidoranm.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidoranm.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/32.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Nidorino",
+    "slug": "nidorino",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 61,
+      "attack": 72,
+      "defense": 57,
+      "sp_attack": 55,
+      "sp_defense": 55,
+      "speed": 65
+    },
+    "totalStats": 365,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidorino.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidorino.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/33.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Nidoking",
+    "slug": "nidoking",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 81,
+      "attack": 102,
+      "defense": 77,
+      "sp_attack": 85,
+      "sp_defense": 75,
+      "speed": 85
+    },
+    "totalStats": 505,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/nidoking.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/nidoking.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/34.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Clefairy",
+    "slug": "clefairy",
+    "types": [
+      "Fairy"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 45,
+      "defense": 48,
+      "sp_attack": 60,
+      "sp_defense": 65,
+      "speed": 35
+    },
+    "totalStats": 323,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/clefairy.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/clefairy.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/35.ogg",
+    "moves": [
+      {
+        "name": "Moonblast",
+        "type": "Fairy",
+        "power": 95,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Clefable",
+    "slug": "clefable",
+    "types": [
+      "Fairy"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 70,
+      "defense": 73,
+      "sp_attack": 95,
+      "sp_defense": 90,
+      "speed": 60
+    },
+    "totalStats": 483,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/clefable.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/clefable.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/36.ogg",
+    "moves": [
+      {
+        "name": "Moonblast",
+        "type": "Fairy",
+        "power": 95,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Vulpix",
+    "slug": "vulpix",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 38,
+      "attack": 41,
+      "defense": 40,
+      "sp_attack": 50,
+      "sp_defense": 65,
+      "speed": 65
+    },
+    "totalStats": 299,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/vulpix.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/vulpix.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/37.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Ninetales",
+    "slug": "ninetales",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 73,
+      "attack": 76,
+      "defense": 75,
+      "sp_attack": 81,
+      "sp_defense": 100,
+      "speed": 100
+    },
+    "totalStats": 505,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/ninetales.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ninetales.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/38.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Jigglypuff",
+    "slug": "jigglypuff",
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "stats": {
+      "hp": 115,
+      "attack": 45,
+      "defense": 20,
+      "sp_attack": 45,
+      "sp_defense": 25,
+      "speed": 20
+    },
+    "totalStats": 270,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/jigglypuff.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/jigglypuff.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/39.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Moonblast",
+        "type": "Fairy",
+        "power": 95,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Wigglytuff",
+    "slug": "wigglytuff",
+    "types": [
+      "Normal",
+      "Fairy"
+    ],
+    "stats": {
+      "hp": 140,
+      "attack": 70,
+      "defense": 45,
+      "sp_attack": 85,
+      "sp_defense": 50,
+      "speed": 45
+    },
+    "totalStats": 435,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/wigglytuff.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/wigglytuff.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/40.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Moonblast",
+        "type": "Fairy",
+        "power": 95,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Zubat",
+    "slug": "zubat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 45,
+      "defense": 35,
+      "sp_attack": 30,
+      "sp_defense": 40,
+      "speed": 55
+    },
+    "totalStats": 245,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/zubat.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/zubat.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/41.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Golbat",
+    "slug": "golbat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 70,
+      "sp_attack": 65,
+      "sp_defense": 75,
+      "speed": 90
+    },
+    "totalStats": 455,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/golbat.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/golbat.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/42.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Oddish",
+    "slug": "oddish",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 50,
+      "defense": 55,
+      "sp_attack": 75,
+      "sp_defense": 65,
+      "speed": 30
+    },
+    "totalStats": 320,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/oddish.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/oddish.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/43.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Gloom",
+    "slug": "gloom",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 70,
+      "sp_attack": 85,
+      "sp_defense": 75,
+      "speed": 40
+    },
+    "totalStats": 395,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/gloom.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/gloom.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/44.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Vileplume",
+    "slug": "vileplume",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 85,
+      "sp_attack": 110,
+      "sp_defense": 90,
+      "speed": 50
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/vileplume.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/vileplume.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/45.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Paras",
+    "slug": "paras",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 70,
+      "defense": 55,
+      "sp_attack": 45,
+      "sp_defense": 55,
+      "speed": 25
+    },
+    "totalStats": 285,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/paras.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/paras.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/46.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Parasect",
+    "slug": "parasect",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 95,
+      "defense": 80,
+      "sp_attack": 60,
+      "sp_defense": 80,
+      "speed": 30
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/parasect.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/parasect.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/47.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Venonat",
+    "slug": "venonat",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 55,
+      "defense": 50,
+      "sp_attack": 40,
+      "sp_defense": 55,
+      "speed": 45
+    },
+    "totalStats": 305,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/venonat.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/venonat.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/48.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Venomoth",
+    "slug": "venomoth",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 65,
+      "defense": 60,
+      "sp_attack": 90,
+      "sp_defense": 75,
+      "speed": 90
+    },
+    "totalStats": 450,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/venomoth.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/venomoth.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/49.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Diglett",
+    "slug": "diglett",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 10,
+      "attack": 55,
+      "defense": 25,
+      "sp_attack": 35,
+      "sp_defense": 45,
+      "speed": 95
+    },
+    "totalStats": 265,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/diglett.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/diglett.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/50.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/50.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Dugtrio",
+    "slug": "dugtrio",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 100,
+      "defense": 50,
+      "sp_attack": 50,
+      "sp_defense": 70,
+      "speed": 120
+    },
+    "totalStats": 425,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dugtrio.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dugtrio.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/51.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/51.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Meowth",
+    "slug": "meowth",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 45,
+      "defense": 35,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 90
+    },
+    "totalStats": 290,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/meowth.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/meowth.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/52.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/52.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Persian",
+    "slug": "persian",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 70,
+      "defense": 60,
+      "sp_attack": 65,
+      "sp_defense": 65,
+      "speed": 115
+    },
+    "totalStats": 440,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/persian.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/persian.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/53.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/53.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Psyduck",
+    "slug": "psyduck",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 52,
+      "defense": 48,
+      "sp_attack": 65,
+      "sp_defense": 50,
+      "speed": 55
+    },
+    "totalStats": 320,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/psyduck.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/psyduck.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/54.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Golduck",
+    "slug": "golduck",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 82,
+      "defense": 78,
+      "sp_attack": 95,
+      "sp_defense": 80,
+      "speed": 85
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/golduck.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/golduck.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/55.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Mankey",
+    "slug": "mankey",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 80,
+      "defense": 35,
+      "sp_attack": 35,
+      "sp_defense": 45,
+      "speed": 70
+    },
+    "totalStats": 305,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/mankey.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/mankey.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/56.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/56.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Primeape",
+    "slug": "primeape",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 105,
+      "defense": 60,
+      "sp_attack": 60,
+      "sp_defense": 70,
+      "speed": 95
+    },
+    "totalStats": 455,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/primeape.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/primeape.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/57.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/57.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Growlithe",
+    "slug": "growlithe",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 70,
+      "defense": 45,
+      "sp_attack": 70,
+      "sp_defense": 50,
+      "speed": 60
+    },
+    "totalStats": 350,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/growlithe.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/growlithe.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/58.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/58.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Arcanine",
+    "slug": "arcanine",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 110,
+      "defense": 80,
+      "sp_attack": 100,
+      "sp_defense": 80,
+      "speed": 95
+    },
+    "totalStats": 555,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/arcanine.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/arcanine.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/59.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/59.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Poliwag",
+    "slug": "poliwag",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 50,
+      "defense": 40,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 90
+    },
+    "totalStats": 300,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/poliwag.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/poliwag.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/60.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/60.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Poliwhirl",
+    "slug": "poliwhirl",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 65,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 90
+    },
+    "totalStats": 385,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/poliwhirl.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/poliwhirl.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/61.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/61.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Poliwrath",
+    "slug": "poliwrath",
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 95,
+      "defense": 95,
+      "sp_attack": 70,
+      "sp_defense": 90,
+      "speed": 70
+    },
+    "totalStats": 510,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/poliwrath.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/poliwrath.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/62.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/62.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      }
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Abra",
+    "slug": "abra",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 25,
+      "attack": 20,
+      "defense": 15,
+      "sp_attack": 105,
+      "sp_defense": 55,
+      "speed": 90
+    },
+    "totalStats": 310,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/abra.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/abra.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/63.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/63.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Kadabra",
+    "slug": "kadabra",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 35,
+      "defense": 30,
+      "sp_attack": 120,
+      "sp_defense": 70,
+      "speed": 105
+    },
+    "totalStats": 400,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kadabra.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kadabra.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/64.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/64.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Alakazam",
+    "slug": "alakazam",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 45,
+      "sp_attack": 135,
+      "sp_defense": 95,
+      "speed": 120
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/alakazam.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/alakazam.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/65.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/65.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Machop",
+    "slug": "machop",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 80,
+      "defense": 50,
+      "sp_attack": 35,
+      "sp_defense": 35,
+      "speed": 35
+    },
+    "totalStats": 305,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/machop.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/machop.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/66.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/66.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Machoke",
+    "slug": "machoke",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 100,
+      "defense": 70,
+      "sp_attack": 50,
+      "sp_defense": 60,
+      "speed": 45
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/machoke.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/machoke.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/67.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/67.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Machamp",
+    "slug": "machamp",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 130,
+      "defense": 80,
+      "sp_attack": 65,
+      "sp_defense": 85,
+      "speed": 55
+    },
+    "totalStats": 505,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/machamp.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/machamp.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/68.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/68.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Bellsprout",
+    "slug": "bellsprout",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 75,
+      "defense": 35,
+      "sp_attack": 70,
+      "sp_defense": 30,
+      "speed": 40
+    },
+    "totalStats": 300,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/bellsprout.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/bellsprout.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/69.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/69.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Weepinbell",
+    "slug": "weepinbell",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 50,
+      "sp_attack": 85,
+      "sp_defense": 45,
+      "speed": 55
+    },
+    "totalStats": 390,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/weepinbell.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/weepinbell.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/70.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/70.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Victreebel",
+    "slug": "victreebel",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "sp_attack": 100,
+      "sp_defense": 70,
+      "speed": 70
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/victreebel.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/victreebel.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/71.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/71.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Tentacool",
+    "slug": "tentacool",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 40,
+      "defense": 35,
+      "sp_attack": 50,
+      "sp_defense": 100,
+      "speed": 70
+    },
+    "totalStats": 335,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/tentacool.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/tentacool.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/72.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/72.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Tentacruel",
+    "slug": "tentacruel",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 70,
+      "defense": 65,
+      "sp_attack": 80,
+      "sp_defense": 120,
+      "speed": 100
+    },
+    "totalStats": 515,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/tentacruel.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/tentacruel.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/73.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/73.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Geodude",
+    "slug": "geodude",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 80,
+      "defense": 100,
+      "sp_attack": 30,
+      "sp_defense": 30,
+      "speed": 20
+    },
+    "totalStats": 300,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/geodude.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/geodude.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/74.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/74.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Graveler",
+    "slug": "graveler",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 95,
+      "defense": 115,
+      "sp_attack": 45,
+      "sp_defense": 45,
+      "speed": 35
+    },
+    "totalStats": 390,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/graveler.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/graveler.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/75.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/75.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Golem",
+    "slug": "golem",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 130,
+      "sp_attack": 55,
+      "sp_defense": 65,
+      "speed": 45
+    },
+    "totalStats": 495,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/golem.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/golem.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/76.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/76.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Ponyta",
+    "slug": "ponyta",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 85,
+      "defense": 55,
+      "sp_attack": 65,
+      "sp_defense": 65,
+      "speed": 90
+    },
+    "totalStats": 410,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/ponyta.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ponyta.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/77.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/77.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Rapidash",
+    "slug": "rapidash",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 100,
+      "defense": 70,
+      "sp_attack": 80,
+      "sp_defense": 80,
+      "speed": 105
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/rapidash.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/rapidash.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/78.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/78.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Slowpoke",
+    "slug": "slowpoke",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 65,
+      "defense": 65,
+      "sp_attack": 40,
+      "sp_defense": 40,
+      "speed": 15
+    },
+    "totalStats": 315,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/slowpoke.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/slowpoke.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/79.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/79.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Slowbro",
+    "slug": "slowbro",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 75,
+      "defense": 110,
+      "sp_attack": 100,
+      "sp_defense": 80,
+      "speed": 30
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/slowbro.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/slowbro.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/80.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/80.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Magnemite",
+    "slug": "magnemite",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "stats": {
+      "hp": 25,
+      "attack": 35,
+      "defense": 70,
+      "sp_attack": 95,
+      "sp_defense": 55,
+      "speed": 45
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/magnemite.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/magnemite.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/81.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/81.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Flash Cannon",
+        "type": "Steel",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Iron Head",
+        "type": "Steel",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Magneton",
+    "slug": "magneton",
+    "types": [
+      "Electric",
+      "Steel"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 60,
+      "defense": 95,
+      "sp_attack": 120,
+      "sp_defense": 70,
+      "speed": 70
+    },
+    "totalStats": 465,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/magneton.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/magneton.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/82.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/82.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Flash Cannon",
+        "type": "Steel",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Iron Head",
+        "type": "Steel",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Farfetchd",
+    "slug": "farfetchd",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 52,
+      "attack": 90,
+      "defense": 55,
+      "sp_attack": 58,
+      "sp_defense": 62,
+      "speed": 60
+    },
+    "totalStats": 377,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/farfetchd.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/farfetchd.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/83.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/83.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Doduo",
+    "slug": "doduo",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 85,
+      "defense": 45,
+      "sp_attack": 35,
+      "sp_defense": 35,
+      "speed": 75
+    },
+    "totalStats": 310,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/doduo.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/doduo.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/84.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/84.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Dodrio",
+    "slug": "dodrio",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 110,
+      "defense": 70,
+      "sp_attack": 60,
+      "sp_defense": 60,
+      "speed": 110
+    },
+    "totalStats": 470,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dodrio.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dodrio.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/85.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/85.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Seel",
+    "slug": "seel",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 45,
+      "defense": 55,
+      "sp_attack": 45,
+      "sp_defense": 70,
+      "speed": 45
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/seel.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/seel.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/86.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/86.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Dewgong",
+    "slug": "dewgong",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 70,
+      "defense": 80,
+      "sp_attack": 70,
+      "sp_defense": 95,
+      "speed": 70
+    },
+    "totalStats": 475,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dewgong.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dewgong.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/87.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/87.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Grimer",
+    "slug": "grimer",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 80,
+      "defense": 50,
+      "sp_attack": 40,
+      "sp_defense": 50,
+      "speed": 25
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/grimer.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/grimer.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/88.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/88.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Muk",
+    "slug": "muk",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 105,
+      "defense": 75,
+      "sp_attack": 65,
+      "sp_defense": 100,
+      "speed": 50
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/muk.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/muk.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/89.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/89.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Shellder",
+    "slug": "shellder",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 65,
+      "defense": 100,
+      "sp_attack": 45,
+      "sp_defense": 25,
+      "speed": 40
+    },
+    "totalStats": 305,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/shellder.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/shellder.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/90.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/90.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Cloyster",
+    "slug": "cloyster",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 95,
+      "defense": 180,
+      "sp_attack": 85,
+      "sp_defense": 45,
+      "speed": 70
+    },
+    "totalStats": 525,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/cloyster.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/cloyster.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/91.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Gastly",
+    "slug": "gastly",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 35,
+      "defense": 30,
+      "sp_attack": 100,
+      "sp_defense": 35,
+      "speed": 80
+    },
+    "totalStats": 310,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/gastly.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/gastly.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/92.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/92.ogg",
+    "moves": [
+      {
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Shadow Claw",
+        "type": "Ghost",
+        "power": 70,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Haunter",
+    "slug": "haunter",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 50,
+      "defense": 45,
+      "sp_attack": 115,
+      "sp_defense": 55,
+      "speed": 95
+    },
+    "totalStats": 405,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/haunter.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/haunter.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/93.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/93.ogg",
+    "moves": [
+      {
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Shadow Claw",
+        "type": "Ghost",
+        "power": 70,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Gengar",
+    "slug": "gengar",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 65,
+      "defense": 60,
+      "sp_attack": 130,
+      "sp_defense": 75,
+      "speed": 110
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/gengar.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/gengar.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/94.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/94.ogg",
+    "moves": [
+      {
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Shadow Claw",
+        "type": "Ghost",
+        "power": 70,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Onix",
+    "slug": "onix",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 45,
+      "defense": 160,
+      "sp_attack": 30,
+      "sp_defense": 45,
+      "speed": 70
+    },
+    "totalStats": 385,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/onix.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/onix.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/95.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/95.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Drowzee",
+    "slug": "drowzee",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 48,
+      "defense": 45,
+      "sp_attack": 43,
+      "sp_defense": 90,
+      "speed": 42
+    },
+    "totalStats": 328,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/drowzee.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/drowzee.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/96.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/96.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Hypno",
+    "slug": "hypno",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 73,
+      "defense": 70,
+      "sp_attack": 73,
+      "sp_defense": 115,
+      "speed": 67
+    },
+    "totalStats": 483,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/hypno.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/hypno.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/97.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/97.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Krabby",
+    "slug": "krabby",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 105,
+      "defense": 90,
+      "sp_attack": 25,
+      "sp_defense": 25,
+      "speed": 50
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/krabby.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/krabby.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/98.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Kingler",
+    "slug": "kingler",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 130,
+      "defense": 115,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 75
+    },
+    "totalStats": 475,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kingler.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kingler.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/99.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Voltorb",
+    "slug": "voltorb",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 30,
+      "defense": 50,
+      "sp_attack": 55,
+      "sp_defense": 55,
+      "speed": 100
+    },
+    "totalStats": 330,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/voltorb.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/voltorb.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/100.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/100.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Electrode",
+    "slug": "electrode",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 70,
+      "sp_attack": 80,
+      "sp_defense": 80,
+      "speed": 150
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/electrode.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/electrode.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/101.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/101.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Exeggcute",
+    "slug": "exeggcute",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 40,
+      "defense": 80,
+      "sp_attack": 60,
+      "sp_defense": 45,
+      "speed": 40
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/exeggcute.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/exeggcute.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/102.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/102.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Exeggutor",
+    "slug": "exeggutor",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 95,
+      "defense": 85,
+      "sp_attack": 125,
+      "sp_defense": 75,
+      "speed": 55
+    },
+    "totalStats": 530,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/exeggutor.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/exeggutor.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/103.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/103.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Cubone",
+    "slug": "cubone",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 95,
+      "sp_attack": 40,
+      "sp_defense": 50,
+      "speed": 35
+    },
+    "totalStats": 320,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/cubone.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/cubone.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/104.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/104.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Marowak",
+    "slug": "marowak",
+    "types": [
+      "Ground"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 80,
+      "defense": 110,
+      "sp_attack": 50,
+      "sp_defense": 80,
+      "speed": 45
+    },
+    "totalStats": 425,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/marowak.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/marowak.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/105.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/105.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Hitmonlee",
+    "slug": "hitmonlee",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 120,
+      "defense": 53,
+      "sp_attack": 35,
+      "sp_defense": 110,
+      "speed": 87
+    },
+    "totalStats": 455,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/hitmonlee.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/hitmonlee.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/106.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/106.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Hitmonchan",
+    "slug": "hitmonchan",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 105,
+      "defense": 79,
+      "sp_attack": 35,
+      "sp_defense": 110,
+      "speed": 76
+    },
+    "totalStats": 455,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/hitmonchan.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/hitmonchan.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/107.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/107.ogg",
+    "moves": [
+      {
+        "name": "Close Combat",
+        "type": "Fighting",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Cross Chop",
+        "type": "Fighting",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Lickitung",
+    "slug": "lickitung",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 55,
+      "defense": 75,
+      "sp_attack": 60,
+      "sp_defense": 75,
+      "speed": 30
+    },
+    "totalStats": 385,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/lickitung.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/lickitung.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/108.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/108.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Koffing",
+    "slug": "koffing",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 65,
+      "defense": 95,
+      "sp_attack": 60,
+      "sp_defense": 45,
+      "speed": 35
+    },
+    "totalStats": 340,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/koffing.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/koffing.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/109.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/109.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Weezing",
+    "slug": "weezing",
+    "types": [
+      "Poison"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 120,
+      "sp_attack": 85,
+      "sp_defense": 70,
+      "speed": 60
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/weezing.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/weezing.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/110.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/110.ogg",
+    "moves": [
+      {
+        "name": "Sludge Bomb",
+        "type": "Poison",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Poison Jab",
+        "type": "Poison",
+        "power": 80,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Rhyhorn",
+    "slug": "rhyhorn",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 85,
+      "defense": 95,
+      "sp_attack": 30,
+      "sp_defense": 30,
+      "speed": 25
+    },
+    "totalStats": 345,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/rhyhorn.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/rhyhorn.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/111.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/111.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      }
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Rhydon",
+    "slug": "rhydon",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 130,
+      "defense": 120,
+      "sp_attack": 45,
+      "sp_defense": 45,
+      "speed": 40
+    },
+    "totalStats": 485,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/rhydon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/rhydon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/112.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/112.ogg",
+    "moves": [
+      {
+        "name": "Earthquake",
+        "type": "Ground",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Earth Power",
+        "type": "Ground",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      }
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Chansey",
+    "slug": "chansey",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 250,
+      "attack": 5,
+      "defense": 5,
+      "sp_attack": 35,
+      "sp_defense": 105,
+      "speed": 50
+    },
+    "totalStats": 450,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/chansey.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/chansey.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/113.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/113.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Tangela",
+    "slug": "tangela",
+    "types": [
+      "Grass"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 55,
+      "defense": 115,
+      "sp_attack": 100,
+      "sp_defense": 40,
+      "speed": 60
+    },
+    "totalStats": 435,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/tangela.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/tangela.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/114.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/114.ogg",
+    "moves": [
+      {
+        "name": "Solar Beam",
+        "type": "Grass",
+        "power": 120,
+        "category": "special",
+        "accuracy": 95
+      },
+      {
+        "name": "Energy Ball",
+        "type": "Grass",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Kangaskhan",
+    "slug": "kangaskhan",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 105,
+      "attack": 95,
+      "defense": 80,
+      "sp_attack": 40,
+      "sp_defense": 80,
+      "speed": 90
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kangaskhan.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kangaskhan.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/115.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/115.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Horsea",
+    "slug": "horsea",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 40,
+      "defense": 70,
+      "sp_attack": 70,
+      "sp_defense": 25,
+      "speed": 60
+    },
+    "totalStats": 295,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/horsea.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/horsea.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/116.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/116.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Seadra",
+    "slug": "seadra",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 65,
+      "defense": 95,
+      "sp_attack": 95,
+      "sp_defense": 45,
+      "speed": 85
+    },
+    "totalStats": 440,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/seadra.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/seadra.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/117.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/117.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Goldeen",
+    "slug": "goldeen",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 67,
+      "defense": 60,
+      "sp_attack": 35,
+      "sp_defense": 50,
+      "speed": 63
+    },
+    "totalStats": 320,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/goldeen.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/goldeen.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/118.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/118.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Seaking",
+    "slug": "seaking",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 92,
+      "defense": 65,
+      "sp_attack": 65,
+      "sp_defense": 80,
+      "speed": 68
+    },
+    "totalStats": 450,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/seaking.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/seaking.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/119.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/119.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Staryu",
+    "slug": "staryu",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 45,
+      "defense": 55,
+      "sp_attack": 70,
+      "sp_defense": 55,
+      "speed": 85
+    },
+    "totalStats": 340,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/staryu.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/staryu.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/120.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/120.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 121,
+    "name": "Starmie",
+    "slug": "starmie",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 75,
+      "defense": 85,
+      "sp_attack": 100,
+      "sp_defense": 85,
+      "speed": 115
+    },
+    "totalStats": 520,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/starmie.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/starmie.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/121.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/121.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Mr",
+    "slug": "mrmime",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 45,
+      "defense": 65,
+      "sp_attack": 100,
+      "sp_defense": 120,
+      "speed": 90
+    },
+    "totalStats": 460,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/mrmime.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/mrmime.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/122.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/122.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Moonblast",
+        "type": "Fairy",
+        "power": 95,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Scyther",
+    "slug": "scyther",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 110,
+      "defense": 80,
+      "sp_attack": 55,
+      "sp_defense": 80,
+      "speed": 105
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/scyther.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/scyther.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/123.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/123.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Jynx",
+    "slug": "jynx",
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 50,
+      "defense": 35,
+      "sp_attack": 115,
+      "sp_defense": 95,
+      "speed": 95
+    },
+    "totalStats": 455,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/jynx.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/jynx.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/124.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/124.ogg",
+    "moves": [
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Electabuzz",
+    "slug": "electabuzz",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 83,
+      "defense": 57,
+      "sp_attack": 95,
+      "sp_defense": 85,
+      "speed": 105
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/electabuzz.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/electabuzz.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/125.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/125.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Magmar",
+    "slug": "magmar",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 95,
+      "defense": 57,
+      "sp_attack": 100,
+      "sp_defense": 85,
+      "speed": 93
+    },
+    "totalStats": 495,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/magmar.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/magmar.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/126.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/126.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Pinsir",
+    "slug": "pinsir",
+    "types": [
+      "Bug"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 125,
+      "defense": 100,
+      "sp_attack": 55,
+      "sp_defense": 70,
+      "speed": 85
+    },
+    "totalStats": 500,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/pinsir.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/pinsir.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/127.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/127.ogg",
+    "moves": [
+      {
+        "name": "Megahorn",
+        "type": "Bug",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Bug Buzz",
+        "type": "Bug",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Tauros",
+    "slug": "tauros",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 100,
+      "defense": 95,
+      "sp_attack": 40,
+      "sp_defense": 70,
+      "speed": 110
+    },
+    "totalStats": 490,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/tauros.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/tauros.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/128.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/128.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Magikarp",
+    "slug": "magikarp",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 20,
+      "attack": 10,
+      "defense": 55,
+      "sp_attack": 15,
+      "sp_defense": 20,
+      "speed": 80
+    },
+    "totalStats": 200,
+    "tier": "Meme",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/magikarp.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/magikarp.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/129.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/129.ogg",
+    "moves": [
+      {
+        "name": "Splash",
+        "type": "Normal",
+        "power": 0,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Tackle",
+        "type": "Normal",
+        "power": 30,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Flail",
+        "type": "Normal",
+        "power": 50,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Gyarados",
+    "slug": "gyarados",
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 125,
+      "defense": 79,
+      "sp_attack": 60,
+      "sp_defense": 100,
+      "speed": 81
+    },
+    "totalStats": 540,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/gyarados.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/gyarados.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/130.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/130.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Lapras",
+    "slug": "lapras",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "stats": {
+      "hp": 130,
+      "attack": 85,
+      "defense": 80,
+      "sp_attack": 85,
+      "sp_defense": 95,
+      "speed": 60
+    },
+    "totalStats": 535,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/lapras.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/lapras.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/131.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/131.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Ditto",
+    "slug": "ditto",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 48,
+      "attack": 48,
+      "defense": 48,
+      "sp_attack": 48,
+      "sp_defense": 48,
+      "speed": 48
+    },
+    "totalStats": 288,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/ditto.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ditto.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/132.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Eevee",
+    "slug": "eevee",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 55,
+      "defense": 50,
+      "sp_attack": 45,
+      "sp_defense": 65,
+      "speed": 55
+    },
+    "totalStats": 325,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/eevee.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/eevee.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/133.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Vaporeon",
+    "slug": "vaporeon",
+    "types": [
+      "Water"
+    ],
+    "stats": {
+      "hp": 130,
+      "attack": 65,
+      "defense": 60,
+      "sp_attack": 110,
+      "sp_defense": 95,
+      "speed": 65
+    },
+    "totalStats": 525,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/vaporeon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/vaporeon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/134.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/134.ogg",
+    "moves": [
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Jolteon",
+    "slug": "jolteon",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 65,
+      "defense": 60,
+      "sp_attack": 110,
+      "sp_defense": 95,
+      "speed": 130
+    },
+    "totalStats": 525,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/jolteon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/jolteon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/135.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Flareon",
+    "slug": "flareon",
+    "types": [
+      "Fire"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 130,
+      "defense": 60,
+      "sp_attack": 95,
+      "sp_defense": 110,
+      "speed": 65
+    },
+    "totalStats": 525,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/flareon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/flareon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/136.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/136.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Porygon",
+    "slug": "porygon",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 60,
+      "defense": 70,
+      "sp_attack": 85,
+      "sp_defense": 75,
+      "speed": 40
+    },
+    "totalStats": 395,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/porygon.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/porygon.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/137.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/137.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 138,
+    "name": "Omanyte",
+    "slug": "omanyte",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "stats": {
+      "hp": 35,
+      "attack": 40,
+      "defense": 100,
+      "sp_attack": 90,
+      "sp_defense": 55,
+      "speed": 35
+    },
+    "totalStats": 355,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/omanyte.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/omanyte.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/138.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/138.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Omastar",
+    "slug": "omastar",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "stats": {
+      "hp": 70,
+      "attack": 60,
+      "defense": 125,
+      "sp_attack": 115,
+      "sp_defense": 70,
+      "speed": 55
+    },
+    "totalStats": 495,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/omastar.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/omastar.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/139.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/139.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 140,
+    "name": "Kabuto",
+    "slug": "kabuto",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "stats": {
+      "hp": 30,
+      "attack": 80,
+      "defense": 90,
+      "sp_attack": 55,
+      "sp_defense": 45,
+      "speed": 55
+    },
+    "totalStats": 355,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kabuto.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kabuto.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/140.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/140.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 141,
+    "name": "Kabutops",
+    "slug": "kabutops",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 115,
+      "defense": 105,
+      "sp_attack": 65,
+      "sp_defense": 70,
+      "speed": 80
+    },
+    "totalStats": 495,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/kabutops.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/kabutops.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/141.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/141.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Hydro Pump",
+        "type": "Water",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Surf",
+        "type": "Water",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Aerodactyl",
+    "slug": "aerodactyl",
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 105,
+      "defense": 65,
+      "sp_attack": 60,
+      "sp_defense": 75,
+      "speed": 130
+    },
+    "totalStats": 515,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/aerodactyl.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/aerodactyl.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/142.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/142.ogg",
+    "moves": [
+      {
+        "name": "Stone Edge",
+        "type": "Rock",
+        "power": 100,
+        "category": "physical",
+        "accuracy": 85
+      },
+      {
+        "name": "Rock Slide",
+        "type": "Rock",
+        "power": 75,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Snorlax",
+    "slug": "snorlax",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 160,
+      "attack": 110,
+      "defense": 65,
+      "sp_attack": 65,
+      "sp_defense": 110,
+      "speed": 30
+    },
+    "totalStats": 540,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/snorlax.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/snorlax.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/143.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/143.ogg",
+    "moves": [
+      {
+        "name": "Hyper Beam",
+        "type": "Normal",
+        "power": 120,
+        "category": "special",
+        "accuracy": 90
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Articuno",
+    "slug": "articuno",
+    "types": [
+      "Ice",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 85,
+      "defense": 100,
+      "sp_attack": 95,
+      "sp_defense": 125,
+      "speed": 85
+    },
+    "totalStats": 580,
+    "tier": "Legendary",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/articuno.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/articuno.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/144.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/144.ogg",
+    "moves": [
+      {
+        "name": "Blizzard",
+        "type": "Ice",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Ice Beam",
+        "type": "Ice",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Zapdos",
+    "slug": "zapdos",
+    "types": [
+      "Electric",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 90,
+      "defense": 85,
+      "sp_attack": 125,
+      "sp_defense": 90,
+      "speed": 100
+    },
+    "totalStats": 580,
+    "tier": "Legendary",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/zapdos.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/zapdos.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/145.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/145.ogg",
+    "moves": [
+      {
+        "name": "Thunder",
+        "type": "Electric",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Thunderbolt",
+        "type": "Electric",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Moltres",
+    "slug": "moltres",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 90,
+      "sp_attack": 125,
+      "sp_defense": 85,
+      "speed": 90
+    },
+    "totalStats": 580,
+    "tier": "Legendary",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/moltres.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/moltres.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/146.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/146.ogg",
+    "moves": [
+      {
+        "name": "Fire Blast",
+        "type": "Fire",
+        "power": 110,
+        "category": "special",
+        "accuracy": 85
+      },
+      {
+        "name": "Flamethrower",
+        "type": "Fire",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Dratini",
+    "slug": "dratini",
+    "types": [
+      "Dragon"
+    ],
+    "stats": {
+      "hp": 41,
+      "attack": 64,
+      "defense": 45,
+      "sp_attack": 50,
+      "sp_defense": 50,
+      "speed": 50
+    },
+    "totalStats": 300,
+    "tier": "Common",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dratini.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dratini.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/147.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/147.ogg",
+    "moves": [
+      {
+        "name": "Outrage",
+        "type": "Dragon",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Dragon Pulse",
+        "type": "Dragon",
+        "power": 85,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Dragonair",
+    "slug": "dragonair",
+    "types": [
+      "Dragon"
+    ],
+    "stats": {
+      "hp": 61,
+      "attack": 84,
+      "defense": 65,
+      "sp_attack": 70,
+      "sp_defense": 70,
+      "speed": 70
+    },
+    "totalStats": 420,
+    "tier": "Rare",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dragonair.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dragonair.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/148.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/148.ogg",
+    "moves": [
+      {
+        "name": "Outrage",
+        "type": "Dragon",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Dragon Pulse",
+        "type": "Dragon",
+        "power": 85,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Dragonite",
+    "slug": "dragonite",
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "stats": {
+      "hp": 91,
+      "attack": 134,
+      "defense": 95,
+      "sp_attack": 100,
+      "sp_defense": 100,
+      "speed": 80
+    },
+    "totalStats": 600,
+    "tier": "Epic",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/dragonite.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/dragonite.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/149.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/149.ogg",
+    "moves": [
+      {
+        "name": "Outrage",
+        "type": "Dragon",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Dragon Pulse",
+        "type": "Dragon",
+        "power": 85,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Brave Bird",
+        "type": "Flying",
+        "power": 120,
+        "category": "physical",
+        "accuracy": 90
+      },
+      {
+        "name": "Air Slash",
+        "type": "Flying",
+        "power": 75,
+        "category": "special",
+        "accuracy": 95
+      }
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Mewtwo",
+    "slug": "mewtwo",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 106,
+      "attack": 110,
+      "defense": 90,
+      "sp_attack": 154,
+      "sp_defense": 90,
+      "speed": 130
+    },
+    "totalStats": 680,
+    "tier": "Legendary",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/mewtwo.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/mewtwo.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/150.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/150.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  },
+  {
+    "id": 151,
+    "name": "Mew",
+    "slug": "mew",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 100,
+      "attack": 100,
+      "defense": 100,
+      "sp_attack": 100,
+      "sp_defense": 100,
+      "speed": 100
+    },
+    "totalStats": 600,
+    "tier": "Legendary",
+    "sprite": "https://play.pokemonshowdown.com/sprites/ani/mew.gif",
+    "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/mew.gif",
+    "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/151.png",
+    "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/151.ogg",
+    "moves": [
+      {
+        "name": "Psychic",
+        "type": "Psychic",
+        "power": 90,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Psyshock",
+        "type": "Psychic",
+        "power": 80,
+        "category": "special",
+        "accuracy": 100
+      },
+      {
+        "name": "Body Slam",
+        "type": "Normal",
+        "power": 85,
+        "category": "physical",
+        "accuracy": 100
+      },
+      {
+        "name": "Quick Attack",
+        "type": "Normal",
+        "power": 40,
+        "category": "physical",
+        "accuracy": 100
+      }
+    ]
+  }
+]
