@@ -1,4 +1,4 @@
-﻿# ⚡ PokéAuction: 1v1 Blind Draft & Auto-Battler
+﻿# PokéAuction: 1v1 Blind Draft & Auto-Battler
 
 > **Trend:** TikTok/YouTube "Kör Takım Kurma" trendi ile klasik Pokedex / Pokemon Gen 1 evrenini birleştiren, gerçek zamanlı 1v1 açık artırma ve sinematik otomatik dövüş oyunu.
 
