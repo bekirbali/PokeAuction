@@ -165,10 +165,7 @@ export default function Lobby({
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500 font-mono">
-              <span>FORMAT: 1v1 BLIND DRAFT</span>
-              <span>151 KANTO GEN 1</span>
-            </div>
+
           </div>
 
           {/* RIGHT: Actions & Setup (Mobile: order-1, Desktop: order-2) */}
@@ -337,11 +334,7 @@ export default function Lobby({
               )}
             </div>
 
-            <div className="text-[11px] text-slate-500 text-center pt-2 border-t border-slate-800/80">
-              {gameMode === 'solo' 
-                ? 'Bot rakipler gerçek zamanlı teklif verir ve bütçelerini yönetir.'
-                : 'Oda kodunu arkadaşınla paylaşarak hemen kapışabilirsin.'}
-            </div>
+            
           </div>
         </div>
       ) : (
