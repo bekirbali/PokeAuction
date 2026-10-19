@@ -1,0 +1,26 @@
+{
+  "name": "PokéAuction: 1v1 Blind Draft & Auto-Battler",
+  "short_name": "PokéAuction",
+  "description": "Canlı 1v1 Pokémon Açık Artırması ve Otomatik Savaş Simülatörü",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#020617",
+  "theme_color": "#020617",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
