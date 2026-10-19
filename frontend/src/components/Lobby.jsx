@@ -71,6 +71,15 @@ export default function Lobby({
     socket.emit('START_GAME');
   };
 
+  const handleBackToHome = () => {
+    sound.playBid();
+    if (onLeaveRoom) {
+      onLeaveRoom();
+    } else {
+      socket.emit('LEAVE_ROOM');
+    }
+  };
+
   const isHost = room?.players?.[0]?.id === playerId;
   const isReadyToStart = room?.players?.length === 2;
 
@@ -342,7 +351,7 @@ export default function Lobby({
           <div className="flex justify-between items-center pb-4 border-b border-slate-800">
             <button
               type="button"
-              onClick={onLeaveRoom}
+              onClick={handleBackToHome}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition border border-slate-700 cursor-pointer"
             >
               <ArrowLeft className="w-3.5 h-3.5" />

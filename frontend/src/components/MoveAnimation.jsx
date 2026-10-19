@@ -107,21 +107,21 @@ export default function MoveAnimation({
       {/* 3. Authentic Falling Boulder / Rock Drop on Target */}
       {isRockOrGround && (
         <div
-          className="absolute transform -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none"
+          className="absolute w-32 h-32 transform -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center"
           style={{ left: targetX, top: targetY }}
         >
           {/* Main Giant Rock / Boulder plunging down from sky */}
           <img
             src="/fx/rocks.png"
             alt="falling-rocks"
-            className="w-32 h-32 object-contain anim-rock-fall drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
+            className="w-28 h-28 object-contain anim-rock-fall drop-shadow-[0_10px_25px_rgba(0,0,0,0.85)]"
           />
 
           {/* Secondary Rock Shard */}
           <img
             src="/fx/rock1.png"
             alt="rock-shard"
-            className="absolute -top-6 -left-6 w-16 h-16 object-contain anim-rock-fall"
+            className="absolute top-2 right-2 w-12 h-12 object-contain anim-rock-fall"
             style={{ animationDelay: '0.08s' }}
           />
 

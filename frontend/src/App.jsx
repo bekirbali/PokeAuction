@@ -92,6 +92,14 @@ export default function App() {
     setBattleResult(result);
   };
 
+  const handleLeaveRoom = () => {
+    sound.playBid();
+    socket.emit('LEAVE_ROOM');
+    setRoom(null);
+    setBattleData(null);
+    setBattleResult(null);
+  };
+
   return (
     <div className="h-[100dvh] min-h-[100dvh] w-screen overflow-hidden text-slate-100 flex flex-col justify-between selection:bg-red-500 selection:text-white p-1 sm:p-2">
       {/* Toast Notification */}
@@ -111,6 +119,7 @@ export default function App() {
               playerId={playerId}
               onMuteToggle={handleMuteToggle}
               isMuted={isMuted}
+              onLeaveRoom={handleLeaveRoom}
             />
           </div>
         )}
