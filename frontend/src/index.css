@@ -419,3 +419,170 @@ body {
 .anim-bite-top { animation: fxBiteTop 0.42s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 .anim-bite-bottom { animation: fxBiteBottom 0.42s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
 .anim-rock-erupt { animation: fxRockErupt 0.48s ease-out forwards; }
+
+/* --- 1. JUICY COMBAT FEEL & IMPACT KEYFRAMES --- */
+@keyframes arenaShakeKeyframes {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-6px, 5px) rotate(-0.5deg); }
+  40% { transform: translate(6px, -4px) rotate(0.5deg); }
+  60% { transform: translate(-4px, 3px); }
+  80% { transform: translate(3px, -2px); }
+}
+
+.arena-shake {
+  animation: arenaShakeKeyframes 0.32s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes arenaEarthquakeKeyframes {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-3px, -5px); }
+  20% { transform: translate(4px, 4px); }
+  30% { transform: translate(-5px, 3px); }
+  40% { transform: translate(3px, -4px); }
+  50% { transform: translate(-4px, 5px); }
+  60% { transform: translate(4px, -3px); }
+  70% { transform: translate(-2px, 4px); }
+  80% { transform: translate(3px, -2px); }
+  90% { transform: translate(-1px, 2px); }
+}
+
+.arena-earthquake {
+  animation: arenaEarthquakeKeyframes 0.65s ease-in-out both;
+}
+
+/* Critical Radial Strobe Flash */
+@keyframes critFlashKeyframes {
+  0% { opacity: 0; transform: scale(0.9); }
+  25% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1); }
+}
+
+.anim-crit-flash {
+  animation: critFlashKeyframes 0.28s ease-out forwards;
+}
+
+/* Golden Critical Badge Pop */
+@keyframes critBadgePop {
+  0% { transform: scale(0) translateY(10px); opacity: 0; }
+  60% { transform: scale(1.25) translateY(-3px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.anim-crit-badge {
+  animation: critBadgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* --- 2. SIGNATURE MOVE SEQUENCES & BEAM KEYFRAMES --- */
+@keyframes beamCoreGlow {
+  0% { opacity: 0; transform: scaleY(0.1); }
+  30% { opacity: 1; transform: scaleY(1.4); filter: drop-shadow(0 0 25px #ffffff); }
+  70% { opacity: 1; transform: scaleY(1.1); filter: drop-shadow(0 0 35px #fde047); }
+  100% { opacity: 0; transform: scaleY(0.2); }
+}
+
+.anim-beam-laser {
+  animation: beamCoreGlow 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes laserChargeRing {
+  0% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(0.8); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.1); opacity: 0; }
+}
+
+.anim-charge-ring {
+  animation: laserChargeRing 0.35s ease-in forwards;
+}
+
+/* Ditto Transform Ripple */
+@keyframes dittoMorphRipple {
+  0% { transform: scale(0.6); opacity: 0; filter: hue-rotate(0deg); }
+  50% { transform: scale(1.5); opacity: 0.9; filter: hue-rotate(180deg) drop-shadow(0 0 20px #e879f9); }
+  100% { transform: scale(2); opacity: 0; filter: hue-rotate(360deg); }
+}
+
+.anim-ditto-ripple {
+  animation: dittoMorphRipple 0.6s ease-out forwards;
+}
+
+/* --- 3. PARTICLE TRAILS --- */
+@keyframes particleTrailDrift {
+  0% { opacity: 1; transform: translate(0, 0) scale(1); }
+  100% { opacity: 0; transform: translate(var(--drift-x, -20px), var(--drift-y, 15px)) scale(0.3); }
+}
+
+.anim-particle-drift {
+  animation: particleTrailDrift 0.4s ease-out forwards;
+}
+
+/* Crisp Retro Pixel-Art Sprite Rendering (prevents bilinear blur) */
+.pixel-sprite {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Giant Falling Rock / Boulder Drop Animation */
+@keyframes fxRockFall {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -150px) scale(0.5) rotate(-20deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 1;
+    transform: translate(-50%, -20px) scale(1.25) rotate(15deg);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0px) scale(1.35) rotate(25deg);
+    filter: drop-shadow(0 0 25px rgba(217, 119, 6, 0.9));
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 15px) scale(1.45) rotate(35deg);
+  }
+}
+
+.anim-rock-fall {
+  animation: fxRockFall 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes fxImpactBurst {
+  0% { transform: translate(-50%, -50%) scale(0.4) rotate(0deg); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.8) rotate(120deg); opacity: 0.95; }
+  100% { transform: translate(-50%, -50%) scale(2.4) rotate(240deg); opacity: 0; }
+}
+
+.anim-impact-burst {
+  animation: fxImpactBurst 0.45s ease-out forwards;
+}
+
+/* Fighting Fist Strike Animations (Close Combat, Mega Punch) */
+@keyframes fxPunchStrike1 {
+  0% { opacity: 0; transform: translate(-80%, -80%) scale(0.4) rotate(-20deg); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.3) rotate(0deg); }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  100% { opacity: 0; transform: translate(-30%, -30%) scale(0.7); }
+}
+
+@keyframes fxPunchStrike2 {
+  0% { opacity: 0; transform: translate(40%, -70%) scale(0.4) rotate(20deg); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.3) rotate(0deg); }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  100% { opacity: 0; transform: translate(-60%, -30%) scale(0.7); }
+}
+
+@keyframes fxPunchStrike3 {
+  0% { opacity: 0; transform: translate(-50%, 40%) scale(0.5); }
+  35% { opacity: 1; transform: translate(-50%, -50%) scale(1.4); }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+  100% { opacity: 0; transform: translate(-50%, -60%) scale(0.8); }
+}
+
+.anim-punch-1 { animation: fxPunchStrike1 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.anim-punch-2 { animation: fxPunchStrike2 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.anim-punch-3 { animation: fxPunchStrike3 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }

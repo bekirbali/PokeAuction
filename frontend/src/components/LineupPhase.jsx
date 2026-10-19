@@ -140,7 +140,7 @@ export default function LineupPhase({
       </div>
 
       {/* 5 Pokemon Slot Cards with Drag-and-Drop + Up/Down Arrows */}
-      <div className="space-y-2 sm:space-y-3">
+      <div className="space-y-2 sm:space-y-2.5">
         {lineup.map((p, idx) => {
           const isDragging = draggedIdx === idx;
           const isTargeted = dragOverIdx === idx && draggedIdx !== idx;
@@ -154,7 +154,7 @@ export default function LineupPhase({
               onDragLeave={() => { if (dragOverIdx === idx) setDragOverIdx(null); }}
               onDrop={(e) => handleDrop(e, idx)}
               onDragEnd={handleDragEnd}
-              className={`p-3.5 rounded-2xl border backdrop-blur-xl transition-all flex items-center gap-3 select-none ${slotLabels[idx].color} ${
+              className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border backdrop-blur-xl transition-all select-none ${slotLabels[idx].color} ${
                 !isReady ? 'cursor-grab active:cursor-grabbing hover:border-slate-500/80' : ''
               } ${
                 isDragging ? 'opacity-35 scale-[0.98] border-dashed border-amber-400/80' : ''
@@ -162,52 +162,56 @@ export default function LineupPhase({
                 isTargeted ? 'ring-2 ring-amber-400/80 border-amber-400 bg-slate-800/90 scale-[1.01] shadow-xl shadow-amber-500/10' : ''
               }`}
             >
-              {/* Drag Handle Indicator */}
-              {!isReady && (
-                <div
-                  className="text-slate-500 hover:text-slate-300 transition-colors p-1 flex-shrink-0 cursor-grab active:cursor-grabbing"
-                  title="Sırayı değiştirmek için sürükleyip bırak"
-                >
-                  <GripVertical className="w-5 h-5" />
+              {/* Slot Header: Grip + Slot Title on Left, Up/Down Arrows on Right */}
+              <div className="flex items-center justify-between gap-1 mb-1 px-0.5">
+                <div className="flex items-center gap-1.5 min-w-0">
+                  {!isReady && (
+                    <div
+                      className="text-slate-400 hover:text-slate-200 transition-colors cursor-grab active:cursor-grabbing flex-shrink-0"
+                      title="Sırayı değiştirmek için sürükleyip bırak"
+                    >
+                      <GripVertical className="w-4 h-4" />
+                    </div>
+                  )}
+                  <span className="font-mono text-[11px] sm:text-xs font-black uppercase tracking-wider truncate">
+                    {slotLabels[idx].title}
+                  </span>
+                  <span className="text-[10px] text-slate-400 hidden sm:inline truncate">
+                    • {slotLabels[idx].desc}
+                  </span>
                 </div>
-              )}
 
-              {/* Slot Number & Label */}
-              <div className="w-32 flex-shrink-0">
-                <span className="font-mono text-xs font-black uppercase tracking-wider block">
-                  {slotLabels[idx].title}
-                </span>
-                <span className="text-[10px] text-slate-400 block">{slotLabels[idx].desc}</span>
+                {/* Reorder Arrows in Header */}
+                {!isReady && (
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); swapPokemon(idx, idx - 1); }}
+                      disabled={idx === 0}
+                      className="p-1 sm:p-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 disabled:opacity-20 disabled:cursor-not-allowed text-white transition cursor-pointer"
+                      title="Yukarı Taşı"
+                      aria-label="Yukarı Taşı"
+                    >
+                      <ArrowUp className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => { e.stopPropagation(); swapPokemon(idx, idx + 1); }}
+                      disabled={idx === lineup.length - 1}
+                      className="p-1 sm:p-1.5 rounded-lg bg-slate-800/90 hover:bg-slate-700 disabled:opacity-20 disabled:cursor-not-allowed text-white transition cursor-pointer"
+                      title="Aşağı Taşı"
+                      aria-label="Aşağı Taşı"
+                    >
+                      <ArrowDown className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
               </div>
 
-              {/* Pokemon Compact View */}
-              <div className="flex-1 pointer-events-none">
-                <PokemonCard pokemon={p} compact showStats />
+              {/* Pokemon Compact View (Full Width) */}
+              <div className="w-full pointer-events-none">
+                <PokemonCard pokemon={p} compact showStats={false} />
               </div>
-
-              {/* Reorder Arrows (Accessible Fallback) */}
-              {!isReady && (
-                <div className="flex flex-col gap-1 flex-shrink-0">
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); swapPokemon(idx, idx - 1); }}
-                    disabled={idx === 0}
-                    className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-white transition"
-                    title="Yukarı Taşı"
-                  >
-                    <ArrowUp className="w-4 h-4" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={(e) => { e.stopPropagation(); swapPokemon(idx, idx + 1); }}
-                    disabled={idx === lineup.length - 1}
-                    className="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed text-white transition"
-                    title="Aşağı Taşı"
-                  >
-                    <ArrowDown className="w-4 h-4" />
-                  </button>
-                </div>
-              )}
             </div>
           );
         })}

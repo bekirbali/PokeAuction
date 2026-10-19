@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -160,7 +160,8 @@ async function fetchAllGen1() {
       
       const total = Object.values(stats).reduce((a, b) => a + b, 0);
       const cleanName = d.name.split('-')[0];
-      const displayName = capitalize(cleanName);
+      let displayName = capitalize(cleanName);
+      if (d.name === 'mr-mime') displayName = 'Mr. Mime';
       
       // Showdown animated sprites
       // special cases for showdown animated names

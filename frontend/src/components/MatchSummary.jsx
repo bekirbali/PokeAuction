@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { Trophy, Swords, RotateCcw, Sparkles, Skull, Flame } from 'lucide-react';
 import { sound } from '../utils/sound.js';
@@ -29,6 +29,16 @@ export default function MatchSummary({
     socket.emit('REQUEST_REMATCH');
   };
 
+  const getSpriteOffset = (pokemon) => {
+    if (!pokemon) return '';
+    const slug = (pokemon.slug || pokemon.name || '').toLowerCase();
+    if (slug === 'mewtwo') return 'translate-x-[11%]';
+    if (slug === 'gyarados') return 'translate-x-[6%]';
+    if (slug === 'arbok') return 'translate-x-[5%]';
+    if (slug === 'onix') return '-translate-x-[5%]';
+    return '';
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-8 text-center space-y-8">
       {/* Result Banner */}
@@ -54,13 +64,18 @@ export default function MatchSummary({
             MAÇIN MVP'Sİ
           </div>
 
-          <div className="my-4">
-            <img
-              src={mvp.sprite}
-              alt={mvp.name}
-              className="w-32 h-32 object-contain mx-auto drop-shadow-[0_10px_20px_rgba(234,179,8,0.4)]"
-            />
-            <h3 className="text-2xl font-black text-white mt-2">{mvp.name}</h3>
+          <div className="my-4 flex flex-col items-center justify-center">
+            <div className="relative w-36 h-36 flex items-center justify-center">
+              {/* Champion Glowing Pedestal / Spotlight */}
+              <div className="absolute bottom-2 w-28 h-7 rounded-[50%] bg-radial from-amber-400/40 via-amber-500/20 to-transparent blur-[2px] border border-amber-400/30 shadow-[0_0_25px_rgba(245,158,11,0.6)] pointer-events-none" />
+              
+              <img
+                src={mvp.sprite}
+                alt={mvp.name}
+                className={`max-w-full max-h-full object-contain relative z-10 drop-shadow-[0_10px_20px_rgba(234,179,8,0.5)] transition-transform ${getSpriteOffset(mvp)}`}
+              />
+            </div>
+            <h3 className="text-2xl font-black text-white mt-2 drop-shadow-md">{mvp.name}</h3>
           </div>
 
           <div className="grid grid-cols-2 gap-3 pt-3 border-t border-slate-800">

@@ -13,23 +13,23 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
 
   if (compact) {
     return (
-      <div className={`relative px-2.5 py-1.5 rounded-xl border flex items-center gap-2.5 backdrop-blur-md transition-all duration-200 hover:scale-[1.02] ${tierColors[pokemon.tier] || tierColors.Common}`}>
+      <div className={`relative px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-xl border flex items-center gap-1.5 sm:gap-2.5 backdrop-blur-md transition-all duration-200 hover:scale-[1.01] ${tierColors[pokemon.tier] || tierColors.Common}`}>
         <img
           src={pokemon.icon || pokemon.sprite}
           alt={pokemon.name}
-          className="w-9 h-9 object-contain drop-shadow-md flex-shrink-0"
+          className="w-7 h-7 sm:w-8 sm:h-8 object-contain drop-shadow-md flex-shrink-0"
           loading="lazy"
         />
         <div className="flex-1 min-w-0">
-          <div className="flex items-center justify-between">
-            <h4 className="font-bold text-xs truncate text-white">{pokemon.name}</h4>
-            <span className="text-[9px] uppercase font-extrabold px-1.5 py-0.2 rounded bg-black/50 border border-white/10">
+          <div className="flex items-center justify-between gap-1">
+            <h4 className="font-bold text-[11px] sm:text-xs truncate text-white">{pokemon.name}</h4>
+            <span className="text-[8px] sm:text-[9px] uppercase font-extrabold px-1 sm:px-1.5 py-0.2 rounded bg-black/60 border border-white/10 flex-shrink-0">
               {pokemon.tier}
             </span>
           </div>
           <div className="flex gap-1 mt-0.5">
             {pokemon.types.map(t => (
-              <span key={t} className={`text-[9px] font-bold px-1.5 py-0.2 rounded-full type-${t}`}>
+              <span key={t} className={`text-[8px] sm:text-[9px] font-bold px-1 sm:px-1.5 py-0.2 rounded-full type-${t}`}>
                 {t}
               </span>
             ))}
@@ -38,6 +38,16 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
       </div>
     );
   }
+
+  const getSpriteOffset = (p) => {
+    if (!p) return '';
+    const slug = (p.slug || p.name || '').toLowerCase();
+    if (slug === 'mewtwo') return 'translate-x-[11%]';
+    if (slug === 'gyarados') return 'translate-x-[6%]';
+    if (slug === 'arbok') return 'translate-x-[5%]';
+    if (slug === 'onix') return '-translate-x-[5%]';
+    return '';
+  };
 
   return (
     <div className={`relative rounded-2xl p-2.5 sm:p-4 border backdrop-blur-xl shadow-2xl transition-all duration-300 tier-${pokemon.tier}`}>
@@ -55,7 +65,7 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
         <img
           src={pokemon.sprite}
           alt={pokemon.name}
-          className="max-h-14 sm:max-h-24 max-w-[80%] object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] animate-bounce"
+          className={`max-h-14 sm:max-h-24 max-w-[80%] object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] animate-bounce ${getSpriteOffset(pokemon)}`}
           style={{ animationDuration: '3s' }}
         />
       </div>

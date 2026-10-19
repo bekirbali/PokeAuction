@@ -35,6 +35,8 @@ export default function BattleArena({
   const [lungeSide, setLungeSide] = useState(null);
   const [hitTarget, setHitTarget] = useState(null);
   const [activeMoveAnim, setActiveMoveAnim] = useState(null);
+  const [arenaShake, setArenaShake] = useState(null); // 'crit' | 'earthquake' | null
+  const [isCritFlash, setIsCritFlash] = useState(false);
 
   const timerRef = useRef(null);
 
@@ -86,7 +88,7 @@ export default function BattleArena({
       sound.playCry(event.pokemon.cryUrl);
 
     } else if (event.type === 'TRANSFORM') {
-      stepDelay = 1800 / speed;
+      stepDelay = 1900 / speed;
       const isP1 = event.playerId === team1.id;
       if (isP1) {
         setP1Active(prev => ({
@@ -109,9 +111,20 @@ export default function BattleArena({
       }
 
       setAnnouncement(`✨ Ditto Transform kullandı! ${event.targetName}'e dönüştü!`);
+      sound.playTransform();
+      setActiveMoveAnim({
+        move: { name: 'Transform', type: 'Normal' },
+        attackerSide: isP1 ? 'p1' : 'p2',
+        id: currentIndex
+      });
+
       if (event.targetPokemon.cryUrl) {
-        sound.playCry(event.targetPokemon.cryUrl);
+        setTimeout(() => sound.playCry(event.targetPokemon.cryUrl), 350 / speed);
       }
+
+      setTimeout(() => {
+        setActiveMoveAnim(null);
+      }, 1100 / speed);
 
     } else if (event.type === 'ATTACK') {
       stepDelay = 2200 / speed;
@@ -126,7 +139,7 @@ export default function BattleArena({
 
       setAnnouncement(`🔥 ${event.attackerPokemon}, ${event.move.name} kullandı!${effText}`);
       setLungeSide(attackerSide);
-      sound.playAttack();
+      sound.playElementalAttack(event.move.type, event.move.name);
 
       setActiveMoveAnim({
         move: event.move,
@@ -139,6 +152,17 @@ export default function BattleArena({
         setHitTarget(targetSide);
         setShakeTarget(targetSide);
 
+        const moveNameLower = (event.move?.name || '').toLowerCase();
+        const isGroundMove = event.move?.type === 'Ground' || moveNameLower.includes('earth') || moveNameLower.includes('fissure');
+        
+        if (isGroundMove) {
+          setArenaShake('earthquake');
+        } else if (event.isCrit) {
+          setArenaShake('crit');
+          setIsCritFlash(true);
+          setTimeout(() => setIsCritFlash(false), 280);
+        }
+
         if (targetSide === 'p1') {
           setP1Hp(event.defenderRemainingHp);
         } else {
@@ -147,16 +171,18 @@ export default function BattleArena({
 
         setDamagePopup({
           target: targetSide,
-          text: `-${event.damage} HP${event.isCrit ? ' 💥 KRİTİK!' : ''}`,
-          isCrit: event.isCrit
+          damage: event.damage,
+          isCrit: event.isCrit,
+          effectiveness: event.effectiveness
         });
-      }, 400 / speed);
+      }, 380 / speed);
 
       const resetTimeout = setTimeout(() => {
         setLungeSide(null);
         setActiveMoveAnim(null);
         setHitTarget(null);
         setShakeTarget(null);
+        setArenaShake(null);
         setDamagePopup(null);
       }, 1200 / speed);
 
@@ -203,47 +229,68 @@ export default function BattleArena({
     'aerodactyl', 'articuno', 'zapdos', 'moltres', 'mewtwo',
     'muk', 'exeggutor', 'scyther', 'pinsir', 'nidoking', 'nidoqueen',
     'vaporeon', 'jolteon', 'flareon', 'slowbro', 'hypno', 'tentacruel',
-    'weezing', 'kabutops', 'omastar', 'arbok', 'golduck'
+    'weezing', 'kabutops', 'omastar', 'arbok', 'golduck', 'kingler'
+  ]);
+
+  const TINY_POKEMON_SLUGS = new Set([
+    'bulbasaur', 'charmander', 'squirtle', 'caterpie', 'metapod', 'weedle', 'kakuna',
+    'pidgey', 'pidgeotto', 'rattata', 'spearow', 'ekans', 'pikachu', 'sandshrew',
+    'nidoranf', 'nidoranm', 'nidoran', 'clefairy', 'vulpix', 'jigglypuff', 'zubat',
+    'oddish', 'paras', 'venonat', 'diglett', 'dugtrio', 'meowth', 'psyduck',
+    'mankey', 'growlithe', 'poliwag', 'abra', 'machop', 'bellsprout', 'tentacool',
+    'geodude', 'magnemite', 'farfetchd', 'doduo', 'seel', 'grimer', 'shellder',
+    'gastly', 'drowzee', 'krabby', 'voltorb', 'exeggcute', 'cubone', 'koffing',
+    'horsea', 'goldeen', 'staryu', 'ditto', 'eevee', 'porygon', 'omanyte', 'kabuto', 'dratini'
   ]);
 
   const isLegendaryPokemon = (p) => p && p.tier === 'Legendary';
   const isLargePokemon = (p) => {
     if (!p) return false;
     if (p.tier === 'Legendary' || p.tier === 'Epic') return true;
-    const slug = (p.slug || p.name || '').toLowerCase();
+    const slug = (p.slug || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     return LARGE_POKEMON_SLUGS.has(slug);
+  };
+  const isTinyPokemon = (p) => {
+    if (!p) return false;
+    const raw = (p.slug || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    return TINY_POKEMON_SLUGS.has(raw) || (raw.startsWith('nidoran') && !raw.includes('king') && !raw.includes('queen') && !raw.includes('rina') && !raw.includes('rino'));
+  };
+
+  const getSpriteOffset = (pokemon, isBack = false) => {
+    if (!pokemon) return '';
+    const slug = (pokemon.slug || pokemon.name || '').toLowerCase();
+    if (!isBack && slug === 'mewtwo') return 'translate-x-[10%]';
+    return '';
   };
 
   const getSpriteSize = (pokemon, isBack = false) => {
-    if (!pokemon) return 'w-26 h-26 sm:w-34 sm:h-34 md:w-38 md:h-38';
+    if (!pokemon) return 'w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36';
     const isLeg = isLegendaryPokemon(pokemon);
     const isLarge = isLargePokemon(pokemon);
+    const isTiny = isTinyPokemon(pokemon);
 
     if (isLeg) {
       return isBack
-        ? 'w-44 h-44 sm:w-56 sm:h-56 md:w-68 md:h-68'
-        : 'w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60';
+        ? 'w-40 h-40 sm:w-48 sm:h-48 md:w-56 md:h-56'
+        : 'w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48';
     }
     if (isLarge) {
       return isBack
-        ? 'w-36 h-36 sm:w-48 sm:h-48 md:w-58 md:h-58'
-        : 'w-34 h-34 sm:w-44 sm:h-44 md:w-52 md:h-52';
+        ? 'w-36 h-36 sm:w-44 sm:h-44 md:w-48 md:h-48'
+        : 'w-32 h-32 sm:w-40 sm:h-40 md:w-44 md:h-44';
     }
+    if (isTiny) {
+      return isBack
+        ? 'w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32'
+        : 'w-20 h-20 sm:w-24 sm:h-24 md:w-24 md:h-24';
+    }
+    // Standard Pokemon (e.g. Jynx, Alakazam, Gengar, Electabuzz, Raichu)
     return isBack
-      ? 'w-30 h-30 sm:w-38 sm:h-38 md:w-46 md:h-46'
-      : 'w-28 h-28 sm:w-34 sm:h-34 md:w-40 md:h-40';
+      ? 'w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40'
+      : 'w-24 h-24 sm:w-32 sm:h-32 md:w-36 md:h-36';
   };
 
-  const getAuraClass = (pokemon) => {
-    if (!pokemon) return '';
-    if (pokemon.tier === 'Legendary') {
-      return 'drop-shadow-[0_0_20px_rgba(250,204,21,0.65)]';
-    }
-    if (pokemon.tier === 'Epic') {
-      return 'drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]';
-    }
-    return '';
-  };
+  const getAuraClass = (pokemon) => '';
 
   // Dynamic Player Perspective (Sol taraf veya sağ taraf oyuncunun kendi kimliğine göre SEN / RAKİP olur)
   const isP1You = team1.id === playerId;
@@ -389,8 +436,15 @@ export default function BattleArena({
       </div>
 
       {/* --- HORIZONTAL WIDESCREEN BATTLE STADIUM --- */}
-      <div className="relative rounded-3xl overflow-hidden border-2 border-slate-700/80 bg-gradient-to-b from-slate-950 via-[#0a1120] to-slate-950 shadow-2xl flex-1 flex flex-col justify-between p-2.5 sm:p-4 min-h-[360px] sm:min-h-[460px] stadium-container">
+      <div className={`relative rounded-3xl overflow-hidden border-2 border-slate-700/80 bg-gradient-to-b from-slate-950 via-[#0a1120] to-slate-950 shadow-2xl flex-1 flex flex-col justify-between p-2.5 sm:p-4 min-h-[360px] sm:min-h-[460px] stadium-container ${
+        arenaShake === 'crit' ? 'arena-shake' : arenaShake === 'earthquake' ? 'arena-earthquake' : ''
+      }`}>
         
+        {/* Critical Radial Strobe Flash Overlay */}
+        {isCritFlash && (
+          <div className="absolute inset-0 bg-radial from-amber-300/50 via-yellow-400/25 to-transparent pointer-events-none z-50 anim-crit-flash" />
+        )}
+
         {/* Background Stadium Floodlights & Ambient Glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-1/3 h-full spotlight-left opacity-60" />
@@ -534,16 +588,45 @@ export default function BattleArena({
             style={{ left: '22%', bottom: '7%', transform: 'translate(-50%, 0)' }}
           >
             {damagePopup?.target === 'p1' && (
-              <div className="absolute -top-10 sm:-top-12 font-black text-lg sm:text-xl text-red-400 font-mono damage-popup z-40">
-                {damagePopup.text}
+              <div className="absolute -top-14 sm:-top-16 flex flex-col items-center pointer-events-none z-40 damage-popup whitespace-nowrap">
+                {damagePopup.isCrit && (
+                  <div className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 font-black text-[10px] sm:text-xs tracking-wider uppercase shadow-[0_0_15px_#f59e0b] border border-white anim-crit-badge mb-0.5">
+                    ★ KRİTİK VURUŞ! ★
+                  </div>
+                )}
+                <div className={`font-mono font-black text-xl sm:text-2xl drop-shadow-[0_0_10px_rgba(0,0,0,0.9)] ${
+                  damagePopup.isCrit
+                    ? 'text-amber-300 drop-shadow-[0_0_12px_#f59e0b]'
+                    : damagePopup.effectiveness > 1
+                    ? 'text-red-400 drop-shadow-[0_0_10px_#ef4444]'
+                    : 'text-slate-200'
+                }`}>
+                  -{damagePopup.damage} HP
+                </div>
+                {damagePopup.effectiveness > 1 && !damagePopup.isCrit && (
+                  <span className="text-[9px] text-red-300 font-bold bg-red-950/90 px-1.5 py-0.2 rounded-full border border-red-500/40 mt-0.5 shadow-sm">
+                    Süper Etkili!
+                  </span>
+                )}
               </div>
+            )}
+
+            {/* Soft Ambient Celestial Radial Aura (Never clips to GIF box!) */}
+            {p1Active && (p1Active.tier === 'Legendary' || p1Active.tier === 'Epic') && (
+              <div
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0 blur-2xl animate-pulse ${
+                  p1Active.tier === 'Legendary'
+                    ? 'w-48 h-48 sm:w-64 sm:h-64 bg-amber-400/25'
+                    : 'w-40 h-40 sm:w-56 sm:h-56 bg-purple-500/20'
+                }`}
+              />
             )}
 
             {p1Active && (
               <img
                 src={p1Active.spriteBack || p1Active.sprite}
                 alt={p1Active.name}
-                className={`${getSpriteSize(p1Active, true)} ${getAuraClass(p1Active)} object-contain transition-all duration-300 pointer-events-none select-none ${
+                className={`${getSpriteSize(p1Active, true)} ${getSpriteOffset(p1Active, true)} pixel-sprite object-contain transition-all duration-300 pointer-events-none select-none relative z-10 ${
                   lungeSide === 'p1' ? 'attacker-lunge-right' : ''
                 } ${
                   shakeTarget === 'p1' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
@@ -554,12 +637,14 @@ export default function BattleArena({
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
             <div
-              className={`${
+              className={`relative z-0 ${
                 isLegendaryPokemon(p1Active)
-                  ? 'w-48 h-16 sm:w-64 sm:h-24 -mt-5 sm:-mt-8'
+                  ? 'w-48 h-12 sm:w-64 sm:h-16 -mt-3 sm:-mt-5'
                   : isLargePokemon(p1Active)
-                  ? 'w-44 h-14 sm:w-60 sm:h-20 -mt-4 sm:-mt-7'
-                  : 'w-36 h-12 sm:w-52 sm:h-16 -mt-4 sm:-mt-6'
+                  ? 'w-44 h-12 sm:w-60 sm:h-14 -mt-3 sm:-mt-4'
+                  : isTinyPokemon(p1Active)
+                  ? 'w-24 h-7 sm:w-32 sm:h-9 -mt-1.5 sm:-mt-2'
+                  : 'w-36 h-10 sm:w-48 sm:h-12 -mt-2 sm:-mt-3'
               } ${p1IsYou ? 'battle-pad-p1' : 'battle-pad-p2'} pointer-events-none`}
             />
           </div>
@@ -570,16 +655,45 @@ export default function BattleArena({
             style={{ left: '76%', top: '22%', transform: 'translate(-50%, 0)' }}
           >
             {damagePopup?.target === 'p2' && (
-              <div className="absolute -top-10 sm:-top-12 font-black text-lg sm:text-xl text-blue-400 font-mono damage-popup z-40">
-                {damagePopup.text}
+              <div className="absolute -top-14 sm:-top-16 flex flex-col items-center pointer-events-none z-40 damage-popup whitespace-nowrap">
+                {damagePopup.isCrit && (
+                  <div className="px-2.5 py-0.5 rounded-full bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-500 text-slate-950 font-black text-[10px] sm:text-xs tracking-wider uppercase shadow-[0_0_15px_#f59e0b] border border-white anim-crit-badge mb-0.5">
+                    ★ KRİTİK VURUŞ! ★
+                  </div>
+                )}
+                <div className={`font-mono font-black text-xl sm:text-2xl drop-shadow-[0_0_10px_rgba(0,0,0,0.9)] ${
+                  damagePopup.isCrit
+                    ? 'text-amber-300 drop-shadow-[0_0_12px_#f59e0b]'
+                    : damagePopup.effectiveness > 1
+                    ? 'text-red-400 drop-shadow-[0_0_10px_#ef4444]'
+                    : 'text-blue-300'
+                }`}>
+                  -{damagePopup.damage} HP
+                </div>
+                {damagePopup.effectiveness > 1 && !damagePopup.isCrit && (
+                  <span className="text-[9px] text-red-300 font-bold bg-red-950/90 px-1.5 py-0.2 rounded-full border border-red-500/40 mt-0.5 shadow-sm">
+                    Süper Etkili!
+                  </span>
+                )}
               </div>
+            )}
+
+            {/* Soft Ambient Celestial Radial Aura (Never clips to GIF box!) */}
+            {p2Active && (p2Active.tier === 'Legendary' || p2Active.tier === 'Epic') && (
+              <div
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none z-0 blur-2xl animate-pulse ${
+                  p2Active.tier === 'Legendary'
+                    ? 'w-40 h-40 sm:w-56 sm:h-56 bg-amber-400/25'
+                    : 'w-36 h-36 sm:w-48 sm:h-48 bg-purple-500/20'
+                }`}
+              />
             )}
 
             {p2Active && (
               <img
                 src={p2Active.sprite}
                 alt={p2Active.name}
-                className={`${getSpriteSize(p2Active, false)} ${getAuraClass(p2Active)} object-contain transition-all duration-300 pointer-events-none select-none ${
+                className={`${getSpriteSize(p2Active, false)} ${getSpriteOffset(p2Active, false)} pixel-sprite object-contain transition-all duration-300 pointer-events-none select-none relative z-10 ${
                   lungeSide === 'p2' ? 'attacker-lunge-left' : ''
                 } ${
                   shakeTarget === 'p2' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
@@ -590,12 +704,14 @@ export default function BattleArena({
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
             <div
-              className={`${
+              className={`relative z-0 ${
                 isLegendaryPokemon(p2Active)
-                  ? 'w-40 h-14 sm:w-56 sm:h-20 -mt-4 sm:-mt-7'
+                  ? 'w-40 h-10 sm:w-56 sm:h-14 -mt-2 sm:-mt-4'
                   : isLargePokemon(p2Active)
-                  ? 'w-36 h-12 sm:w-48 sm:h-16 -mt-3 sm:-mt-6'
-                  : 'w-32 h-12 sm:w-44 sm:h-14 -mt-3 sm:-mt-5'
+                  ? 'w-36 h-10 sm:w-48 sm:h-12 -mt-2 sm:-mt-3'
+                  : isTinyPokemon(p2Active)
+                  ? 'w-20 h-6 sm:w-28 sm:h-8 -mt-1 sm:-mt-2'
+                  : 'w-28 h-8 sm:w-36 sm:h-10 -mt-2 sm:-mt-3'
               } ${p2IsYou ? 'battle-pad-p1' : 'battle-pad-p2'} pointer-events-none`}
             />
           </div>
