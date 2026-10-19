@@ -1,4 +1,4 @@
-﻿import express from 'express';
+import express from 'express';
 import http from 'http';
 import { Server } from 'socket.io';
 import cors from 'cors';
@@ -132,10 +132,8 @@ io.on('connection', (socket) => {
     roomManager.handlePlayerReady(room, socket.id);
   });
 
-  socket.on('REQUEST_REMATCH', () => {
-    const room = roomManager.getRoomBySocket(socket.id);
-    if (!room) return;
-    roomManager.handleRematch(room);
+  socket.on('REQUEST_REMATCH', (payload) => {
+    roomManager.handleRematch(socket, payload);
   });
 
   socket.on('disconnect', () => {

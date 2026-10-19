@@ -164,7 +164,7 @@ export default function BattleCanvasVFX({
             color: i % 3 === 0 ? colors.core : i % 2 === 0 ? colors.primary : colors.secondary,
             maxLife: 35,
             decay: 0.03,
-            type: isIce ? 'crystal' : isElectric ? 'spark' : isEarthquake ? 'rock' : 'circle'
+            type: isIce ? 'crystal' : isElectric ? 'spark' : isRockOrGround ? 'rock' : 'circle'
           });
         }
       }
@@ -278,13 +278,13 @@ export default function BattleCanvasVFX({
         // Charging Vortex at Attacker (0 to 0.25)
         if (progress < 0.26) {
           const chargeProg = progress / 0.26;
-          ctx.strokeStyle = isGrass ? '#84cc16' : '#facc15';
+          ctx.strokeStyle = isGrass ? '#84cc16' : colors.primary;
           ctx.lineWidth = 3.5;
           ctx.beginPath();
           ctx.arc(startX, startY, (1 - chargeProg) * 36 + 6, 0, Math.PI * 2);
           ctx.stroke();
 
-          ctx.fillStyle = '#ffffff';
+          ctx.fillStyle = colors.core || '#ffffff';
           ctx.beginPath();
           ctx.arc(startX, startY, chargeProg * 18, 0, Math.PI * 2);
           ctx.fill();
@@ -293,7 +293,7 @@ export default function BattleCanvasVFX({
         // Blazing Continuous Laser Cylinder (0.24 to 0.75)
         if (progress >= 0.24) {
           const beamAlpha = progress < 0.55 ? 1 : Math.max(0, (0.75 - progress) / 0.2);
-          const beamColor = isGrass ? '#22c55e' : '#f59e0b';
+          const beamColor = isGrass ? '#22c55e' : colors.primary;
 
           // Outer radiant plasma aura
           ctx.strokeStyle = beamColor;
@@ -305,7 +305,7 @@ export default function BattleCanvasVFX({
           ctx.stroke();
 
           // Middle neon plasma
-          ctx.strokeStyle = isGrass ? '#86efac' : '#fef08a';
+          ctx.strokeStyle = isGrass ? '#86efac' : colors.secondary;
           ctx.lineWidth = 20 * beamAlpha;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
@@ -313,7 +313,7 @@ export default function BattleCanvasVFX({
           ctx.stroke();
 
           // Hot-white solid laser core
-          ctx.strokeStyle = '#ffffff';
+          ctx.strokeStyle = colors.core || '#ffffff';
           ctx.lineWidth = 10 * beamAlpha;
           ctx.beginPath();
           ctx.moveTo(startX, startY);

@@ -633,24 +633,63 @@ export class RoomManager {
     });
   }
 
-  handleRematch(room) {
-    if (room.timerInterval) clearInterval(room.timerInterval);
-    room.state = 'AUCTION';
-    room.pool = this.shuffle(ALL_POKEMON);
-    room.usedPokemonIds = new Set();
-    room.history = [];
-    room.battleResult = null;
-    room.openingPlayerIdx = 0;
-    room.isResolving = false;
-    room.players.forEach(p => {
-      p.gold = 20;
-      p.team = [];
-      p.lineup = [];
-      p.ready = false;
-      p.passed = false;
-    });
+  handleRematch(socket, payload = {}) {
+    let room = this.getRoomBySocket(socket.id);
+    if (!room && payload.roomCode) {
+      room = this.rooms.get(payload.roomCode);
+    }
 
-    this.startAuction(room);
+    if (room) {
+      if (room.timerInterval) clearInterval(room.timerInterval);
+      if (room.disconnectTimeout) {
+        clearTimeout(room.disconnectTimeout);
+        room.disconnectTimeout = null;
+      }
+
+      // Ensure socket is in the room and player id is updated if reconnected
+      socket.join(room.code);
+      let player = room.players.find(p => p.id === socket.id);
+      if (!player) {
+        player = room.players.find(p => !p.isBot);
+        if (player) {
+          player.id = socket.id;
+        } else {
+          player = {
+            id: socket.id,
+            name: payload.playerName || 'Eğitmen',
+            gold: 20,
+            team: [],
+            passed: false,
+            ready: false,
+            lineup: []
+          };
+          room.players.unshift(player);
+        }
+      }
+
+      room.state = 'AUCTION';
+      room.pool = this.shuffle(ALL_POKEMON);
+      room.usedPokemonIds = new Set();
+      room.history = [];
+      room.battleResult = null;
+      room.openingPlayerIdx = 0;
+      room.isResolving = false;
+      room.players.forEach(p => {
+        p.gold = 20;
+        p.team = [];
+        p.lineup = [];
+        p.ready = false;
+        p.passed = false;
+      });
+
+      this.startAuction(room);
+      return;
+    }
+
+    // Fallback: If room was deleted or expired while minimized, seamlessly recreate match
+    if (payload.isBot || payload.roomCode) {
+      this.createBotRoom(payload.playerName || 'Eğitmen', socket, payload.difficulty || 'medium');
+    }
   }
 
   removePlayer(socketId) {
@@ -658,6 +697,20 @@ export class RoomManager {
     if (!room) return;
 
     if (room.timerInterval) clearInterval(room.timerInterval);
+
+    // If battle is in progress or completed, give a 45-second grace period before destroying the room
+    if (room.state === 'BATTLE' || room.battleResult) {
+      if (!room.disconnectTimeout) {
+        room.disconnectTimeout = setTimeout(() => {
+          room.players = room.players.filter(p => p.id !== socketId);
+          if (room.players.length === 0 || room.players.every(p => p.isBot)) {
+            this.rooms.delete(room.code);
+          }
+        }, 45000);
+      }
+      return;
+    }
+
     room.players = room.players.filter(p => p.id !== socketId);
 
     if (room.botActionTimeout) clearTimeout(room.botActionTimeout);

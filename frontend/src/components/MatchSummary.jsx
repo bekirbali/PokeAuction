@@ -26,7 +26,13 @@ export default function MatchSummary({
 
   const handleRematch = () => {
     sound.playGavel();
-    socket.emit('REQUEST_REMATCH');
+    const humanPlayer = room?.players?.find(p => !p.isBot) || room?.players?.find(p => p.id === playerId);
+    socket.emit('REQUEST_REMATCH', {
+      roomCode: room?.code,
+      isBot: room?.isBotGame,
+      difficulty: room?.botDifficulty || 'medium',
+      playerName: humanPlayer?.name || 'Eğitmen'
+    });
   };
 
   const getSpriteOffset = (pokemon) => {
