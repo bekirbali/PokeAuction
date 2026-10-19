@@ -4,6 +4,9 @@ class SoundSystem {
   constructor() {
     this.ctx = null;
     this.muted = false;
+    this.currentAttackAudio = null;
+    this.attackAudioTimeout = null;
+    this.fadeInterval = null;
   }
 
   init() {
@@ -20,7 +23,86 @@ class SoundSystem {
 
   toggleMute() {
     this.muted = !this.muted;
+    if (this.muted) {
+      this.stopAttackSound(0);
+    }
     return this.muted;
+  }
+
+  // Smoothly cutoff active attack audio when turn ends or duration expires
+  stopAttackSound(fadeMs = 80) {
+    if (this.attackAudioTimeout) {
+      clearTimeout(this.attackAudioTimeout);
+      this.attackAudioTimeout = null;
+    }
+    if (this.fadeInterval) {
+      clearInterval(this.fadeInterval);
+      this.fadeInterval = null;
+    }
+    if (this.currentAttackAudio) {
+      const audio = this.currentAttackAudio;
+      this.currentAttackAudio = null;
+
+      if (fadeMs > 0 && !audio.paused && audio.volume > 0.05) {
+        const initialVol = audio.volume;
+        const steps = 4;
+        const interval = Math.max(15, Math.floor(fadeMs / steps));
+        let step = 0;
+        this.fadeInterval = setInterval(() => {
+          step++;
+          try {
+            audio.volume = Math.max(0, initialVol * (1 - step / steps));
+            if (step >= steps) {
+              clearInterval(this.fadeInterval);
+              this.fadeInterval = null;
+              audio.pause();
+              audio.currentTime = 0;
+            }
+          } catch (e) {
+            clearInterval(this.fadeInterval);
+            this.fadeInterval = null;
+            try { audio.pause(); } catch (_) {}
+          }
+        }, interval);
+      } else {
+        try {
+          audio.pause();
+          audio.currentTime = 0;
+        } catch (e) {}
+      }
+    }
+  }
+
+  // Play real audio WAV file from /sounds/ with optional maxDuration cutoff
+  playAudioFile(filename, volume = 0.6, maxDurationMs = null) {
+    if (this.muted) return;
+    this.stopAttackSound(0); // Immediately cutoff previous attack sound
+    try {
+      const audio = new Audio(`/sounds/${filename}`);
+      audio.volume = Math.min(1, Math.max(0, volume));
+      this.currentAttackAudio = audio;
+
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+
+      audio.onended = () => {
+        if (this.currentAttackAudio === audio) {
+          this.currentAttackAudio = null;
+        }
+      };
+
+      if (maxDurationMs && maxDurationMs > 0) {
+        this.attackAudioTimeout = setTimeout(() => {
+          if (this.currentAttackAudio === audio) {
+            this.stopAttackSound(90);
+          }
+        }, maxDurationMs);
+      }
+    } catch (e) {
+      // Audio playback fallback
+    }
   }
 
   // Timer Tick (Tik-Tak)
@@ -112,220 +194,91 @@ class SoundSystem {
     osc.stop(now + 0.12);
   }
 
-  // Elemental Attack SFX Engine
-  playElementalAttack(moveType = 'Normal', moveName = '') {
+  // Authentic Pokémon Move Audio Engine (Official WAV SFX with Auto-Cutoff)
+  playElementalAttack(moveType = 'Normal', moveName = '', speed = 1) {
     if (this.muted) return;
-    this.init();
-    if (!this.ctx) return;
+    const nameLower = (moveName || '').toLowerCase().trim();
+    // Clamped attack duration so sounds conclude smoothly before the turn switches
+    const maxDuration = Math.round(1250 / Math.max(speed, 0.5));
 
-    const now = this.ctx.currentTime;
-    const nameLower = (moveName || '').toLowerCase();
-
-    // 1. BEAM ATTACKS (Hyper Beam, Solar Beam)
-    if (nameLower.includes('beam') || nameLower.includes('cannon')) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(180, now);
-      osc.frequency.exponentialRampToValueAtTime(1200, now + 0.22);
-      gain.gain.setValueAtTime(0.18, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.3);
-      return;
+    // 1. BEAM ATTACKS
+    if (nameLower.includes('hyper beam') || (nameLower.includes('beam') && moveType === 'Normal')) {
+      return this.playAudioFile('hyper_beam.wav', 0.85, maxDuration);
+    }
+    if (nameLower.includes('solar beam') || nameLower.includes('solar')) {
+      return this.playAudioFile('solar_beam.wav', 0.8, maxDuration);
+    }
+    if (nameLower.includes('ice beam')) {
+      return this.playAudioFile('ice_beam.wav', 0.75, maxDuration);
+    }
+    if (nameLower.includes('psybeam')) {
+      return this.playAudioFile('psychic.wav', 0.75, maxDuration);
     }
 
-    // 2. ELECTRIC (Thunderbolt, Thunder, Spark)
-    if (moveType === 'Electric' || nameLower.includes('thunder') || nameLower.includes('zap') || nameLower.includes('spark')) {
-      // Rapid sawtooth static pulses
-      [0, 0.04, 0.09, 0.14].forEach((offset, idx) => {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = idx % 2 === 0 ? 'sawtooth' : 'square';
-        osc.frequency.setValueAtTime(800 - idx * 120, now + offset);
-        osc.frequency.exponentialRampToValueAtTime(150, now + offset + 0.05);
-        gain.gain.setValueAtTime(0.16, now + offset);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.05);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now + offset);
-        osc.stop(now + offset + 0.05);
-      });
-      return;
+    // 2. ELECTRIC ATTACKS
+    if (moveType === 'Electric' || nameLower.includes('thunder') || nameLower.includes('zap') || nameLower.includes('spark') || nameLower.includes('bolt')) {
+      if (nameLower === 'thunder') {
+        return this.playAudioFile('thunder.wav', 0.85, maxDuration);
+      }
+      return this.playAudioFile('thunderbolt.wav', 0.8, maxDuration);
     }
 
-    // 3. FIRE (Flamethrower, Fire Blast)
-    if (moveType === 'Fire' || nameLower.includes('fire') || nameLower.includes('flame')) {
-      const bufferSize = this.ctx.sampleRate * 0.28;
-      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-      const noise = this.ctx.createBufferSource();
-      noise.buffer = buffer;
-      const filter = this.ctx.createBiquadFilter();
-      filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(300, now);
-      filter.frequency.exponentialRampToValueAtTime(950, now + 0.18);
-      const gain = this.ctx.createGain();
-      gain.gain.setValueAtTime(0.22, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.ctx.destination);
-      noise.start(now);
-      return;
+    // 3. FIRE ATTACKS
+    if (moveType === 'Fire' || nameLower.includes('flame') || nameLower.includes('fire') || nameLower.includes('blast') || nameLower.includes('ember') || nameLower.includes('heat')) {
+      return this.playAudioFile('flamethrower.wav', 0.8, maxDuration);
     }
 
-    // 4. WATER (Hydro Pump, Surf, Water Gun)
-    if (moveType === 'Water' || nameLower.includes('water') || nameLower.includes('hydro') || nameLower.includes('surf')) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(220, now);
-      osc.frequency.linearRampToValueAtTime(440, now + 0.08);
-      osc.frequency.exponentialRampToValueAtTime(140, now + 0.25);
-      gain.gain.setValueAtTime(0.2, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.25);
-      return;
+    // 4. WATER ATTACKS
+    if (moveType === 'Water' || nameLower.includes('hydro') || nameLower.includes('surf') || nameLower.includes('water') || nameLower.includes('bubble') || nameLower.includes('aqua')) {
+      if (nameLower.includes('hydro') || nameLower.includes('surf')) {
+        return this.playAudioFile('hydro_pump.wav', 0.85, maxDuration);
+      }
+      return this.playAudioFile('water_gun.wav', 0.75, maxDuration);
     }
 
-    // 5. ICE (Ice Beam, Blizzard)
-    if (moveType === 'Ice' || nameLower.includes('ice') || nameLower.includes('blizzard') || nameLower.includes('frost')) {
-      [1760, 2637].forEach((freq, idx) => {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now + idx * 0.04);
-        gain.gain.setValueAtTime(0.12, now + idx * 0.04);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.22);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now + idx * 0.04);
-        osc.stop(now + idx * 0.04 + 0.22);
-      });
-      return;
+    // 5. ICE ATTACKS
+    if (moveType === 'Ice' || nameLower.includes('blizzard') || nameLower.includes('freeze') || nameLower.includes('frost') || nameLower.includes('aurora')) {
+      if (nameLower.includes('blizzard')) {
+        return this.playAudioFile('blizzard.wav', 0.85, maxDuration);
+      }
+      return this.playAudioFile('ice_beam.wav', 0.8, maxDuration);
     }
 
-    // 6. GROUND / ROCK (Earthquake, Rock Slide)
-    if (moveType === 'Ground' || moveType === 'Rock' || nameLower.includes('earth') || nameLower.includes('rock') || nameLower.includes('dig')) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(90, now);
-      osc.frequency.exponentialRampToValueAtTime(25, now + 0.45);
-      gain.gain.setValueAtTime(0.38, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.45);
-      return;
+    // 6. GROUND & ROCK ATTACKS
+    if (moveType === 'Ground' || moveType === 'Rock' || nameLower.includes('earth') || nameLower.includes('quake') || nameLower.includes('fissure') || nameLower.includes('dig') || nameLower.includes('rock') || nameLower.includes('stone') || nameLower.includes('slide')) {
+      return this.playAudioFile('earthquake.wav', 0.85, maxDuration);
     }
 
-    // 7. PSYCHIC / GHOST (Psychic, Shadow Ball, Hypnosis)
-    if (moveType === 'Psychic' || moveType === 'Ghost' || nameLower.includes('psychic') || nameLower.includes('shadow') || nameLower.includes('psy')) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, now);
-      osc.frequency.linearRampToValueAtTime(300, now + 0.15);
-      osc.frequency.linearRampToValueAtTime(750, now + 0.3);
-      gain.gain.setValueAtTime(0.18, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.32);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.32);
-      return;
+    // 7. PSYCHIC & GHOST ATTACKS
+    if (moveType === 'Psychic' || moveType === 'Ghost' || nameLower.includes('psychic') || nameLower.includes('shadow') || nameLower.includes('dream') || nameLower.includes('hypno') || nameLower.includes('nightmare') || nameLower.includes('confusion')) {
+      return this.playAudioFile('psychic.wav', 0.8, maxDuration);
     }
 
-    // 8. SLASH / CLAW / BITE
-    if (nameLower.includes('slash') || nameLower.includes('claw') || nameLower.includes('bite') || nameLower.includes('cut')) {
-      const bufferSize = this.ctx.sampleRate * 0.12;
-      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-      const noise = this.ctx.createBufferSource();
-      noise.buffer = buffer;
-      const filter = this.ctx.createBiquadFilter();
-      filter.type = 'highpass';
-      filter.frequency.setValueAtTime(2200, now);
-      const gain = this.ctx.createGain();
-      gain.gain.setValueAtTime(0.25, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.ctx.destination);
-      noise.start(now);
-      return;
+    // 8. FLYING ATTACKS
+    if (moveType === 'Flying' || nameLower.includes('wing') || nameLower.includes('fly') || nameLower.includes('peck') || nameLower.includes('aerial') || nameLower.includes('gust') || nameLower.includes('air') || nameLower.includes('bird')) {
+      return this.playAudioFile('wing_attack.wav', 0.75, maxDuration);
     }
 
-    // 9. FLYING (Brave Bird, Aerial Ace, Wing Attack, Gust)
-    if (moveType === 'Flying' || nameLower.includes('bird') || nameLower.includes('wing') || nameLower.includes('peck') || nameLower.includes('air') || nameLower.includes('gust') || nameLower.includes('fly')) {
-      const bufferSize = this.ctx.sampleRate * 0.22;
-      const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) data[i] = Math.random() * 2 - 1;
-      const noise = this.ctx.createBufferSource();
-      noise.buffer = buffer;
-      const filter = this.ctx.createBiquadFilter();
-      filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(500, now);
-      filter.frequency.exponentialRampToValueAtTime(2200, now + 0.14);
-      const gain = this.ctx.createGain();
-      gain.gain.setValueAtTime(0.26, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
-      noise.connect(filter);
-      filter.connect(gain);
-      gain.connect(this.ctx.destination);
-      noise.start(now);
-      return;
+    // 9. FIGHTING ATTACKS
+    if (moveType === 'Fighting' || nameLower.includes('chop') || nameLower.includes('punch') || nameLower.includes('kick') || nameLower.includes('combat') || nameLower.includes('cross') || nameLower.includes('mach')) {
+      return this.playAudioFile('karate_chop.wav', 0.75, maxDuration);
     }
 
-    // 10. FIGHTING (Close Combat, Mega Punch, Low Kick, Submission, Karate Chop)
-    if (moveType === 'Fighting' || nameLower.includes('combat') || nameLower.includes('punch') || nameLower.includes('kick') || nameLower.includes('chop')) {
-      [0, 0.07, 0.14].forEach((offset, idx) => {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(200 - idx * 25, now + offset);
-        osc.frequency.exponentialRampToValueAtTime(55, now + offset + 0.06);
-        gain.gain.setValueAtTime(0.26, now + offset);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.06);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now + offset);
-        osc.stop(now + offset + 0.06);
-      });
-      return;
+    // 10. DARK / BITE ATTACKS
+    if (nameLower.includes('bite') || nameLower.includes('crunch') || nameLower.includes('fang') || moveType === 'Dark') {
+      return this.playAudioFile('bite.wav', 0.75, maxDuration);
     }
 
-    // 11. POISON (Sludge Bomb, Poison Jab, Toxic, Acid)
-    if (moveType === 'Poison' || nameLower.includes('sludge') || nameLower.includes('poison') || nameLower.includes('toxic') || nameLower.includes('acid')) {
-      [0, 0.05, 0.1].forEach((offset, idx) => {
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(420 + idx * 80, now + offset);
-        osc.frequency.exponentialRampToValueAtTime(180, now + offset + 0.08);
-        gain.gain.setValueAtTime(0.18, now + offset);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.08);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(now + offset);
-        osc.stop(now + offset + 0.08);
-      });
-      return;
+    // 11. HEAVY PHYSICAL / NORMAL ATTACKS
+    if (nameLower.includes('slam') || nameLower.includes('tackle') || nameLower.includes('strike') || nameLower.includes('headbutt') || nameLower.includes('edge') || nameLower.includes('crash')) {
+      if (nameLower.includes('body slam') || nameLower.includes('slam') || nameLower.includes('double-edge')) {
+        return this.playAudioFile('body_slam.wav', 0.8, maxDuration);
+      }
+      return this.playAudioFile('tackle.wav', 0.75, maxDuration);
     }
 
-    // Default Physical Attack Whoosh
-    this.playAttack();
+    // 12. DEFAULT FALLBACK
+    return this.playAudioFile('tackle.wav', 0.7, maxDuration);
   }
 
   // Ditto Transform Shimmer SFX
@@ -373,7 +326,7 @@ class SoundSystem {
     osc.stop(now + 0.12);
   }
 
-  // Hit Impact & Critical (With Juicy Sub-Bass and Crunch)
+  // Authentic Pokémon Retro Hit Impact & Critical
   playHit(isCrit = false, effectiveness = 1) {
     if (this.muted) return;
     this.init();
@@ -381,85 +334,165 @@ class SoundSystem {
 
     const now = this.ctx.currentTime;
 
-    // 1. Crunchy Impact Noise
-    const bufferSize = this.ctx.sampleRate * (isCrit ? 0.22 : 0.14);
-    const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for (let i = 0; i < bufferSize; i++) {
-      data[i] = Math.random() * 2 - 1;
+    // A. NOT VERY EFFECTIVE (Muffled soft tap click)
+    if (effectiveness < 1 && effectiveness > 0 && !isCrit) {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.exponentialRampToValueAtTime(110, now + 0.07);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.07);
+      return;
     }
 
-    const noise = this.ctx.createBufferSource();
-    noise.buffer = buffer;
+    // B. IMMUNITY / NO EFFECT (Dull ping)
+    if (effectiveness === 0) {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(180, now);
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.1);
+      return;
+    }
 
-    const filter = this.ctx.createBiquadFilter();
-    filter.type = isCrit ? 'bandpass' : (effectiveness > 1 ? 'lowpass' : 'highpass');
-    filter.frequency.setValueAtTime(isCrit ? 850 : (effectiveness > 1 ? 550 : 1400), now);
+    // C. CRITICAL HIT METALLIC SHARP PING (Iconic double ping)
+    if (isCrit) {
+      [0, 0.045].forEach((offset, idx) => {
+        const pingOsc = this.ctx.createOscillator();
+        const pingGain = this.ctx.createGain();
+        pingOsc.type = 'square';
+        pingOsc.frequency.setValueAtTime(idx === 0 ? 1320 : 1760, now + offset);
+        pingGain.gain.setValueAtTime(0.15, now + offset);
+        pingGain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.12);
+        pingOsc.connect(pingGain);
+        pingGain.connect(this.ctx.destination);
+        pingOsc.start(now + offset);
+        pingOsc.stop(now + offset + 0.12);
+      });
+    }
 
-    const gain = this.ctx.createGain();
-    const volume = isCrit ? 0.38 : (effectiveness > 1 ? 0.28 : 0.15);
-    gain.gain.setValueAtTime(volume, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + (isCrit ? 0.22 : 0.14));
+    // D. SUPER EFFECTIVE CRUNCH (Iconic GBA 2-stage "KER-CHUNG!" crunch)
+    if (effectiveness > 1 || isCrit) {
+      // Stage 1: Initial sharp snap noise
+      const snapBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.06), this.ctx.sampleRate);
+      const snapData = snapBuf.getChannelData(0);
+      for (let i = 0; i < snapBuf.length; i++) snapData[i] = Math.random() * 2 - 1;
+      const snapNoise = this.ctx.createBufferSource();
+      snapNoise.buffer = snapBuf;
+      const snapFilter = this.ctx.createBiquadFilter();
+      snapFilter.type = 'highpass';
+      snapFilter.frequency.setValueAtTime(1200, now);
+      const snapGain = this.ctx.createGain();
+      snapGain.gain.setValueAtTime(0.25, now);
+      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+      snapNoise.connect(snapFilter);
+      snapFilter.connect(snapGain);
+      snapGain.connect(this.ctx.destination);
+      snapNoise.start(now);
 
-    noise.connect(filter);
-    filter.connect(gain);
-    gain.connect(this.ctx.destination);
-    noise.start(now);
+      // Stage 2: Heavy resonant low-pitch crunch (+0.035s)
+      const crunchTime = now + 0.035;
+      const crunchBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.22), this.ctx.sampleRate);
+      const crunchData = crunchBuf.getChannelData(0);
+      for (let i = 0; i < crunchBuf.length; i++) crunchData[i] = Math.random() * 2 - 1;
+      const crunchNoise = this.ctx.createBufferSource();
+      crunchNoise.buffer = crunchBuf;
+      const crunchFilter = this.ctx.createBiquadFilter();
+      crunchFilter.type = 'lowpass';
+      crunchFilter.frequency.setValueAtTime(750, crunchTime);
+      crunchFilter.frequency.exponentialRampToValueAtTime(220, crunchTime + 0.2);
+      const crunchGain = this.ctx.createGain();
+      crunchGain.gain.setValueAtTime(0.38, crunchTime);
+      crunchGain.gain.exponentialRampToValueAtTime(0.001, crunchTime + 0.22);
+      crunchNoise.connect(crunchFilter);
+      crunchFilter.connect(crunchGain);
+      crunchGain.connect(this.ctx.destination);
+      crunchNoise.start(crunchTime);
 
-    // 2. Extra Sub-Bass Thud for Critical or Super Effective Hits
-    if (isCrit || effectiveness > 1) {
+      // Sub-bass heavy thump
       const subOsc = this.ctx.createOscillator();
       const subGain = this.ctx.createGain();
-      subOsc.type = 'sine';
-      subOsc.frequency.setValueAtTime(isCrit ? 110 : 85, now);
-      subOsc.frequency.exponentialRampToValueAtTime(35, now + (isCrit ? 0.22 : 0.14));
-
-      subGain.gain.setValueAtTime(isCrit ? 0.35 : 0.2, now);
-      subGain.gain.exponentialRampToValueAtTime(0.001, now + (isCrit ? 0.22 : 0.14));
-
+      subOsc.type = 'square';
+      subOsc.frequency.setValueAtTime(110, crunchTime);
+      subOsc.frequency.exponentialRampToValueAtTime(30, crunchTime + 0.2);
+      subGain.gain.setValueAtTime(0.32, crunchTime);
+      subGain.gain.exponentialRampToValueAtTime(0.001, crunchTime + 0.2);
       subOsc.connect(subGain);
       subGain.connect(this.ctx.destination);
-      subOsc.start(now);
-      subOsc.stop(now + (isCrit ? 0.22 : 0.14));
+      subOsc.start(crunchTime);
+      subOsc.stop(crunchTime + 0.2);
+      return;
     }
 
-    // 3. Metallic High Chime for Critical Hit
-    if (isCrit) {
-      const pingOsc = this.ctx.createOscillator();
-      const pingGain = this.ctx.createGain();
-      pingOsc.type = 'triangle';
-      pingOsc.frequency.setValueAtTime(1480, now);
-      pingOsc.frequency.exponentialRampToValueAtTime(800, now + 0.18);
-      pingGain.gain.setValueAtTime(0.18, now);
-      pingGain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
-      pingOsc.connect(pingGain);
-      pingGain.connect(this.ctx.destination);
-      pingOsc.start(now);
-      pingOsc.stop(now + 0.18);
-    }
+    // E. REGULAR NORMAL HIT (Snappy 8-bit square punch)
+    const hitOsc = this.ctx.createOscillator();
+    const hitGain = this.ctx.createGain();
+    hitOsc.type = 'square';
+    hitOsc.frequency.setValueAtTime(260, now);
+    hitOsc.frequency.exponentialRampToValueAtTime(70, now + 0.12);
+    hitGain.gain.setValueAtTime(0.26, now);
+    hitGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+    hitOsc.connect(hitGain);
+    hitGain.connect(this.ctx.destination);
+    hitOsc.start(now);
+    hitOsc.stop(now + 0.12);
+
+    const hitBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.1), this.ctx.sampleRate);
+    const hitData = hitBuf.getChannelData(0);
+    for (let i = 0; i < hitBuf.length; i++) hitData[i] = Math.random() * 2 - 1;
+    const hNoise = this.ctx.createBufferSource();
+    hNoise.buffer = hitBuf;
+    const hFilter = this.ctx.createBiquadFilter();
+    hFilter.type = 'bandpass';
+    hFilter.frequency.setValueAtTime(900, now);
+    const hGain = this.ctx.createGain();
+    hGain.gain.setValueAtTime(0.2, now);
+    hGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
+    hNoise.connect(hFilter);
+    hFilter.connect(hGain);
+    hGain.connect(this.ctx.destination);
+    hNoise.start(now);
   }
 
-  // Pokemon Faint (Descend)
+  // Pokémon Fainted (Authentic Game Boy / GBA Chromatic Descending Steps)
   playFaint() {
     if (this.muted) return;
     this.init();
     if (!this.ctx) return;
 
     const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
+    // 5 classic rapid descending square-wave chromatic steps
+    const faintSteps = [380, 310, 240, 175, 95];
+    const stepDuration = 0.08;
 
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(400, now);
-    osc.frequency.exponentialRampToValueAtTime(60, now + 0.4);
+    faintSteps.forEach((freq, idx) => {
+      const stepTime = now + idx * stepDuration;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
 
-    gain.gain.setValueAtTime(0.2, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(freq, stepTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.85, stepTime + stepDuration);
 
-    osc.connect(gain);
-    gain.connect(this.ctx.destination);
-    osc.start(now);
-    osc.stop(now + 0.4);
+      const vol = 0.24 * (1 - idx * 0.15);
+      gain.gain.setValueAtTime(vol, stepTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, stepTime + stepDuration);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(stepTime);
+      osc.stop(stepTime + stepDuration);
+    });
   }
 
   // Victory Fanfare

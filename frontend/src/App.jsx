@@ -156,6 +156,7 @@ export default function App() {
                 playerId={playerId}
                 battleResult={battleResult}
                 socket={socket}
+                onLeaveRoom={handleLeaveRoom}
               />
             </div>
           ) : (

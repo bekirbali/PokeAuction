@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Play, Users, Copy, Check, Swords, Volume2, VolumeX, Bot, ArrowLeft, Coins, TrendingUp, AlertTriangle, Shield } from 'lucide-react';
+import { Play, Users, Copy, Check, Swords, Volume2, VolumeX, Bot, ArrowLeft, Coins, TrendingUp, AlertTriangle, Shield, Sparkles, Flame, Award } from 'lucide-react';
 import { sound } from '../utils/sound.js';
+import { getUserStats, getRankDetails } from '../utils/stats.js';
+import TypeRadarModal from './TypeRadarModal.jsx';
 
 export default function Lobby({
   room,
@@ -16,6 +18,14 @@ export default function Lobby({
   const [joinCode, setJoinCode] = useState('');
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
+  const [isRadarOpen, setIsRadarOpen] = useState(false);
+
+  // User Stats & Rank
+  const stats = getUserStats();
+  const currentRp = gameMode === 'solo' ? stats.botRp : stats.pvpRp;
+  const currentStreak = gameMode === 'solo' ? stats.botStreak : stats.pvpStreak;
+  const bestStreak = gameMode === 'solo' ? stats.botBestStreak : stats.pvpBestStreak;
+  const rank = getRankDetails(currentRp);
 
   const handleNameChange = (e) => {
     const val = e.target.value;
@@ -107,13 +117,26 @@ export default function Lobby({
           </div>
         </div>
 
-        <button
-          onClick={onMuteToggle}
-          className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition cursor-pointer"
-          title={isMuted ? 'Sesi Aç' : 'Sesi Kapat'}
-        >
-          {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Element Radar Button */}
+          <button
+            type="button"
+            onClick={() => setIsRadarOpen(true)}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 text-slate-300 hover:text-amber-400 text-xs font-bold transition cursor-pointer shadow-sm"
+            title="Element Üstünlük Radarı"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">Element Rehberi</span>
+          </button>
+
+          <button
+            onClick={onMuteToggle}
+            className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-400 hover:text-white transition cursor-pointer"
+            title={isMuted ? 'Sesi Aç' : 'Sesi Kapat'}
+          >
+            {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
+          </button>
+        </div>
       </div>
 
       {!room ? (
@@ -228,6 +251,57 @@ export default function Lobby({
                   <Users className="w-3.5 h-3.5 text-blue-400" />
                   Çok Oyunculu
                 </button>
+              </div>
+
+              {/* Rank & Streak Status Card for the Selected Mode */}
+              <div className={`mb-4 p-3 rounded-xl border ${rank.border} ${rank.bg} backdrop-blur-sm transition-all`}>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl" role="img" aria-label={rank.name}>{rank.badge}</span>
+                    <div>
+                      <div className="flex items-center gap-1.5">
+                        <span className={`text-xs font-black ${rank.color}`}>{rank.name}</span>
+                        <span className="text-[10px] font-mono text-slate-400">({currentRp} RP)</span>
+                      </div>
+                      <div className="text-[10px] text-slate-400 font-medium">
+                        {gameMode === 'solo' ? 'Bot Lig Derecesi' : 'PvP Dereceli Sezon'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Win Streak Indicator */}
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-900/80 border border-slate-800 text-right">
+                    <Flame className={`w-3.5 h-3.5 ${currentStreak > 0 ? 'text-amber-400 fill-amber-400/20' : 'text-slate-600'}`} />
+                    <div>
+                      <div className="text-[11px] font-black font-mono text-slate-200 leading-none">
+                        {currentStreak} Seri
+                      </div>
+                      <div className="text-[9px] text-slate-500 font-mono leading-none mt-0.5">
+                        Rekor: {bestStreak}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Progress Bar to Next Rank */}
+                {rank.nextRank ? (
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[9px] font-mono text-slate-400">
+                      <span>Sonraki: {rank.nextRank.name}</span>
+                      <span>{currentRp} / {rank.nextRank.minRp} RP</span>
+                    </div>
+                    <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+                      <div
+                        className="h-full bg-gradient-to-r from-amber-500 to-rose-500 rounded-full transition-all duration-500"
+                        style={{ width: `${rank.progress}%` }}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-[9px] font-mono text-rose-400 font-bold flex items-center gap-1">
+                    <Award className="w-3 h-3" /> Zirve Rütbe: Tebrikler Şampiyon!
+                  </div>
+                )}
               </div>
 
               {/* Mode-Specific Content */}
@@ -460,6 +534,9 @@ export default function Lobby({
           )}
         </div>
       )}
+
+      {/* Element Effectiveness Radar Modal */}
+      <TypeRadarModal isOpen={isRadarOpen} onClose={() => setIsRadarOpen(false)} />
     </div>
   );
 }

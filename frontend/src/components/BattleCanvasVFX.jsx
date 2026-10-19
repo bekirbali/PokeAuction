@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from 'react';
 export default function BattleCanvasVFX({
   move,
   attackerSide, // 'p1' | 'p2'
-  onImpact
+  onImpact,
+  speed = 1
 }) {
   const canvasRef = useRef(null);
 
@@ -134,7 +135,7 @@ export default function BattleCanvasVFX({
 
     let animationFrameId;
     const startTime = performance.now();
-    const duration = 950;
+    const duration = 950 / Math.max(speed, 0.5);
     let impactTriggered = false;
 
     const render = (now) => {
@@ -274,51 +275,80 @@ export default function BattleCanvasVFX({
       }
 
       // B. FULL STADIUM CHARGED PLASMA LASER (Hyper Beam / Solar Beam)
-      if (isLaserBeam && progress < 0.75) {
-        // Charging Vortex at Attacker (0 to 0.25)
-        if (progress < 0.26) {
-          const chargeProg = progress / 0.26;
-          ctx.strokeStyle = isGrass ? '#84cc16' : colors.primary;
-          ctx.lineWidth = 3.5;
+      if (isLaserBeam && progress < 0.78) {
+        const isHyperBeam = nameLower.includes('hyper') || moveType === 'Normal';
+        const primaryBeamColor = isGrass ? '#22c55e' : isHyperBeam ? '#f59e0b' : colors.primary;
+        const secondaryBeamColor = isGrass ? '#86efac' : isHyperBeam ? '#fde047' : colors.secondary;
+        const outerAuraColor = isHyperBeam ? '#d946ef' : primaryBeamColor;
+
+        // 1. Charging Vortex / Orbs at Attacker (0 to 0.28)
+        if (progress < 0.28) {
+          const chargeProg = progress / 0.28;
+          ctx.strokeStyle = outerAuraColor;
+          ctx.lineWidth = 4;
           ctx.beginPath();
-          ctx.arc(startX, startY, (1 - chargeProg) * 36 + 6, 0, Math.PI * 2);
+          ctx.arc(startX, startY, (1 - chargeProg) * 38 + 6, 0, Math.PI * 2);
           ctx.stroke();
 
           ctx.fillStyle = colors.core || '#ffffff';
           ctx.beginPath();
-          ctx.arc(startX, startY, chargeProg * 18, 0, Math.PI * 2);
+          ctx.arc(startX, startY, chargeProg * 20, 0, Math.PI * 2);
           ctx.fill();
         }
 
-        // Blazing Continuous Laser Cylinder (0.24 to 0.75)
-        if (progress >= 0.24) {
-          const beamAlpha = progress < 0.55 ? 1 : Math.max(0, (0.75 - progress) / 0.2);
-          const beamColor = isGrass ? '#22c55e' : colors.primary;
+        // 2. Blazing Continuous Progressive Laser Blast (0.20 to 0.78)
+        if (progress >= 0.20) {
+          // Rapid forward projection from start to target
+          const reach = Math.min(1, (progress - 0.20) / 0.12);
+          const beamEndX = startX + (targetX - startX) * reach;
+          const beamEndY = startY + (targetY - startY) * reach;
 
-          // Outer radiant plasma aura
-          ctx.strokeStyle = beamColor;
-          ctx.lineWidth = 38 * beamAlpha;
+          const beamAlpha = progress < 0.58 ? 1 : Math.max(0, (0.78 - progress) / 0.2);
+
+          // Glowing energy nozzle anchor at attacker
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(startX, startY, 18 * beamAlpha, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.strokeStyle = outerAuraColor;
+          ctx.lineWidth = 8 * beamAlpha;
+          ctx.beginPath();
+          ctx.arc(startX, startY, 26 * beamAlpha, 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Outer radiant plasma aura (wide)
+          ctx.strokeStyle = outerAuraColor;
+          ctx.lineWidth = 44 * beamAlpha;
           ctx.lineCap = 'round';
           ctx.beginPath();
           ctx.moveTo(startX, startY);
-          ctx.lineTo(targetX, targetY);
+          ctx.lineTo(beamEndX, beamEndY);
           ctx.stroke();
 
-          // Middle neon plasma
-          ctx.strokeStyle = isGrass ? '#86efac' : colors.secondary;
-          ctx.lineWidth = 20 * beamAlpha;
+          // Middle high-energy plasma beam
+          ctx.strokeStyle = secondaryBeamColor;
+          ctx.lineWidth = 26 * beamAlpha;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
-          ctx.lineTo(targetX, targetY);
+          ctx.lineTo(beamEndX, beamEndY);
           ctx.stroke();
 
-          // Hot-white solid laser core
-          ctx.strokeStyle = colors.core || '#ffffff';
-          ctx.lineWidth = 10 * beamAlpha;
+          // Hot-white blinding laser core
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 14 * beamAlpha;
           ctx.beginPath();
           ctx.moveTo(startX, startY);
-          ctx.lineTo(targetX, targetY);
+          ctx.lineTo(beamEndX, beamEndY);
           ctx.stroke();
+
+          // Shockwave rings shooting down the beam
+          if (reach >= 0.5 && Math.random() < 0.4) {
+            const ringPos = Math.random() * reach;
+            const rx = startX + (targetX - startX) * ringPos;
+            const ry = startY + (targetY - startY) * ringPos;
+            spawnRing(rx, ry, primaryBeamColor, 35, 4, 3);
+          }
         }
       }
 

@@ -106,8 +106,8 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
       <div className="space-y-0.5 sm:space-y-1">
         <div className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-wider">İmza Saldırılar</div>
         <div className="grid grid-cols-2 gap-1">
-          {pokemon.moves.map(m => (
-            <div key={m.name} className="bg-slate-900/70 border border-slate-700/60 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 text-left flex justify-between items-center">
+          {pokemon.moves.map((m, idx) => (
+            <div key={`${m.name}-${idx}`} className="bg-slate-900/70 border border-slate-700/60 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 text-left flex justify-between items-center">
               <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 truncate">{m.name}</span>
               <span className="font-mono font-bold text-amber-300 text-[9px] sm:text-[10px] flex-shrink-0 ml-1">
                 {m.power > 0 ? `${m.power}G` : 'Stat'}

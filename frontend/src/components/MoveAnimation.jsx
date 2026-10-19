@@ -4,7 +4,8 @@ import BattleCanvasVFX from './BattleCanvasVFX.jsx';
 export default function MoveAnimation({
   move,
   attackerSide, // 'p1' | 'p2'
-  onImpact
+  onImpact,
+  speed = 1
 }) {
   const [phase, setPhase] = useState('launch'); // 'launch' -> 'impact' -> 'done'
 
@@ -41,17 +42,17 @@ export default function MoveAnimation({
   useEffect(() => {
     const impactTimer = setTimeout(() => {
       setPhase('impact');
-    }, 380);
+    }, 380 / speed);
 
     const doneTimer = setTimeout(() => {
       setPhase('done');
-    }, 1050);
+    }, 1050 / speed);
 
     return () => {
       clearTimeout(impactTimer);
       clearTimeout(doneTimer);
     };
-  }, [moveName]);
+  }, [moveName, speed]);
 
   if (phase === 'done') return null;
 
@@ -102,6 +103,7 @@ export default function MoveAnimation({
         move={move}
         attackerSide={attackerSide}
         onImpact={onImpact}
+        speed={speed}
       />
 
       {/* 3. Authentic Falling Boulder / Rock Drop on Target */}

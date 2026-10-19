@@ -1,19 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import confetti from 'canvas-confetti';
-import { Trophy, Swords, RotateCcw, Sparkles, Skull, Flame } from 'lucide-react';
+import { Trophy, Swords, RotateCcw, Sparkles, Skull, Flame, TrendingUp, TrendingDown, Award } from 'lucide-react';
 import { sound } from '../utils/sound.js';
+import { updateStatsOnMatchEnd } from '../utils/stats.js';
 
 export default function MatchSummary({
   room,
   playerId,
   battleResult,
-  socket
+  socket,
+  onLeaveRoom
 }) {
   const isWinner = battleResult.winnerId === playerId;
   const winner = room.players.find(p => p.id === battleResult.winnerId);
   const mvp = battleResult.mvp;
+  const [matchStatOutcome, setMatchStatOutcome] = useState(null);
+  const recordedRef = useRef(false);
 
   useEffect(() => {
+    // Generate a deterministic match key for idempotency
+    const matchKey = `poke_match_outcome_${battleResult?.matchId || (room?.code + '_' + battleResult?.winnerId)}`;
+    const cachedOutcomeStr = sessionStorage.getItem(matchKey);
+
+    if (cachedOutcomeStr) {
+      try {
+        const parsed = JSON.parse(cachedOutcomeStr);
+        setMatchStatOutcome(parsed);
+        return;
+      } catch (e) {}
+    }
+
+    if (recordedRef.current) return;
+    recordedRef.current = true;
+
+    // Record rank & streak once per match end
+    const outcome = updateStatsOnMatchEnd({
+      isWinner,
+      isBot: !!room?.isBotGame,
+      botDifficulty: room?.botDifficulty || 'medium'
+    });
+    setMatchStatOutcome(outcome);
+    try {
+      sessionStorage.setItem(matchKey, JSON.stringify(outcome));
+    } catch (e) {}
+
     if (isWinner) {
       sound.playVictory();
       confetti({
@@ -22,7 +52,7 @@ export default function MatchSummary({
         origin: { y: 0.6 }
       });
     }
-  }, [isWinner]);
+  }, []);
 
   const handleRematch = () => {
     sound.playGavel();
@@ -46,20 +76,69 @@ export default function MatchSummary({
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 text-center space-y-8">
+    <div className="max-w-3xl mx-auto px-4 py-6 sm:py-8 text-center space-y-6">
       {/* Result Banner */}
       <div className="space-y-2">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/50 border border-white/10 text-xs font-mono uppercase tracking-widest text-slate-400">
           Maç Sona Erdi
         </div>
-        <h1 className={`text-5xl sm:text-6xl font-black tracking-tight drop-shadow-xl ${
+        <h1 className={`text-4xl sm:text-6xl font-black tracking-tight drop-shadow-xl ${
           isWinner ? 'text-amber-400 animate-bounce' : 'text-slate-400'
         }`}>
           {isWinner ? '🏆 ZAFER!' : '💀 BOZGUN!'}
         </h1>
-        <p className="text-slate-300 font-semibold text-lg">
-          {isWinner ? 'Tebrikler! Takımın tüm rakiplerini arenadan sildi.' : `${winner?.name} maçı kazandı. Bir dahaki sefere daha iyi draft yap!`}
+        <p className="text-slate-300 font-semibold text-sm sm:text-base">
+          {isWinner ? 'Tebrikler! Takımın tüm rakiplerini arenadan sildi.' : `${winner?.name || 'Rakip'} maçı kazandı. Bir dahaki sefere daha iyi draft yap!`}
         </p>
+
+        {/* Clean Rank & Streak Pill Bar */}
+        {matchStatOutcome && (
+          <div className="flex flex-wrap items-center justify-center gap-2.5 pt-2">
+            {/* Mode Tag */}
+            <span className="px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs font-mono text-slate-300">
+              {matchStatOutcome.isBot ? `Bot (${matchStatOutcome.botDifficulty})` : 'PvP Dereceli'}
+            </span>
+
+            {/* RP Change */}
+            <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black border ${
+              matchStatOutcome.rpChange > 0
+                ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40'
+                : matchStatOutcome.rpChange < 0
+                ? 'bg-rose-950/40 text-rose-400 border-rose-500/40'
+                : 'bg-slate-800 text-slate-300 border-slate-700'
+            }`}>
+              {matchStatOutcome.rpChange > 0 ? (
+                <>
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  <span>+{matchStatOutcome.rpChange} RP</span>
+                </>
+              ) : matchStatOutcome.rpChange < 0 ? (
+                <>
+                  <TrendingDown className="w-3.5 h-3.5" />
+                  <span>{matchStatOutcome.rpChange} RP</span>
+                </>
+              ) : (
+                <span>0 RP</span>
+              )}
+              <span className="text-[10px] text-slate-400 font-mono font-normal">({matchStatOutcome.newRp} RP)</span>
+            </div>
+
+            {/* Streak Counter */}
+            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-950/30 text-amber-300 border border-amber-500/30 text-xs font-bold">
+              <Flame className="w-3.5 h-3.5 text-orange-400 fill-orange-400" />
+              <span>Seri: {matchStatOutcome.currentStreak}</span>
+              {matchStatOutcome.bestStreak > 0 && (
+                <span className="text-[10px] text-amber-500/80 font-mono">(En İyi: {matchStatOutcome.bestStreak})</span>
+              )}
+            </div>
+
+            {/* Current Rank Badge */}
+            <div className={`flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold border ${matchStatOutcome.rank.bg} ${matchStatOutcome.rank.border} ${matchStatOutcome.rank.color}`}>
+              <span>{matchStatOutcome.rank.badge}</span>
+              <span>{matchStatOutcome.rank.name}</span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* MVP Card Highlight */}
@@ -105,10 +184,18 @@ export default function MatchSummary({
       )}
 
       {/* Action Buttons */}
-      <div className="flex justify-center gap-4 pt-4">
+      <div className="flex flex-wrap justify-center gap-3 pt-2">
+        {onLeaveRoom && (
+          <button
+            onClick={onLeaveRoom}
+            className="py-3 px-6 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold text-sm border border-slate-700 flex items-center gap-2 transition cursor-pointer"
+          >
+            ← Ana Menüye Dön
+          </button>
+        )}
         <button
           onClick={handleRematch}
-          className="py-4 px-8 rounded-2xl bg-gradient-to-r from-red-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-lg shadow-xl shadow-red-600/30 flex items-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer"
+          className="py-3.5 px-8 rounded-2xl bg-gradient-to-r from-red-600 to-amber-500 hover:from-red-500 hover:to-amber-400 text-white font-black text-base shadow-xl shadow-red-600/30 flex items-center gap-2 transition transform hover:-translate-y-0.5 cursor-pointer"
         >
           <RotateCcw className="w-5 h-5" />
           YENİDEN OYNA (RÖVANŞ)

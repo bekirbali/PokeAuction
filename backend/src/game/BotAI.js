@@ -1,3 +1,23 @@
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const typeChartPath = path.join(__dirname, '../data/type_chart.json');
+const TYPE_CHART = JSON.parse(fs.readFileSync(typeChartPath, 'utf8'));
+
+export function getEffectiveness(moveType, targetTypes = []) {
+  let multiplier = 1;
+  const matchups = TYPE_CHART[moveType] || {};
+  for (const t of targetTypes) {
+    if (matchups[t] !== undefined) {
+      multiplier *= matchups[t];
+    }
+  }
+  return multiplier;
+}
+
 // Gen 1 (151 Pokemon) Evolution Families Mapping
 // Maps each Pokemon ID to its evolution family, stage (1 = base, 2 = 1st evo, 3 = 2nd evo), and whether it's final
 export const EVOLUTION_FAMILIES = {
@@ -380,6 +400,61 @@ export class BotAI {
       baseVal = baseVal - overlapPenalty + diversityBonus;
     }
 
+    // --- 4.5 ADAPTIVE COUNTER-DRAFTING (Only for Red / Hard Bot) ---
+    if (difficulty === 'hard' && room && Array.isArray(room.players)) {
+      const human = room.players.find(p => p.id !== botPlayer?.id);
+      if (human && Array.isArray(human.team) && human.team.length > 0) {
+        let counterBonus = 0;
+        let vulnerabilityPenalty = 0;
+        const currentTypes = pokemon.types || [];
+        const currentMoves = pokemon.moves || [];
+
+        for (const opp of human.team) {
+          const oppTypes = opp.types || [];
+
+          // Check if our Pokemon or its signature moves hit the opponent for super-effective damage (>= 2x)
+          let hitsSuperEffective = false;
+          for (const t of currentTypes) {
+            if (getEffectiveness(t, oppTypes) >= 2) {
+              hitsSuperEffective = true;
+              break;
+            }
+          }
+          if (!hitsSuperEffective) {
+            for (const m of currentMoves) {
+              if (m.power > 0 && getEffectiveness(m.type, oppTypes) >= 2) {
+                hitsSuperEffective = true;
+                break;
+              }
+            }
+          }
+          if (hitsSuperEffective) {
+            counterBonus += 1;
+          }
+
+          // Check if opponent hits our Pokemon for super-effective damage
+          for (const ot of oppTypes) {
+            if (getEffectiveness(ot, currentTypes) >= 2) {
+              vulnerabilityPenalty += 0.5;
+              break;
+            }
+          }
+        }
+
+        // Hard bot values strategic counter-picks highly (+1 to +2 value)
+        if (counterBonus >= 2) {
+          baseVal += 2;
+        } else if (counterBonus === 1) {
+          baseVal += 1;
+        }
+
+        // Slight penalty if opponent heavily counters this pick and BST isn't elite
+        if (vulnerabilityPenalty >= 2 && bst < 480) {
+          baseVal = Math.max(1, baseVal - 1);
+        }
+      }
+    }
+
     // --- 5. BUDGET & REMAINING SLOTS SENSITIVITY ---
     if (botPlayer && difficulty === 'hard') {
       const slotsNeeded = 5 - botPlayer.team.length;
@@ -427,13 +502,22 @@ export class BotAI {
 
     const human = room.players.find(p => p.id !== botPlayer.id);
     const humanGold = human ? human.gold : 20;
+    const humanSlotsNeeded = human ? Math.max(0, 5 - (human.team?.length || 0)) : 0;
+    const humanSafeGold = Math.max(0, humanGold - Math.max(0, humanSlotsNeeded - 1));
 
     // Smart Bluffing / Price Jacking (Only for desirable Pokemon, NEVER for garbage/duplicates)
     const isDesirable = perceivedValue >= 3 || ['Legendary', 'Epic'].includes(room.currentPokemon?.tier);
-    const shouldBluff = isDesirable &&
+    let shouldBluff = isDesirable &&
                         Math.random() < config.bluffChance && 
                         room.currentBid < Math.min(perceivedValue + 2, maxSpendable) &&
                         humanGold > room.currentBid + 2;
+
+    // Hard Bot Squeeze: If opponent is low on safe gold and this Pokemon is desirable, Red pushes price to force starvation or secure steal
+    if (difficulty === 'hard' && isDesirable && humanSafeGold <= 3 && humanSafeGold > 0) {
+      if (room.currentBid < humanSafeGold && room.currentBid + 1 <= maxSpendable) {
+        shouldBluff = true;
+      }
+    }
 
     const targetLimit = shouldBluff 
       ? Math.min(perceivedValue + 2, maxSpendable)
@@ -488,22 +572,95 @@ export class BotAI {
     return pVal >= 3 ? 'claimFree' : 'forceGive';
   }
 
-  static decideLineup(botPlayer) {
+  static decideLineup(botPlayer, opponent = null, difficulty = 'medium') {
     if (!botPlayer.team || botPlayer.team.length === 0) return [];
 
     const team = [...botPlayer.team];
     if (team.length <= 2) return team;
 
-    // Tactical Positioning:
-    // Slot 1 (Lead / Öncü): Fast offensive sweeper (high Speed + highest offensive stat)
+    // --- ELITE TACTICAL POSITIONING (Red / Hard Bot) ---
+    if (difficulty === 'hard' && opponent && Array.isArray(opponent.team) && opponent.team.length > 0) {
+      const oppTeam = opponent.team;
+
+      // 1. Predict opponent's lead: fastest high-BST offensive sweeper
+      const oppLeadScore = (p) => (p.stats?.speed || 50) * 1.5 + Math.max(p.stats?.attack || 50, p.stats?.sp_attack || 50);
+      const sortedOpp = [...oppTeam].sort((a, b) => oppLeadScore(b) - oppLeadScore(a));
+      const predictedOppLead = sortedOpp[0];
+
+      // 2. Select Anti-Lead: Best counter against opponent's predicted starter
+      const antiLeadScore = (p) => {
+        if (p.id === 132 || p.slug === 'ditto') return -50; // Don't lead with Ditto; save for slot 2-3
+
+        let score = (p.stats?.speed || 50) * 1.2 + Math.max(p.stats?.attack || 50, p.stats?.sp_attack || 50);
+
+        // Type matchup against predicted opp lead
+        if (predictedOppLead) {
+          const myTypes = p.types || [];
+          const oppTypes = predictedOppLead.types || [];
+
+          // Offensive advantage
+          let maxOff = 1;
+          for (const mt of myTypes) {
+            maxOff = Math.max(maxOff, getEffectiveness(mt, oppTypes));
+          }
+          for (const m of (p.moves || [])) {
+            if (m.power > 0) {
+              maxOff = Math.max(maxOff, getEffectiveness(m.type, oppTypes));
+            }
+          }
+          if (maxOff >= 2) score += 60;
+          if (maxOff === 0) score -= 40;
+
+          // Defensive resistance against opponent's lead
+          let oppMaxDamage = 1;
+          for (const ot of oppTypes) {
+            oppMaxDamage = Math.max(oppMaxDamage, getEffectiveness(ot, myTypes));
+          }
+          if (oppMaxDamage < 1) score += 40; // We resist them!
+          if (oppMaxDamage >= 2) score -= 40; // They have super-effective on us!
+        }
+        return score;
+      };
+
+      const sortedByAntiLead = [...team].sort((a, b) => antiLeadScore(b) - antiLeadScore(a));
+      const lead = sortedByAntiLead[0];
+      const remainingAfterLead = team.filter(p => p.id !== lead.id);
+
+      // 3. Select Anchor (Slot 5): Tankiest finisher
+      const anchorScore = (p) => {
+        if (p.id === 132 || p.slug === 'ditto') return 0;
+        return (p.stats?.hp || 50) * 1.8 + (p.stats?.defense || 50) * 1.2 + (p.tier === 'Legendary' ? 80 : 0);
+      };
+      const sortedByAnchor = [...remainingAfterLead].sort((a, b) => anchorScore(b) - anchorScore(a));
+      const anchor = sortedByAnchor[0];
+      const middleCandidates = remainingAfterLead.filter(p => p.id !== anchor.id);
+
+      // 4. Slots 2, 3, 4: Place Ditto strategically in slot 2 or 3, sort remaining by BST / power
+      const ditto = middleCandidates.find(p => p.id === 132 || p.slug === 'ditto');
+      const nonDittoMiddle = middleCandidates.filter(p => p.id !== (ditto?.id || -1));
+
+      nonDittoMiddle.sort((a, b) => (b.totalStats || 400) - (a.totalStats || 400));
+
+      let middleSlots = [];
+      if (ditto) {
+        // Place Ditto in slot 2 (second to fight)
+        middleSlots = [ditto, ...nonDittoMiddle];
+      } else {
+        middleSlots = nonDittoMiddle;
+      }
+
+      return [lead, ...middleSlots, anchor];
+    }
+
+    // Default Medium / Easy Lineup Strategy:
+    // Slot 1 (Lead / Öncü): Fast offensive sweeper
     const leadScore = (p) => (p.stats?.speed || 50) * 1.5 + Math.max(p.stats?.attack || 50, p.stats?.sp_attack || 50);
     const sortedByLead = [...team].sort((a, b) => leadScore(b) - leadScore(a));
     const lead = sortedByLead[0];
 
-    // Remove lead from remaining
     const remaining = team.filter(p => p.id !== lead.id);
 
-    // Slot 5 (Anchor / Son Kale): Tankiest finisher (highest HP * 1.8 + Defense * 1.2 + Legendary bonus)
+    // Slot 5 (Anchor / Son Kale): Tankiest finisher
     const anchorScore = (p) => (p.stats?.hp || 50) * 1.8 + (p.stats?.defense || 50) * 1.2 + (p.tier === 'Legendary' ? 80 : 0);
     const sortedByAnchor = [...remaining].sort((a, b) => anchorScore(b) - anchorScore(a));
     const anchor = sortedByAnchor[0];

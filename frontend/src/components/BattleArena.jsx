@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FastForward, Play, Pause, Volume2, VolumeX, Menu, X } from 'lucide-react';
+import { FastForward, Play, Pause, Volume2, VolumeX, Menu, X, Sparkles } from 'lucide-react';
 import MoveAnimation from './MoveAnimation.jsx';
+import TypeRadarModal from './TypeRadarModal.jsx';
 import { sound } from '../utils/sound.js';
 
 export default function BattleArena({
@@ -10,11 +11,12 @@ export default function BattleArena({
   onMuteToggle,
   isMuted
 }) {
-  const { team1, team2, timeline, winnerId, mvp } = battleData;
+  const { team1, team2, timeline, winnerId, mvp, matchId } = battleData;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [speed, setSpeed] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [isRadarOpen, setIsRadarOpen] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const menuRef = useRef(null);
 
@@ -40,6 +42,13 @@ export default function BattleArena({
 
   const timerRef = useRef(null);
 
+  // Stop attack SFX on component unmount
+  useEffect(() => {
+    return () => {
+      sound.stopAttackSound(0);
+    };
+  }, []);
+
   // Close mobile settings menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -60,14 +69,16 @@ export default function BattleArena({
   useEffect(() => {
     if (isPaused || currentIndex >= timeline.length) {
       if (currentIndex >= timeline.length && timeline.length > 0) {
+        sound.stopAttackSound(80);
         const timer = setTimeout(() => {
-          onBattleEnd({ winnerId, mvp });
+          onBattleEnd({ winnerId, mvp, matchId });
         }, 2200);
         return () => clearTimeout(timer);
       }
       return;
     }
 
+    sound.stopAttackSound(60);
     const event = timeline[currentIndex];
     let stepDelay = 2000 / speed;
 
@@ -139,7 +150,7 @@ export default function BattleArena({
 
       setAnnouncement(`🔥 ${event.attackerPokemon}, ${event.move.name} kullandı!${effText}`);
       setLungeSide(attackerSide);
-      sound.playElementalAttack(event.move.type, event.move.name);
+      sound.playElementalAttack(event.move.type, event.move.name, speed);
 
       setActiveMoveAnim({
         move: event.move,
@@ -210,6 +221,7 @@ export default function BattleArena({
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
+      sound.stopAttackSound(80);
     };
   }, [currentIndex, isPaused, speed, timeline]);
 
@@ -332,6 +344,19 @@ export default function BattleArena({
 
         {/* Right Desktop: Visible Controls */}
         <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+          {/* Element Radar Button */}
+          <button
+            onClick={() => {
+              setIsPaused(true);
+              setIsRadarOpen(true);
+            }}
+            className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold flex items-center gap-1 transition cursor-pointer"
+            title="Element Üstünlük Radarı"
+          >
+            <Sparkles className="w-3 h-3 text-amber-400" />
+            <span className="hidden md:inline">Elementler</span>
+          </button>
+
           {/* Speed Toggle */}
           <button
             onClick={() => setSpeed(s => (s === 1 ? 1.5 : s === 1.5 ? 2 : 1))}
@@ -383,6 +408,23 @@ export default function BattleArena({
               <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">
                 Savaş Ayarları
               </div>
+
+              {/* Element Rehberi Button */}
+              <button
+                type="button"
+                onClick={() => {
+                  setShowMobileMenu(false);
+                  setIsPaused(true);
+                  setIsRadarOpen(true);
+                }}
+                className="w-full py-1.5 px-3 rounded-xl bg-amber-950/30 border border-amber-500/40 text-xs font-bold flex items-center justify-between text-amber-300 hover:bg-amber-950/50 transition cursor-pointer"
+              >
+                <div className="flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Element Rehberi</span>
+                </div>
+                <span className="text-[10px] text-amber-400/80 font-mono">15 Tip</span>
+              </button>
 
               {/* Speed Controller */}
               <div className="bg-slate-950/70 rounded-xl p-1.5 border border-slate-800">
@@ -478,6 +520,7 @@ export default function BattleArena({
             key={activeMoveAnim.id}
             move={activeMoveAnim.move}
             attackerSide={activeMoveAnim.attackerSide}
+            speed={speed}
           />
         )}
 
@@ -727,6 +770,9 @@ export default function BattleArena({
           {announcement}
         </span>
       </div>
+
+      {/* Element Effectiveness Radar Modal */}
+      <TypeRadarModal isOpen={isRadarOpen} onClose={() => setIsRadarOpen(false)} />
     </div>
   );
 }

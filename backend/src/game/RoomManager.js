@@ -5,7 +5,19 @@ import { fileURLToPath } from 'url';
 import { BattleEngine } from './BattleEngine.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const ALL_POKEMON = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/pokemon_gen1.json'), 'utf8'));
+const RAW_POKEMON = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/pokemon_gen1.json'), 'utf8'));
+const ALL_POKEMON = RAW_POKEMON.map(p => {
+  if (!p.moves || !Array.isArray(p.moves)) return p;
+  const seen = new Set();
+  const uniqueMoves = [];
+  for (const m of p.moves) {
+    if (!seen.has(m.name)) {
+      seen.add(m.name);
+      uniqueMoves.push(m);
+    }
+  }
+  return { ...p, moves: uniqueMoves };
+});
 
 export class RoomManager {
   constructor(io) {
@@ -558,7 +570,8 @@ export class RoomManager {
 
     const bot = room.players.find(p => p.isBot);
     if (bot) {
-      bot.lineup = BotAI.decideLineup(bot);
+      const opponent = room.players.find(p => p.id !== bot.id);
+      bot.lineup = BotAI.decideLineup(bot, opponent, bot.difficulty || room.botDifficulty);
       setTimeout(() => {
         if (room.state !== 'LINEUP') return;
         bot.ready = true;
@@ -621,6 +634,8 @@ export class RoomManager {
     const p2 = room.players[1];
 
     const battleResult = BattleEngine.simulate(p1, p2);
+    const matchId = 'm_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7);
+    battleResult.matchId = matchId;
     room.battleResult = battleResult;
 
     this.broadcastRoom(room);
@@ -629,7 +644,8 @@ export class RoomManager {
       team2: { id: p2.id, name: p2.name, lineup: p2.lineup },
       timeline: battleResult.timeline,
       winnerId: battleResult.winnerId,
-      mvp: battleResult.mvp
+      mvp: battleResult.mvp,
+      matchId
     });
   }
 
