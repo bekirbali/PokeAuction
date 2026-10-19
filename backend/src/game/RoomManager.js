@@ -134,7 +134,8 @@ export class RoomManager {
       if (room.activeTurnPlayerId !== activePlayer.id) return;
 
       if (room.roundPhase === 'OPENING') {
-        this.handleOpeningBid(room, activePlayer.id, 1);
+        const openingDecision = BotAI.decideOpeningBid(room, activePlayer, activePlayer.difficulty);
+        this.handleOpeningBid(room, activePlayer.id, openingDecision.amount || 1);
       } else {
         const decision = BotAI.decideBid(room, activePlayer, activePlayer.difficulty);
         if (decision.action === 'BID') {

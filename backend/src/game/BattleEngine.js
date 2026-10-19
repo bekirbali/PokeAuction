@@ -1,4 +1,4 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -112,6 +112,61 @@ export class BattleEngine {
       turnCount++;
       const pk1 = team1.roster[idx1];
       const pk2 = team2.roster[idx2];
+
+      // --- DITTO TRANSFORM MECHANIC ---
+      // If pk1 is Ditto and hasn't transformed against an opponent:
+      if (pk1.id === 132 && !pk1.transformed && pk2.id !== 132) {
+        pk1.transformed = true;
+        pk1.transformedInto = pk2.name;
+        pk1.name = `Ditto (${pk2.name})`;
+        pk1.types = [...pk2.types];
+        pk1.stats = {
+          ...pk2.stats,
+          hp: pk1.stats.hp // Ditto keeps its own base HP
+        };
+        pk1.moves = pk2.moves.map(m => ({ ...m }));
+        pk1.sprite = pk2.sprite;
+        pk1.spriteBack = pk2.spriteBack;
+        pk1.cryUrl = pk2.cryUrl;
+        timeline.push({
+          type: 'TRANSFORM',
+          turn: turnCount,
+          playerId: team1.id,
+          targetName: pk2.name,
+          targetPokemon: {
+            ...pk2,
+            currentHp: pk1.currentHp,
+            maxHp: pk1.maxHp
+          }
+        });
+      }
+
+      // If pk2 is Ditto and hasn't transformed against an opponent:
+      if (pk2.id === 132 && !pk2.transformed && pk1.id !== 132) {
+        pk2.transformed = true;
+        pk2.transformedInto = pk1.name;
+        pk2.name = `Ditto (${pk1.name})`;
+        pk2.types = [...pk1.types];
+        pk2.stats = {
+          ...pk1.stats,
+          hp: pk2.stats.hp
+        };
+        pk2.moves = pk1.moves.map(m => ({ ...m }));
+        pk2.sprite = pk1.sprite;
+        pk2.spriteBack = pk1.spriteBack;
+        pk2.cryUrl = pk1.cryUrl;
+        timeline.push({
+          type: 'TRANSFORM',
+          turn: turnCount,
+          playerId: team2.id,
+          targetName: pk1.name,
+          targetPokemon: {
+            ...pk1,
+            currentHp: pk2.currentHp,
+            maxHp: pk2.maxHp
+          }
+        });
+      }
 
       // Speed check
       const speed1 = pk1.stats.speed;

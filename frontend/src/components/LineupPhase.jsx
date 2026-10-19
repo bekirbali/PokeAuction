@@ -85,36 +85,36 @@ export default function LineupPhase({
   ];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-6">
+    <div className="max-w-4xl mx-auto px-2 sm:px-4 py-2 sm:py-6">
       {/* Top Bar - Clean Typography, No Sparkles/Emojis */}
-      <div className="flex justify-between items-center bg-slate-900/60 border border-slate-800 rounded-2xl px-5 py-3 mb-6 backdrop-blur-md">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-slate-900/60 border border-slate-800 rounded-2xl p-3 sm:px-5 sm:py-3 mb-3 sm:mb-6 backdrop-blur-md gap-2 sm:gap-0">
         <div>
-          <h2 className="text-lg font-black text-white tracking-wide">
+          <h2 className="text-base sm:text-lg font-black text-white tracking-wide">
             Taktiksel Dizilim Aşaması
           </h2>
-          <p className="text-xs text-slate-400">Pokémon'larının sahaya çıkış sırasını belirle. Kartları sürükleyip bırakabilir veya okları kullanabilirsin.</p>
+          <p className="text-[11px] sm:text-xs text-slate-400">Pokémon'larının sahaya çıkış sırasını belirle. Kartları sürükleyip bırakabilir veya okları kullanabilirsin.</p>
         </div>
 
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-amber-400 font-bold text-sm">
-            <Clock className="w-4 h-4 text-amber-400" />
+        <div className="flex items-center gap-2 sm:gap-4 self-end sm:self-auto">
+          <div className="flex items-center gap-1.5 px-3 py-1 rounded-xl bg-slate-950 border border-slate-800 font-mono text-amber-400 font-bold text-xs sm:text-sm">
+            <Clock className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400" />
             {room.timer}s
           </div>
 
           <button
             onClick={onMuteToggle}
-            className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition"
+            className="p-1.5 sm:p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition"
           >
-            {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4 text-emerald-400" />}
+            {isMuted ? <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-400" /> : <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-400" />}
           </button>
         </div>
       </div>
 
       {/* Opponent Status Banner - Clean, No Emojis */}
-      <div className="mb-6 p-4 rounded-2xl bg-slate-900/70 border border-slate-800 flex justify-between items-center">
-        <div className="flex items-center gap-3">
-          <div className={`w-3 h-3 rounded-full ${opp?.ready ? 'bg-emerald-500 animate-ping' : 'bg-amber-500 animate-pulse'}`} />
-          <span className="text-sm font-semibold text-slate-300">
+      <div className="mb-3 sm:mb-6 p-3 sm:p-4 rounded-2xl bg-slate-900/70 border border-slate-800 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2.5 sm:gap-0">
+        <div className="flex items-center gap-2.5">
+          <div className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full flex-shrink-0 ${opp?.ready ? 'bg-emerald-500 animate-ping' : 'bg-amber-500 animate-pulse'}`} />
+          <span className="text-xs sm:text-sm font-semibold text-slate-300">
             {opp?.name}: {opp?.ready ? 'Dizilimini tamamladı, seni bekliyor!' : 'Sıralamasını ayarlıyor...'}
           </span>
         </div>
@@ -122,7 +122,7 @@ export default function LineupPhase({
         <button
           onClick={handleReady}
           disabled={isReady}
-          className={`py-2.5 px-6 rounded-xl font-bold text-sm transition shadow-lg flex items-center gap-2 ${
+          className={`py-2 sm:py-2.5 px-5 sm:px-6 rounded-xl font-bold text-xs sm:text-sm transition shadow-lg flex items-center justify-center gap-2 ${
             isReady
               ? 'bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 cursor-default'
               : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/30 cursor-pointer'
@@ -130,7 +130,7 @@ export default function LineupPhase({
         >
           {isReady ? (
             <>
-              <Check className="w-4 h-4" />
+              <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               Hazırsın
             </>
           ) : (
@@ -140,7 +140,7 @@ export default function LineupPhase({
       </div>
 
       {/* 5 Pokemon Slot Cards with Drag-and-Drop + Up/Down Arrows */}
-      <div className="space-y-3">
+      <div className="space-y-2 sm:space-y-3">
         {lineup.map((p, idx) => {
           const isDragging = draggedIdx === idx;
           const isTargeted = dragOverIdx === idx && draggedIdx !== idx;

@@ -1,5 +1,4 @@
-﻿import React from 'react';
-import { Shield, Zap, Heart, Sword, Sparkles } from 'lucide-react';
+import React from 'react';
 
 export default function PokemonCard({ pokemon, compact = false, showStats = true }) {
   if (!pokemon) return null;
@@ -41,35 +40,34 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
   }
 
   return (
-    <div className={`relative rounded-2xl p-4 border backdrop-blur-xl shadow-2xl transition-all duration-300 tier-${pokemon.tier}`}>
+    <div className={`relative rounded-2xl p-2.5 sm:p-4 border backdrop-blur-xl shadow-2xl transition-all duration-300 tier-${pokemon.tier}`}>
       {/* Tier Badge & ID */}
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-[11px] font-mono text-slate-400 font-semibold tracking-wider">#{String(pokemon.id).padStart(3, '0')}</span>
-        <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-black/60 border border-white/20 tracking-wider flex items-center gap-1 shadow-inner">
-          <Sparkles className="w-3 h-3 text-amber-400" />
+      <div className="flex justify-between items-center mb-0.5 sm:mb-1">
+        <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 font-semibold tracking-wider">#{String(pokemon.id).padStart(3, '0')}</span>
+        <span className="text-[9px] sm:text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-black/60 border border-white/20 tracking-wider flex items-center gap-1 shadow-inner">
           {pokemon.tier}
         </span>
       </div>
 
       {/* Animated Sprite */}
-      <div className="relative h-28 flex items-center justify-center my-1">
+      <div className="relative h-16 sm:h-28 flex items-center justify-center my-0.5 sm:my-1">
         <div className="absolute inset-0 bg-radial from-white/10 to-transparent rounded-full blur-xl pointer-events-none" />
         <img
           src={pokemon.sprite}
           alt={pokemon.name}
-          className="max-h-24 max-w-[80%] object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] animate-bounce"
+          className="max-h-14 sm:max-h-24 max-w-[80%] object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] animate-bounce"
           style={{ animationDuration: '3s' }}
         />
       </div>
 
       {/* Name & Types */}
-      <div className="text-center mb-2.5">
-        <h3 className="text-xl font-black tracking-wide text-white drop-shadow-md mb-1">
+      <div className="text-center mb-1 sm:mb-2.5">
+        <h3 className="text-base sm:text-xl font-black tracking-wide text-white drop-shadow-md mb-0.5 sm:mb-1">
           {pokemon.name}
         </h3>
         <div className="flex justify-center gap-1.5">
           {pokemon.types.map(t => (
-            <span key={t} className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider type-${t}`}>
+            <span key={t} className={`text-[9px] sm:text-[10px] font-bold px-2 sm:px-2.5 py-0.5 rounded-full uppercase tracking-wider type-${t}`}>
               {t}
             </span>
           ))}
@@ -78,30 +76,30 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
 
       {/* Compact Base Stats Grid */}
       {showStats && (
-        <div className="grid grid-cols-3 gap-1.5 bg-black/40 rounded-xl p-2 border border-white/10 mb-2.5 text-center">
-          <div className="bg-slate-900/60 rounded-lg py-1 px-1.5">
-            <span className="text-[9px] text-red-400 font-bold block">HP</span>
+        <div className="grid grid-cols-3 gap-1 sm:gap-1.5 bg-black/40 rounded-xl p-1.5 sm:p-2 border border-white/10 mb-1 sm:mb-2.5 text-center">
+          <div className="bg-slate-900/60 rounded-lg py-0.5 sm:py-1 px-1 sm:px-1.5">
+            <span className="text-[8px] sm:text-[9px] text-red-400 font-bold block">HP</span>
             <span className="font-mono font-black text-xs text-white">{pokemon.stats.hp}</span>
           </div>
-          <div className="bg-slate-900/60 rounded-lg py-1 px-1.5">
-            <span className="text-[9px] text-orange-400 font-bold block">ATK / DEF</span>
+          <div className="bg-slate-900/60 rounded-lg py-0.5 sm:py-1 px-1 sm:px-1.5">
+            <span className="text-[8px] sm:text-[9px] text-orange-400 font-bold block">ATK / DEF</span>
             <span className="font-mono font-black text-xs text-white">{pokemon.stats.attack}/{pokemon.stats.defense}</span>
           </div>
-          <div className="bg-slate-900/60 rounded-lg py-1 px-1.5">
-            <span className="text-[9px] text-yellow-400 font-bold block">HIZ</span>
+          <div className="bg-slate-900/60 rounded-lg py-0.5 sm:py-1 px-1 sm:px-1.5">
+            <span className="text-[8px] sm:text-[9px] text-yellow-400 font-bold block">HIZ</span>
             <span className="font-mono font-black text-xs text-white">{pokemon.stats.speed}</span>
           </div>
         </div>
       )}
 
       {/* Signature Moves */}
-      <div className="space-y-1">
-        <div className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">İmza Saldırılar</div>
+      <div className="space-y-0.5 sm:space-y-1">
+        <div className="text-[9px] sm:text-[10px] font-semibold text-slate-400 uppercase tracking-wider">İmza Saldırılar</div>
         <div className="grid grid-cols-2 gap-1">
           {pokemon.moves.map(m => (
-            <div key={m.name} className="bg-slate-900/70 border border-slate-700/60 rounded-lg px-2 py-1 text-left flex justify-between items-center">
-              <span className="text-[11px] font-bold text-slate-200 truncate">{m.name}</span>
-              <span className="font-mono font-bold text-amber-300 text-[10px] flex-shrink-0 ml-1">
+            <div key={m.name} className="bg-slate-900/70 border border-slate-700/60 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 text-left flex justify-between items-center">
+              <span className="text-[10px] sm:text-[11px] font-bold text-slate-200 truncate">{m.name}</span>
+              <span className="font-mono font-bold text-amber-300 text-[9px] sm:text-[10px] flex-shrink-0 ml-1">
                 {m.power > 0 ? `${m.power}G` : 'Stat'}
               </span>
             </div>

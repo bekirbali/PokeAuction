@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import Lobby from './components/Lobby.jsx';
 import AuctionArena from './components/AuctionArena.jsx';
@@ -93,7 +93,7 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen max-h-screen w-screen overflow-hidden text-slate-100 flex flex-col justify-between selection:bg-red-500 selection:text-white p-2">
+    <div className="h-[100dvh] min-h-[100dvh] w-screen overflow-hidden text-slate-100 flex flex-col justify-between selection:bg-red-500 selection:text-white p-1 sm:p-2">
       {/* Toast Notification */}
       {notification && (
         <div className="fixed top-3 left-1/2 transform -translate-x-1/2 z-50 bg-red-600/90 text-white font-bold px-5 py-2.5 rounded-xl shadow-2xl border border-white/20 text-xs backdrop-blur-md animate-bounce">
@@ -116,13 +116,15 @@ export default function App() {
         )}
 
         {room?.state === 'AUCTION' && (
-          <AuctionArena
-            room={room}
-            socket={socket}
-            playerId={playerId}
-            onMuteToggle={handleMuteToggle}
-            isMuted={isMuted}
-          />
+          <div className="h-full overflow-y-auto py-0.5 sm:py-1">
+            <AuctionArena
+              room={room}
+              socket={socket}
+              playerId={playerId}
+              onMuteToggle={handleMuteToggle}
+              isMuted={isMuted}
+            />
+          </div>
         )}
 
         {room?.state === 'LINEUP' && (
@@ -160,7 +162,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="py-1 text-center text-[10px] text-slate-500 font-medium flex-shrink-0">
+      <footer className="py-0.5 sm:py-1 text-center text-[9px] sm:text-[10px] text-slate-500 font-medium flex-shrink-0">
         ⚡ PokéAuction · 1v1 Canlı Kör Takım Açık Artırması & Savaş Simülatörü
       </footer>
     </div>

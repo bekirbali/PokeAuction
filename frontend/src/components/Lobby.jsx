@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, Users, Copy, Check, Swords, Volume2, VolumeX, Bot, ArrowLeft, Shield, Zap, Flame, Coins, TrendingUp, AlertTriangle } from 'lucide-react';
+import { Play, Users, Copy, Check, Swords, Volume2, VolumeX, Bot, ArrowLeft, Coins, TrendingUp, AlertTriangle, Shield } from 'lucide-react';
 import { sound } from '../utils/sound.js';
 
 export default function Lobby({
@@ -240,8 +240,7 @@ export default function Lobby({
                           : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
                       }`}
                     >
-                      <div className="flex items-center gap-1 mb-1">
-                        <Shield className="w-3 h-3 text-emerald-400" />
+                      <div className="mb-1">
                         <span className="text-xs font-black">Brock</span>
                       </div>
                       <span className="text-[10px] text-emerald-400 font-mono">Çaylak</span>
@@ -258,8 +257,7 @@ export default function Lobby({
                           : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
                       }`}
                     >
-                      <div className="flex items-center gap-1 mb-1">
-                        <Zap className="w-3 h-3 text-amber-400" />
+                      <div className="mb-1">
                         <span className="text-xs font-black">Gary</span>
                       </div>
                       <span className="text-[10px] text-amber-400 font-mono">Kurnaz</span>
@@ -276,8 +274,7 @@ export default function Lobby({
                           : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
                       }`}
                     >
-                      <div className="flex items-center gap-1 mb-1">
-                        <Flame className="w-3 h-3 text-rose-400" />
+                      <div className="mb-1">
                         <span className="text-xs font-black">Red</span>
                       </div>
                       <span className="text-[10px] text-rose-400 font-mono">Şampiyon</span>

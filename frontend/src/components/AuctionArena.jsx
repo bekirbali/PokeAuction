@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Coins, Flame, Ban, CheckCircle, Gift, UserX, Clock, Volume2, VolumeX, Sparkles } from 'lucide-react';
+import { Coins, Flame, Ban, CheckCircle, Gift, UserX, Clock, Volume2, VolumeX } from 'lucide-react';
 import PokemonCard from './PokemonCard.jsx';
 import { sound } from '../utils/sound.js';
 
@@ -74,14 +74,14 @@ export default function AuctionArena({
   };
 
   return (
-    <div className="h-full max-h-[calc(100vh-2rem)] flex flex-col justify-between max-w-6xl mx-auto px-4 py-2 overflow-hidden select-none">
+    <div className="min-h-full flex flex-col justify-between max-w-6xl mx-auto px-2 sm:px-4 py-1 sm:py-2 select-none pb-2">
       {/* Top Bar: Room Info & Mute */}
-      <div className="flex justify-between items-center bg-slate-900/60 border border-slate-800 rounded-xl px-4 py-1.5 backdrop-blur-md flex-shrink-0 mb-2">
-        <div className="flex items-center gap-3">
-          <span className="text-[11px] uppercase font-bold text-slate-400">Oda:</span>
+      <div className="flex justify-between items-center bg-slate-900/60 border border-slate-800 rounded-xl px-3 sm:px-4 py-1 sm:py-1.5 backdrop-blur-md flex-shrink-0 mb-1.5 sm:mb-2">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <span className="text-[10px] sm:text-[11px] uppercase font-bold text-slate-400">Oda:</span>
           <span className="font-mono font-bold text-amber-400 tracking-wider text-xs">{room.code}</span>
-          <span className="text-slate-600">|</span>
-          <span className="text-[11px] font-semibold text-slate-300">
+          <span className="hidden sm:inline text-slate-600">|</span>
+          <span className="hidden sm:inline text-[10px] sm:text-[11px] font-semibold text-slate-300">
             Kadro: <span className="text-red-400 font-bold">{me?.name} ({me?.teamCount}/5)</span> vs <span className="text-blue-400 font-bold">{opp?.name} ({opp?.teamCount}/5)</span>
           </span>
         </div>
@@ -95,10 +95,111 @@ export default function AuctionArena({
         </button>
       </div>
 
+      {/* Mobile Dual-Trainer Scoreboard (Visible on mobile/tablet < lg) */}
+      <div className="grid grid-cols-2 gap-1.5 sm:gap-2 mb-1.5 sm:mb-2 lg:hidden flex-shrink-0">
+        {/* Player 1 (You / Sen) */}
+        <div className={`p-1.5 sm:p-2 rounded-xl bg-slate-900/95 border transition-all ${
+          isMyTurn && !isStarvation ? 'border-amber-500/80 ring-1 ring-amber-500/40 shadow-md shadow-amber-500/10' : 'border-slate-800'
+        }`}>
+          <div className="flex justify-between items-center mb-1">
+            <div className="flex items-center gap-1 min-w-0">
+              <span className="text-[9px] uppercase font-black text-red-400 flex-shrink-0">Sen</span>
+              <span className="text-xs font-bold text-white truncate">{me?.name}</span>
+              {isMyTurn && !isStarvation && (
+                <span className="text-[7px] uppercase font-black px-1 py-0.2 rounded bg-amber-500 text-slate-950 flex-shrink-0 animate-pulse">
+                  Sırada
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-0.5 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded-lg flex-shrink-0">
+              <Coins className="w-3 h-3 text-amber-400 fill-amber-400" />
+              <span className="font-mono text-xs font-bold text-amber-300">{me?.gold}G</span>
+            </div>
+          </div>
+          {/* 5 Pokemon Slots Grid */}
+          <div className="grid grid-cols-5 gap-1">
+            {[0, 1, 2, 3, 4].map(idx => {
+              const mon = me?.team[idx];
+              return (
+                <div
+                  key={idx}
+                  className={`h-6 sm:h-7 rounded-lg border flex items-center justify-center relative transition-all ${
+                    mon
+                      ? 'bg-slate-800 border-slate-700 shadow-sm'
+                      : 'border-dashed border-slate-800 bg-slate-950/40 text-slate-600'
+                  }`}
+                  title={mon ? `${mon.name} (${mon.pricePaid}G)` : `Boş Yuva ${idx + 1}`}
+                >
+                  {mon ? (
+                    <>
+                      <img src={mon.icon} alt={mon.name} className="w-4.5 h-4.5 sm:w-5 sm:h-5 object-contain" />
+                      <span className="absolute -bottom-1 -right-0.5 text-[7px] font-mono font-black text-amber-300 bg-slate-950/95 px-0.5 rounded border border-amber-500/30 leading-none">
+                        {mon.pricePaid}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-[8px] font-mono text-slate-600">{idx + 1}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Player 2 (Opponent / Rakip) */}
+        <div className={`p-1.5 sm:p-2 rounded-xl bg-slate-900/95 border transition-all ${
+          !isMyTurn && !isStarvation ? 'border-amber-500/80 ring-1 ring-amber-500/40 shadow-md shadow-amber-500/10' : 'border-blue-500/30'
+        }`}>
+          <div className="flex justify-between items-center mb-1">
+            <div className="flex items-center gap-1 min-w-0">
+              <span className="text-[9px] uppercase font-black text-blue-400 flex-shrink-0">Rakip</span>
+              <span className="text-xs font-bold text-white truncate">{opp?.name}</span>
+              {!isMyTurn && !isStarvation && (
+                <span className="text-[7px] uppercase font-black px-1 py-0.2 rounded bg-amber-500 text-slate-950 flex-shrink-0 animate-pulse">
+                  Sırada
+                </span>
+              )}
+            </div>
+            <div className="flex items-center gap-0.5 bg-amber-500/10 border border-amber-500/30 px-1.5 py-0.5 rounded-lg flex-shrink-0">
+              <Coins className="w-3 h-3 text-amber-400 fill-amber-400" />
+              <span className="font-mono text-xs font-bold text-amber-300">{opp?.gold}G</span>
+            </div>
+          </div>
+          {/* 5 Pokemon Slots Grid */}
+          <div className="grid grid-cols-5 gap-1">
+            {[0, 1, 2, 3, 4].map(idx => {
+              const mon = opp?.team[idx];
+              return (
+                <div
+                  key={idx}
+                  className={`h-6 sm:h-7 rounded-lg border flex items-center justify-center relative transition-all ${
+                    mon
+                      ? 'bg-slate-800 border-slate-700 shadow-sm'
+                      : 'border-dashed border-slate-800 bg-slate-950/40 text-slate-600'
+                  }`}
+                  title={mon ? `${mon.name} (${mon.pricePaid}G)` : `Boş Yuva ${idx + 1}`}
+                >
+                  {mon ? (
+                    <>
+                      <img src={mon.icon} alt={mon.name} className="w-4.5 h-4.5 sm:w-5 sm:h-5 object-contain" />
+                      <span className="absolute -bottom-1 -right-0.5 text-[7px] font-mono font-black text-amber-300 bg-slate-950/95 px-0.5 rounded border border-amber-500/30 leading-none">
+                        {mon.pricePaid}
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-[8px] font-mono text-slate-600">{idx + 1}</span>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
       {/* Main Auction Floor */}
-      <div className="grid lg:grid-cols-12 gap-4 items-center flex-1 min-h-0">
-        {/* Left Column: Player 1 (You) */}
-        <div className={`lg:col-span-3 bg-slate-900/80 border rounded-2xl p-3 backdrop-blur-xl shadow-xl flex flex-col justify-between transition-all ${
+      <div className="grid lg:grid-cols-12 gap-2.5 lg:gap-4 items-center flex-1 lg:min-h-0 my-auto">
+        {/* Left Column: Player 1 (You) - Hidden on mobile, shown on lg */}
+        <div className={`hidden lg:flex lg:col-span-3 bg-slate-900/80 border rounded-2xl p-3 backdrop-blur-xl shadow-xl flex-col justify-between transition-all ${
           isMyTurn && !isStarvation ? 'border-amber-500/80 shadow-amber-500/10' : 'border-slate-800'
         }`}>
           <div className="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
@@ -161,7 +262,7 @@ export default function AuctionArena({
         </div>
 
         {/* Center Column: Active Auction Ring */}
-        <div className="lg:col-span-6 flex flex-col justify-center space-y-2">
+        <div className="col-span-12 lg:col-span-6 flex flex-col justify-center space-y-1.5 sm:space-y-2">
           {/* Turn & Status Header */}
           <div className="flex items-center justify-center gap-2">
             <div className="flex items-center gap-1.5 text-[11px] font-bold px-3 py-1 rounded-full bg-slate-900 border border-slate-800">
@@ -175,14 +276,11 @@ export default function AuctionArena({
                 : 'bg-slate-800 text-slate-400 border border-slate-700'
             }`}>
               {isMyTurn ? (
-                <>
-                  <Sparkles className="w-3.5 h-3.5 fill-current" />
-                  {isOpeningPhase ? 'AÇILIŞ SIRASI SENDE' : 'SENİN SIRAN'}
-                </>
+                <span>{isOpeningPhase ? 'AÇILIŞ SIRASI SENDE' : 'SENİN SIRAN'}</span>
               ) : (
                 <>
                   <Clock className="w-3.5 h-3.5 animate-spin" />
-                  {isOpeningPhase ? `${openerName} açılış yapıyor...` : `${activePlayerName} düşünüyor...`}
+                  <span>{isOpeningPhase ? `${openerName} açılış yapıyor...` : `${activePlayerName} düşünüyor...`}</span>
                 </>
               )}
             </div>
@@ -202,7 +300,7 @@ export default function AuctionArena({
           </div>
 
           {/* Current Bid Display */}
-          <div className="max-w-sm mx-auto w-full bg-black/60 border border-slate-800 rounded-xl px-3 py-1.5 text-center backdrop-blur-md">
+          <div className="max-w-sm mx-auto w-full bg-black/60 border border-slate-800 rounded-xl px-3 py-1 sm:py-1.5 text-center backdrop-blur-md">
             <div className="flex items-center justify-center gap-2">
               <span className="text-xs uppercase font-bold text-slate-400">Mevcut Teklif:</span>
               <span className="font-mono text-lg font-black text-amber-400">
@@ -284,11 +382,11 @@ export default function AuctionArena({
               </div>
             ) : (
               /* --- BIDDING PHASE CONTROLS --- */
-              <div className={`bg-slate-900/90 border rounded-xl p-2.5 space-y-2 backdrop-blur-xl transition-all ${
+              <div className={`bg-slate-900/90 border rounded-xl p-2 sm:p-2.5 space-y-1.5 sm:space-y-2 backdrop-blur-xl transition-all ${
                 isMyTurn ? 'border-amber-500/50 shadow-md shadow-amber-500/10' : 'border-slate-800 opacity-60 pointer-events-none'
               }`}>
                 {/* Quick Add Buttons */}
-                <div className="grid grid-cols-4 gap-1.5">
+                <div className="grid grid-cols-4 gap-1 sm:gap-1.5">
                   {[1, 2, 3, 5].map(inc => {
                     const nextVal = (room.currentBid || 0) + inc;
                     const canAfford = nextVal <= me.gold;
@@ -297,7 +395,7 @@ export default function AuctionArena({
                         key={inc}
                         onClick={() => handleQuickBid(inc)}
                         disabled={!isMyTurn || !canAfford || isSubmitting}
-                        className={`py-1.5 rounded-lg font-mono font-bold text-xs transition ${
+                        className={`py-1 sm:py-1.5 rounded-lg font-mono font-bold text-[11px] sm:text-xs transition ${
                           canAfford && isMyTurn && !isSubmitting
                             ? 'bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 cursor-pointer'
                             : 'bg-slate-950 text-slate-600 border border-slate-800 cursor-not-allowed'
@@ -310,8 +408,8 @@ export default function AuctionArena({
                 </div>
 
                 {/* Custom Bid & Pass */}
-                <div className="flex gap-1.5">
-                  <form onSubmit={handleCustomBid} className="flex-1 flex gap-1.5">
+                <div className="flex flex-col sm:flex-row gap-1 sm:gap-1.5">
+                  <form onSubmit={handleCustomBid} className="flex-1 flex gap-1 sm:gap-1.5">
                     <input
                       type="number"
                       min={(room.currentBid || 0) + 1}
@@ -320,12 +418,12 @@ export default function AuctionArena({
                       value={customBid}
                       onChange={(e) => setCustomBid(e.target.value)}
                       placeholder={`Teklif (> ${room.currentBid})`}
-                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 text-white font-mono text-xs focus:outline-none focus:border-amber-400 disabled:opacity-50"
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1 sm:py-1 text-white font-mono text-xs focus:outline-none focus:border-amber-400 disabled:opacity-50"
                     />
                     <button
                       type="submit"
                       disabled={!isMyTurn || isSubmitting || !customBid || parseInt(customBid, 10) <= room.currentBid || parseInt(customBid, 10) > me.gold}
-                      className="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 disabled:bg-slate-800 disabled:text-slate-600 text-slate-950 font-bold text-[11px] transition"
+                      className="px-3 py-1 sm:py-1 rounded-lg bg-amber-500 hover:bg-amber-400 disabled:bg-slate-800 disabled:text-slate-600 text-slate-950 font-bold text-xs sm:text-[11px] transition whitespace-nowrap cursor-pointer"
                     >
                       Artır
                     </button>
@@ -334,9 +432,9 @@ export default function AuctionArena({
                   <button
                     onClick={handlePass}
                     disabled={!isMyTurn || isSubmitting}
-                    className="px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-bold text-[11px] transition flex items-center gap-1 shadow-md shadow-rose-600/30 cursor-pointer"
+                    className="px-3 py-1 sm:py-1 rounded-lg bg-rose-600 hover:bg-rose-500 disabled:bg-slate-800 disabled:text-slate-600 text-white font-bold text-xs sm:text-[11px] transition flex items-center justify-center gap-1 shadow-md shadow-rose-600/30 cursor-pointer whitespace-nowrap"
                   >
-                    <Ban className="w-3 h-3" />
+                    <Ban className="w-3.5 h-3.5 sm:w-3 sm:h-3" />
                     Pas ({room.currentBid}G'ye Bırak)
                   </button>
                 </div>
@@ -345,8 +443,8 @@ export default function AuctionArena({
           </div>
         </div>
 
-        {/* Right Column: Player 2 (Opponent) */}
-        <div className={`lg:col-span-3 bg-slate-900/80 border rounded-2xl p-3 backdrop-blur-xl shadow-xl flex flex-col justify-between transition-all ${
+        {/* Right Column: Player 2 (Opponent) - Hidden on mobile, shown on lg */}
+        <div className={`hidden lg:flex lg:col-span-3 bg-slate-900/80 border rounded-2xl p-3 backdrop-blur-xl shadow-xl flex-col justify-between transition-all ${
           !isMyTurn && !isStarvation ? 'border-amber-500/80 shadow-amber-500/10' : 'border-blue-500/30'
         }`}>
           <div className="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
@@ -410,7 +508,7 @@ export default function AuctionArena({
       </div>
 
       {/* Footer Ticker / History */}
-      <div className="bg-slate-950/80 border border-slate-800 rounded-xl px-4 py-1.5 backdrop-blur-md flex-shrink-0 mt-2 flex justify-between items-center text-[10px] text-slate-400">
+      <div className="bg-slate-950/80 border border-slate-800 rounded-xl px-3 sm:px-4 py-1.5 backdrop-blur-md flex-shrink-0 mt-2 sm:mt-2.5 mb-0.5 flex justify-between items-center text-[10px] text-slate-400">
         <div className="flex items-center gap-2 overflow-hidden">
           <span className="font-bold text-slate-500 uppercase">Son İşlemler:</span>
           {room.history && room.history.length > 0 ? (

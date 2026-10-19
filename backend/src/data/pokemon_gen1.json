@@ -6878,12 +6878,19 @@
       "speed": 48
     },
     "totalStats": 288,
-    "tier": "Common",
+    "tier": "Rare",
     "sprite": "https://play.pokemonshowdown.com/sprites/ani/ditto.gif",
     "spriteBack": "https://play.pokemonshowdown.com/sprites/ani-back/ditto.gif",
     "icon": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
     "cryUrl": "https://raw.githubusercontent.com/PokeAPI/cries/main/cries/pokemon/latest/132.ogg",
     "moves": [
+      {
+        "name": "Transform",
+        "type": "Normal",
+        "power": 0,
+        "category": "status",
+        "accuracy": 100
+      },
       {
         "name": "Hyper Beam",
         "type": "Normal",
