@@ -39,12 +39,12 @@ export default function BattleCanvasVFX({
     const angle = Math.atan2(dy, dx);
 
     // Classification
-    const isLaserBeam = nameLower.includes('beam') || nameLower.includes('cannon');
+    const isLaserBeam = nameLower.includes('beam') || nameLower.includes('cannon') || nameLower.includes('solar');
     const isElectric = moveType === 'Electric' || nameLower.includes('thunder') || nameLower.includes('zap') || nameLower.includes('spark');
     const isFire = moveType === 'Fire' || nameLower.includes('fire') || nameLower.includes('flame') || nameLower.includes('ember') || nameLower.includes('blast');
     const isWater = moveType === 'Water' || nameLower.includes('hydro') || nameLower.includes('surf') || nameLower.includes('water') || nameLower.includes('bubble');
     const isIce = moveType === 'Ice' || nameLower.includes('ice') || nameLower.includes('blizzard') || nameLower.includes('frost');
-    const isGrass = moveType === 'Grass' || nameLower.includes('leaf') || nameLower.includes('solar') || nameLower.includes('vine') || nameLower.includes('petal');
+    const isGrass = moveType === 'Grass' || nameLower.includes('leaf') || nameLower.includes('solar') || nameLower.includes('vine') || nameLower.includes('petal') || nameLower.includes('energy ball');
     const isSlash = ['slash', 'claw', 'scratch', 'cut', 'swipes', 'x-scissor', 'cross chop'].some(k => nameLower.includes(k));
     const isBite = ['bite', 'crunch', 'fang'].some(k => nameLower.includes(k));
     const isPsychic = moveType === 'Psychic' || nameLower.includes('psychic') || nameLower.includes('hypnosis') || nameLower.includes('psy') || nameLower.includes('mind');
@@ -403,13 +403,14 @@ export default function BattleCanvasVFX({
 
       // F. IMPACT CORE DETONATION FLASH (0.36 to 0.65)
       if (progress >= 0.36 && progress <= 0.65) {
-        const flashProg = (progress - 0.36) / 0.29;
-        const flashAlpha = 1 - flashProg;
+        const flashProg = Math.max(0, Math.min(1, (progress - 0.36) / 0.29));
+        const flashAlpha = Math.max(0, Math.min(1, 1 - flashProg));
         const flashRadius = (flashProg * 40 + 20);
 
         const flashGrad = ctx.createRadialGradient(targetX, targetY, 0, targetX, targetY, flashRadius);
         flashGrad.addColorStop(0, `rgba(255, 255, 255, ${flashAlpha})`);
-        flashGrad.addColorStop(0.4, `${colors.primary}${Math.floor(flashAlpha * 255).toString(16).padStart(2, '0')}`);
+        const alphaHex = Math.max(0, Math.min(255, Math.floor(flashAlpha * 255))).toString(16).padStart(2, '0');
+        flashGrad.addColorStop(0.4, `${colors.primary}${alphaHex}`);
         flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.fillStyle = flashGrad;

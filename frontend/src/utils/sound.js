@@ -327,172 +327,50 @@ class SoundSystem {
   }
 
   // Authentic Pokémon Retro Hit Impact & Critical
+  // Authentic Pokémon Impact & Damage Audio (Official WAV SFX)
   playHit(isCrit = false, effectiveness = 1) {
     if (this.muted) return;
-    this.init();
-    if (!this.ctx) return;
 
-    const now = this.ctx.currentTime;
-
-    // A. NOT VERY EFFECTIVE (Muffled soft tap click)
-    if (effectiveness < 1 && effectiveness > 0 && !isCrit) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(320, now);
-      osc.frequency.exponentialRampToValueAtTime(110, now + 0.07);
-      gain.gain.setValueAtTime(0.12, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.07);
-      return;
-    }
-
-    // B. IMMUNITY / NO EFFECT (Dull ping)
     if (effectiveness === 0) {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(180, now);
-      gain.gain.setValueAtTime(0.08, now);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(now);
-      osc.stop(now + 0.1);
+      // Immunity: no damage sound
       return;
     }
 
-    // C. CRITICAL HIT METALLIC SHARP PING (Iconic double ping)
     if (isCrit) {
-      [0, 0.045].forEach((offset, idx) => {
-        const pingOsc = this.ctx.createOscillator();
-        const pingGain = this.ctx.createGain();
-        pingOsc.type = 'square';
-        pingOsc.frequency.setValueAtTime(idx === 0 ? 1320 : 1760, now + offset);
-        pingGain.gain.setValueAtTime(0.15, now + offset);
-        pingGain.gain.exponentialRampToValueAtTime(0.001, now + offset + 0.12);
-        pingOsc.connect(pingGain);
-        pingGain.connect(this.ctx.destination);
-        pingOsc.start(now + offset);
-        pingOsc.stop(now + offset + 0.12);
-      });
+      // Critical hit: heavy smashing impact
+      return this.playAudioFile('heavy_impact.wav', 0.85, 450);
     }
 
-    // D. SUPER EFFECTIVE CRUNCH (Iconic GBA 2-stage "KER-CHUNG!" crunch)
-    if (effectiveness > 1 || isCrit) {
-      // Stage 1: Initial sharp snap noise
-      const snapBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.06), this.ctx.sampleRate);
-      const snapData = snapBuf.getChannelData(0);
-      for (let i = 0; i < snapBuf.length; i++) snapData[i] = Math.random() * 2 - 1;
-      const snapNoise = this.ctx.createBufferSource();
-      snapNoise.buffer = snapBuf;
-      const snapFilter = this.ctx.createBiquadFilter();
-      snapFilter.type = 'highpass';
-      snapFilter.frequency.setValueAtTime(1200, now);
-      const snapGain = this.ctx.createGain();
-      snapGain.gain.setValueAtTime(0.25, now);
-      snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
-      snapNoise.connect(snapFilter);
-      snapFilter.connect(snapGain);
-      snapGain.connect(this.ctx.destination);
-      snapNoise.start(now);
-
-      // Stage 2: Heavy resonant low-pitch crunch (+0.035s)
-      const crunchTime = now + 0.035;
-      const crunchBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.22), this.ctx.sampleRate);
-      const crunchData = crunchBuf.getChannelData(0);
-      for (let i = 0; i < crunchBuf.length; i++) crunchData[i] = Math.random() * 2 - 1;
-      const crunchNoise = this.ctx.createBufferSource();
-      crunchNoise.buffer = crunchBuf;
-      const crunchFilter = this.ctx.createBiquadFilter();
-      crunchFilter.type = 'lowpass';
-      crunchFilter.frequency.setValueAtTime(750, crunchTime);
-      crunchFilter.frequency.exponentialRampToValueAtTime(220, crunchTime + 0.2);
-      const crunchGain = this.ctx.createGain();
-      crunchGain.gain.setValueAtTime(0.38, crunchTime);
-      crunchGain.gain.exponentialRampToValueAtTime(0.001, crunchTime + 0.22);
-      crunchNoise.connect(crunchFilter);
-      crunchFilter.connect(crunchGain);
-      crunchGain.connect(this.ctx.destination);
-      crunchNoise.start(crunchTime);
-
-      // Sub-bass heavy thump
-      const subOsc = this.ctx.createOscillator();
-      const subGain = this.ctx.createGain();
-      subOsc.type = 'square';
-      subOsc.frequency.setValueAtTime(110, crunchTime);
-      subOsc.frequency.exponentialRampToValueAtTime(30, crunchTime + 0.2);
-      subGain.gain.setValueAtTime(0.32, crunchTime);
-      subGain.gain.exponentialRampToValueAtTime(0.001, crunchTime + 0.2);
-      subOsc.connect(subGain);
-      subGain.connect(this.ctx.destination);
-      subOsc.start(crunchTime);
-      subOsc.stop(crunchTime + 0.2);
-      return;
+    if (effectiveness > 1) {
+      // Super effective: iconic crunch impact
+      return this.playAudioFile('crunch.wav', 0.85, 400);
     }
 
-    // E. REGULAR NORMAL HIT (Snappy 8-bit square punch)
-    const hitOsc = this.ctx.createOscillator();
-    const hitGain = this.ctx.createGain();
-    hitOsc.type = 'square';
-    hitOsc.frequency.setValueAtTime(260, now);
-    hitOsc.frequency.exponentialRampToValueAtTime(70, now + 0.12);
-    hitGain.gain.setValueAtTime(0.26, now);
-    hitGain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
-    hitOsc.connect(hitGain);
-    hitGain.connect(this.ctx.destination);
-    hitOsc.start(now);
-    hitOsc.stop(now + 0.12);
-
-    const hitBuf = this.ctx.createBuffer(1, Math.floor(this.ctx.sampleRate * 0.1), this.ctx.sampleRate);
-    const hitData = hitBuf.getChannelData(0);
-    for (let i = 0; i < hitBuf.length; i++) hitData[i] = Math.random() * 2 - 1;
-    const hNoise = this.ctx.createBufferSource();
-    hNoise.buffer = hitBuf;
-    const hFilter = this.ctx.createBiquadFilter();
-    hFilter.type = 'bandpass';
-    hFilter.frequency.setValueAtTime(900, now);
-    const hGain = this.ctx.createGain();
-    hGain.gain.setValueAtTime(0.2, now);
-    hGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-    hNoise.connect(hFilter);
-    hFilter.connect(hGain);
-    hGain.connect(this.ctx.destination);
-    hNoise.start(now);
+    // Normal or not very effective hit: blunt physical smack
+    return this.playAudioFile('smack_down.wav', 0.75, 350);
   }
 
-  // Pokémon Fainted (Authentic Game Boy / GBA Chromatic Descending Steps)
-  playFaint() {
+  // Pokémon Fainted (Authentic Cry Pitch Drop + Official Defeat Effect)
+  playFaint(cryUrl = null) {
     if (this.muted) return;
-    this.init();
-    if (!this.ctx) return;
 
-    const now = this.ctx.currentTime;
-    // 5 classic rapid descending square-wave chromatic steps
-    const faintSteps = [380, 310, 240, 175, 95];
-    const stepDuration = 0.08;
+    // 1. Play the fainted Pokemon's cry briskly with slight pitch drop (Gen 3-9 authentic faint effect)
+    if (cryUrl) {
+      try {
+        const cryAudio = new Audio(cryUrl);
+        cryAudio.volume = 0.5;
+        cryAudio.playbackRate = 0.9;
+        cryAudio.play().catch(() => {});
+        setTimeout(() => {
+          try {
+            cryAudio.pause();
+          } catch (_) {}
+        }, 450);
+      } catch (e) {}
+    }
 
-    faintSteps.forEach((freq, idx) => {
-      const stepTime = now + idx * stepDuration;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(freq, stepTime);
-      osc.frequency.exponentialRampToValueAtTime(freq * 0.85, stepTime + stepDuration);
-
-      const vol = 0.24 * (1 - idx * 0.15);
-      gain.gain.setValueAtTime(vol, stepTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, stepTime + stepDuration);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(stepTime);
-      osc.stop(stepTime + stepDuration);
-    });
+    // 2. Play official faint collapse sound (snappy cutoff)
+    this.playAudioFile('pokemon_run.wav', 0.75, 450);
   }
 
   // Victory Fanfare

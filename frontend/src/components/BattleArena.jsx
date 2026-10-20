@@ -83,7 +83,7 @@ export default function BattleArena({
     let stepDelay = 2000 / speed;
 
     if (event.type === 'ENTER_FIELD') {
-      stepDelay = 1400 / speed;
+      stepDelay = 700 / speed;
       const isP1 = event.playerId === team1.id;
       if (isP1) {
         setP1Active(event.pokemon);
@@ -198,9 +198,10 @@ export default function BattleArena({
       }, 1200 / speed);
 
     } else if (event.type === 'FAINT') {
-      stepDelay = 1500 / speed;
-      sound.playFaint();
+      stepDelay = 750 / speed;
       const isP1 = event.playerId === team1.id;
+      const faintedPk = isP1 ? p1Active : p2Active;
+      sound.playFaint(faintedPk?.cryUrl);
       if (isP1) {
         setP1FaintedCount(prev => prev + 1);
       } else {
@@ -239,33 +240,34 @@ export default function BattleArena({
     'charizard', 'blastoise', 'venusaur', 'cloyster', 'arcanine',
     'rhydon', 'kangaskhan', 'golem', 'machamp', 'tauros',
     'aerodactyl', 'articuno', 'zapdos', 'moltres', 'mewtwo',
-    'muk', 'exeggutor', 'scyther', 'pinsir', 'nidoking', 'nidoqueen',
-    'vaporeon', 'jolteon', 'flareon', 'slowbro', 'hypno', 'tentacruel',
-    'weezing', 'kabutops', 'omastar', 'arbok', 'golduck', 'kingler'
+    'muk', 'exeggutor', 'scyther', 'pinsir', 'tentacruel', 'slowbro'
   ]);
 
   const TINY_POKEMON_SLUGS = new Set([
     'bulbasaur', 'charmander', 'squirtle', 'caterpie', 'metapod', 'weedle', 'kakuna',
     'pidgey', 'pidgeotto', 'rattata', 'spearow', 'ekans', 'pikachu', 'sandshrew',
-    'nidoranf', 'nidoranm', 'nidoran', 'clefairy', 'vulpix', 'jigglypuff', 'zubat',
+    'nidoranf', 'nidoranm', 'nidoran', 'nidorino', 'nidorina', 'clefairy', 'vulpix', 'jigglypuff', 'zubat',
     'oddish', 'paras', 'venonat', 'diglett', 'dugtrio', 'meowth', 'psyduck',
     'mankey', 'growlithe', 'poliwag', 'abra', 'machop', 'bellsprout', 'tentacool',
     'geodude', 'magnemite', 'farfetchd', 'doduo', 'seel', 'grimer', 'shellder',
     'gastly', 'drowzee', 'krabby', 'voltorb', 'exeggcute', 'cubone', 'koffing',
-    'horsea', 'goldeen', 'staryu', 'ditto', 'eevee', 'porygon', 'omanyte', 'kabuto', 'dratini'
+    'horsea', 'goldeen', 'staryu', 'ditto', 'eevee', 'porygon', 'omanyte', 'kabuto', 'dratini', 'mew',
+    'jolteon', 'vaporeon', 'flareon'
   ]);
 
-  const isLegendaryPokemon = (p) => p && p.tier === 'Legendary';
+  const isLegendaryPokemon = (p) => p && p.tier === 'Legendary' && (p.slug || p.name || '').toLowerCase() !== 'mew';
   const isLargePokemon = (p) => {
     if (!p) return false;
-    if (p.tier === 'Legendary' || p.tier === 'Epic') return true;
     const slug = (p.slug || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (slug === 'mew' || slug === 'jolteon' || slug === 'vaporeon' || slug === 'flareon' || slug === 'nidorino' || slug === 'nidorina') return false;
     return LARGE_POKEMON_SLUGS.has(slug);
   };
   const isTinyPokemon = (p) => {
     if (!p) return false;
     const raw = (p.slug || p.name || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    return TINY_POKEMON_SLUGS.has(raw) || (raw.startsWith('nidoran') && !raw.includes('king') && !raw.includes('queen') && !raw.includes('rina') && !raw.includes('rino'));
+    if (raw === 'mew') return true;
+    if (raw === 'nidoking' || raw === 'nidoqueen') return false;
+    return TINY_POKEMON_SLUGS.has(raw) || raw.startsWith('nidoran');
   };
 
   const getSpriteOffset = (pokemon, isBack = false) => {
@@ -675,7 +677,7 @@ export default function BattleArena({
                   shakeTarget === 'p1' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
                 } ${
                   hitTarget === 'p1' ? 'hit-flash' : ''
-                } ${p1Hp <= 0 ? 'opacity-0 translate-y-8 duration-500' : 'opacity-100'}`}
+                } ${p1Hp <= 0 ? 'opacity-0 translate-y-8 duration-350' : 'opacity-100'}`}
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}
@@ -740,9 +742,7 @@ export default function BattleArena({
                   lungeSide === 'p2' ? 'attacker-lunge-left' : ''
                 } ${
                   shakeTarget === 'p2' ? (damagePopup?.isCrit ? 'shake-lg' : 'shake-sm') : ''
-                } ${
-                  hitTarget === 'p2' ? 'hit-flash' : ''
-                } ${p2Hp <= 0 ? 'opacity-0 translate-y-8 duration-500' : 'opacity-100'}`}
+                } ${hitTarget === 'p2' ? 'hit-flash' : ''} ${p2Hp <= 0 ? 'opacity-0 translate-y-8 duration-350' : 'opacity-100'}`}
               />
             )}
             {/* 3D Battle Pedestal physically anchored at its feet */}

@@ -65,7 +65,7 @@ export default function PokemonCard({ pokemon, compact = false, showStats = true
         <img
           src={pokemon.sprite}
           alt={pokemon.name}
-          className={`max-h-14 sm:max-h-24 max-w-[80%] object-contain drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)] animate-bounce ${getSpriteOffset(pokemon)}`}
+          className={`max-h-14 sm:max-h-24 max-w-[80%] object-contain pixel-sprite animate-bounce ${getSpriteOffset(pokemon)}`}
           style={{ animationDuration: '3s' }}
         />
       </div>
