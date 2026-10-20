@@ -108,10 +108,19 @@ export class BattleEngine {
       pokemon: { ...team2.roster[0] }
     });
 
+    let activeMatchupKey = null;
+    let speedTieWinner = 1;
+
     while (idx1 < team1.roster.length && idx2 < team2.roster.length && turnCount < 100) {
       turnCount++;
       const pk1 = team1.roster[idx1];
       const pk2 = team2.roster[idx2];
+
+      const matchupKey = `${idx1}_${idx2}`;
+      if (activeMatchupKey !== matchupKey) {
+        activeMatchupKey = matchupKey;
+        speedTieWinner = Math.random() < 0.5 ? 1 : 2;
+      }
 
       // --- DITTO TRANSFORM MECHANIC ---
       // If pk1 is Ditto and hasn't transformed against an opponent:
@@ -168,10 +177,10 @@ export class BattleEngine {
         });
       }
 
-      // Speed check
+      // Speed check (speed ties maintain consistent initiative throughout the duel)
       const speed1 = pk1.stats.speed;
       const speed2 = pk2.stats.speed;
-      const p1First = speed1 > speed2 ? true : (speed1 < speed2 ? false : Math.random() < 0.5);
+      const p1First = speed1 > speed2 ? true : (speed1 < speed2 ? false : speedTieWinner === 1);
 
       const firstFighter = p1First ? { pk: pk1, team: team1, oppPk: pk2, oppTeam: team2 } : { pk: pk2, team: team2, oppPk: pk1, oppTeam: team1 };
       const secondFighter = p1First ? { pk: pk2, team: team2, oppPk: pk1, oppTeam: team1 } : { pk: pk1, team: team1, oppPk: pk2, oppTeam: team2 };

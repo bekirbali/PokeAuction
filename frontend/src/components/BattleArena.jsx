@@ -197,6 +197,17 @@ export default function BattleArena({
         setDamagePopup(null);
       }, 1200 / speed);
 
+      timerRef.current = setTimeout(() => {
+        setCurrentIndex(prev => prev + 1);
+      }, stepDelay);
+
+      return () => {
+        clearTimeout(hitTimeout);
+        clearTimeout(resetTimeout);
+        if (timerRef.current) clearTimeout(timerRef.current);
+        sound.stopAttackSound(80);
+      };
+
     } else if (event.type === 'FAINT') {
       stepDelay = 750 / speed;
       const isP1 = event.playerId === team1.id;
@@ -211,7 +222,7 @@ export default function BattleArena({
 
     } else if (event.type === 'VICTORY') {
       stepDelay = 2200 / speed;
-      sound.playVictory();
+      // Do not play victory music here; it plays on the MatchSummary victory screen to prevent double playback
       const winnerName = event.winnerId === team1.id ? team1.name : team2.name;
       setAnnouncement(`🏆 Zafer ${winnerName}'in!`);
     }

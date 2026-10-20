@@ -206,13 +206,13 @@ export class RoomManager {
     // 9+ Drafted (Final Turları): Mewtwo, Dragonite, Efsanevi Kuşlar ve Starter son formları!
     let tierWeights;
     if (draftedCount <= 3) {
-      tierWeights = { Meme: 15, Common: 65, Rare: 20, Epic: 0, Legendary: 0 };
+      tierWeights = { Meme: 10, Common: 70, Rare: 20, Epic: 0, Legendary: 0 };
     } else if (draftedCount <= 6) {
-      tierWeights = { Meme: 5, Common: 25, Rare: 50, Epic: 20, Legendary: 0 };
+      tierWeights = { Meme: 0, Common: 25, Rare: 55, Epic: 20, Legendary: 0 };
     } else if (draftedCount <= 8) {
-      tierWeights = { Meme: 0, Common: 10, Rare: 25, Epic: 45, Legendary: 20 };
+      tierWeights = { Meme: 0, Common: 5, Rare: 30, Epic: 55, Legendary: 10 };
     } else {
-      tierWeights = { Meme: 0, Common: 0, Rare: 10, Epic: 45, Legendary: 45 };
+      tierWeights = { Meme: 0, Common: 0, Rare: 15, Epic: 60, Legendary: 25 };
     }
 
     const roll = Math.random() * 100;

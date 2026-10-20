@@ -1,5 +1,17 @@
 import React, { useEffect, useRef } from 'react';
 
+function hexToRgba(hex, alpha = 1) {
+  if (!hex || typeof hex !== 'string') return `rgba(255, 255, 255, ${alpha})`;
+  let c = hex.replace('#', '').trim();
+  if (c.length === 3) c = c.split('').map(x => x + x).join('');
+  const num = parseInt(c.slice(0, 6), 16);
+  if (isNaN(num)) return `rgba(255, 255, 255, ${alpha})`;
+  const r = (num >> 16) & 255;
+  const g = (num >> 8) & 255;
+  const b = num & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 export default function BattleCanvasVFX({
   move,
   attackerSide, // 'p1' | 'p2'
@@ -276,10 +288,11 @@ export default function BattleCanvasVFX({
 
       // B. FULL STADIUM CHARGED PLASMA LASER (Hyper Beam / Solar Beam)
       if (isLaserBeam && progress < 0.78) {
-        const isHyperBeam = nameLower.includes('hyper') || moveType === 'Normal';
-        const primaryBeamColor = isGrass ? '#22c55e' : isHyperBeam ? '#f59e0b' : colors.primary;
-        const secondaryBeamColor = isGrass ? '#86efac' : isHyperBeam ? '#fde047' : colors.secondary;
-        const outerAuraColor = isHyperBeam ? '#d946ef' : primaryBeamColor;
+        const isHyperBeam = nameLower.includes('hyper') || (moveType === 'Normal' && nameLower.includes('beam'));
+        // Light radiant purple (#c084fc) for Hyper Beam; crisp emerald green (#22c55e) for Solar Beam
+        const primaryBeamColor = isGrass ? '#22c55e' : isHyperBeam ? '#c084fc' : colors.primary;
+        const secondaryBeamColor = isGrass ? '#86efac' : isHyperBeam ? '#e9d5ff' : colors.secondary;
+        const outerAuraColor = isHyperBeam ? '#c084fc' : isGrass ? '#22c55e' : primaryBeamColor;
 
         // 1. Charging Vortex / Orbs at Attacker (0 to 0.28)
         if (progress < 0.28) {
@@ -290,7 +303,7 @@ export default function BattleCanvasVFX({
           ctx.arc(startX, startY, (1 - chargeProg) * 38 + 6, 0, Math.PI * 2);
           ctx.stroke();
 
-          ctx.fillStyle = colors.core || '#ffffff';
+          ctx.fillStyle = '#ffffff';
           ctx.beginPath();
           ctx.arc(startX, startY, chargeProg * 20, 0, Math.PI * 2);
           ctx.fill();
@@ -317,7 +330,7 @@ export default function BattleCanvasVFX({
           ctx.arc(startX, startY, 26 * beamAlpha, 0, Math.PI * 2);
           ctx.stroke();
 
-          // Outer radiant plasma aura (wide)
+          // Outer radiant plasma aura (wide light-purple / emerald-green aura)
           ctx.strokeStyle = outerAuraColor;
           ctx.lineWidth = 44 * beamAlpha;
           ctx.lineCap = 'round';
@@ -326,7 +339,7 @@ export default function BattleCanvasVFX({
           ctx.lineTo(beamEndX, beamEndY);
           ctx.stroke();
 
-          // Middle high-energy plasma beam
+          // Middle high-energy plasma beam (bright lilac / bright green)
           ctx.strokeStyle = secondaryBeamColor;
           ctx.lineWidth = 26 * beamAlpha;
           ctx.beginPath();
@@ -334,7 +347,7 @@ export default function BattleCanvasVFX({
           ctx.lineTo(beamEndX, beamEndY);
           ctx.stroke();
 
-          // Hot-white blinding laser core
+          // Hot-white blinding laser core (pure white cutting through purple/green)
           ctx.strokeStyle = '#ffffff';
           ctx.lineWidth = 14 * beamAlpha;
           ctx.beginPath();
@@ -407,10 +420,12 @@ export default function BattleCanvasVFX({
         const flashAlpha = Math.max(0, Math.min(1, 1 - flashProg));
         const flashRadius = (flashProg * 40 + 20);
 
+        const isHyperBeam = nameLower.includes('hyper') || (moveType === 'Normal' && nameLower.includes('beam'));
+        const impactColor = isGrass ? '#22c55e' : isHyperBeam ? '#c084fc' : colors.primary;
+
         const flashGrad = ctx.createRadialGradient(targetX, targetY, 0, targetX, targetY, flashRadius);
         flashGrad.addColorStop(0, `rgba(255, 255, 255, ${flashAlpha})`);
-        const alphaHex = Math.max(0, Math.min(255, Math.floor(flashAlpha * 255))).toString(16).padStart(2, '0');
-        flashGrad.addColorStop(0.4, `${colors.primary}${alphaHex}`);
+        flashGrad.addColorStop(0.4, hexToRgba(impactColor, flashAlpha));
         flashGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.fillStyle = flashGrad;
@@ -534,7 +549,7 @@ export default function BattleCanvasVFX({
     return () => {
       if (animationFrameId) cancelAnimationFrame(animationFrameId);
     };
-  }, [moveName, attackerSide]);
+  }, [moveName, attackerSide, speed]);
 
   return (
     <canvas
