@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Sitemap: https://pokeauction.130.61.20.107.sslip.io/sitemap.xml

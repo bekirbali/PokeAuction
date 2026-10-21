@@ -1,11 +1,36 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PokeAuction: Blind Draft & Auto-Battler</title>
-    <!-- PWA & Mobile Meta Tags -->
+    <title>PokéAuction: 1v1 Blind Draft & Auto-Battler | Pokémon Strateji Oyunu</title>
+    
+    <!-- Temel SEO Meta Etiketleri -->
+    <meta name="description" content="Gerçek zamanlı 1v1 açık artırma ve taktiksel otomatik savaş oyunu. 100 altın bütçeyle Gen 1 Pokémon takımını kur, dizilimini yap, arenada rakibini devir!" />
+    <meta name="keywords" content="pokemon oyunu, blind draft, auto battler, pokemon draft, pokeauction, 1v1 pokemon, pokemon strateji, kör takım kurma" />
+    <meta name="author" content="Bekir Bali" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://pokeauction.130.61.20.107.sslip.io/" />
+
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="google7361df637fbbd6ca.html" />
+
+    <!-- OpenGraph (Facebook, Discord, WhatsApp) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://pokeauction.130.61.20.107.sslip.io/" />
+    <meta property="og:title" content="PokéAuction: 1v1 Blind Draft & Auto-Battler" />
+    <meta property="og:description" content="100 altın bütçeyle en iyi Gen 1 Pokémon takımını kur, taktiğini belirle ve arenada rakibini devir!" />
+    <meta property="og:image" content="https://pokeauction.130.61.20.107.sslip.io/icon-512.png" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PokéAuction: 1v1 Blind Draft & Auto-Battler" />
+    <meta name="twitter:description" content="100 altın bütçeyle en iyi Gen 1 Pokémon takımını kur, taktiğini belirle ve arenada rakibini devir!" />
+    <meta name="twitter:image" content="https://pokeauction.130.61.20.107.sslip.io/icon-512.png" />
+
+    <!-- Favicon & PWA -->
+    <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#020617" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -13,6 +38,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="PokéAuction" />
     <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -27,8 +54,14 @@
     </script>
   </head>
   <body class="bg-slate-950 text-white antialiased overflow-x-hidden select-none">
+    <noscript>
+      <div style="padding: 20px; font-family: sans-serif; text-align: center;">
+        <h1>PokéAuction: 1v1 Blind Draft & Auto-Battler</h1>
+        <p>PokéAuction, gerçek zamanlı 1v1 açık artırma ve otomatik savaş mekaniğine sahip bir web strateji oyunudur. 100 altın bütçeyle 151 orijinal Pokémon arasından takımını kur ve arenada arkadaşlarına veya yapay zekaya karşı mücadele et.</p>
+        <p>Oyunu oynamak için tarayıcınızda JavaScript'i etkinleştirmeniz gerekmektedir.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-
