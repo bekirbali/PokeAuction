@@ -17,24 +17,28 @@ export default function MoveAnimation({
   const isFire = moveType === 'Fire' || nameLower.includes('fire') || nameLower.includes('flame');
   const isSplash = nameLower === 'splash';
   const isFighting =
-    moveType === 'Fighting' ||
-    nameLower.includes('punch') ||
-    nameLower.includes('kick') ||
-    nameLower.includes('combat') ||
-    nameLower.includes('karate') ||
-    nameLower.includes('submission') ||
-    nameLower.includes('seismic');
-  const isRockOrGround =
-    moveType === 'Ground' ||
-    moveType === 'Rock' ||
-    nameLower.includes('earth') ||
-    nameLower.includes('rock') ||
-    nameLower.includes('fissure') ||
-    nameLower.includes('slide') ||
-    nameLower.includes('tomb') ||
-    nameLower.includes('quake') ||
-    nameLower.includes('dig') ||
-    nameLower.includes('mud');
+    !nameLower.includes('sphere') &&
+    !nameLower.includes('blast') &&
+    !nameLower.includes('aura') &&
+    (moveType === 'Fighting' ||
+      nameLower.includes('punch') ||
+      nameLower.includes('kick') ||
+      nameLower.includes('combat') ||
+      nameLower.includes('karate') ||
+      nameLower.includes('submission') ||
+      nameLower.includes('seismic') ||
+      nameLower.includes('chop'));
+  const isFallingRocks =
+    (moveType === 'Rock' ||
+      nameLower.includes('rock') ||
+      nameLower.includes('slide') ||
+      nameLower.includes('tomb') ||
+      nameLower.includes('stone') ||
+      nameLower.includes('boulder')) &&
+    !nameLower.includes('quake') &&
+    !nameLower.includes('earth') &&
+    !nameLower.includes('fissure') &&
+    !nameLower.includes('dig');
 
   const targetX = attackerSide === 'p1' ? '76%' : '22%';
   const targetY = attackerSide === 'p1' ? '32%' : '68%';
@@ -107,7 +111,7 @@ export default function MoveAnimation({
       />
 
       {/* 3. Authentic Falling Boulder / Rock Drop on Target */}
-      {isRockOrGround && (
+      {isFallingRocks && (
         <div
           className="absolute w-32 h-32 transform -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center"
           style={{ left: targetX, top: targetY }}

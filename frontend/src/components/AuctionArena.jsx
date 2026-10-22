@@ -32,6 +32,14 @@ export default function AuctionArena({
     setIsSubmitting(false);
   }, [room.activeTurnPlayerId, room.currentPokemon?.id]);
 
+  // Safety auto-unlock: If isSubmitting gets set to true, auto-release after 600ms so buttons NEVER get permanently locked
+  useEffect(() => {
+    if (isSubmitting) {
+      const timer = setTimeout(() => setIsSubmitting(false), 600);
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitting]);
+
   useEffect(() => {
     if (room.timer <= 3 && room.timer > 0) {
       sound.playTick();

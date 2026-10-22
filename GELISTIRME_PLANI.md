@@ -11,7 +11,7 @@ Bu belge, PokéAuction projesinde tespit edilen 11 hata ve geliştirme isteğini
 | **Faz 1** | UI Temizliği, İkonlar & RP / Lig Senkronizasyonu | Madde 9, 10 | ✅ Tamamlandı |
 | **Faz 2** | PvP Dizilim Kontrolü, Oyun Hızı & Host Oda Ayarları | Madde 3, 4, 5 | ⏳ Beklemede |
 | **Faz 3** | BotAI Teklif Mantığı & Evrim Seviye Stratejisi | Madde 6, 11 | ⏳ Beklemede |
-| **Faz 4** | Yetenek Çeşitliliği, Mobil VFX Optimizasyonu, Element Radarı & TCG | Madde 1, 2, 7, 8 | ⏳ Beklemede |
+| **Faz 4** | Yetenek Çeşitliliği, Mobil VFX Optimizasyonu, Element Radarı & TCG | Madde 1, 2, 7, 8, 12 | ⏳ Beklemede |
 
 ---
 
@@ -206,6 +206,22 @@ Bu belge, PokéAuction projesinde tespit edilen 11 hata ve geliştirme isteğini
   * Kesin bir zorunluluk değil, havalı duran bazı TCG konseptleri olduğu için değerlendirilecek. Faz 4'e gelindiğinde nihai tasarımı birlikte kararlaştırıp netleştireceğiz.
 * **Uygulanacak Çözüm:**
   * Faz 4'e ulaşıldığında kart çerçevesi ve parlama efektleri alternatifli olarak incelenip Furkan'ın onayına göre uygulanacak.
+
+---
+
+### [Madde 12] Fiziksel/Özel Stat Uyumsuzlukları & İkonik Hamle Dengelemesi (Krabby Crabhammer vb.)
+* **Durum:** ⏳ Beklemede (Yapılacaklar listesine alındı)
+* **İlgili Dosyalar:**
+  * `backend/src/data/pokemon_gen1.json`
+  * `backend/src/game/BattleEngine.js`
+* **Furkan'ın Geri Bildirimi & Kök Neden:**
+  * Savaşta bazı karakterlerin kendi elementleri yerine garip şekilde sürekli `Body Slam` vurduğu fark edildi (örneğin Krabby vs Dodrio maçında Krabby sürekli Body Slam atıyor).
+  * *Kök Neden:* Krabby gibi fiziksel canavarların Physical Attack statı çok yüksek (`105`), Special Attack statı ise çok düşüktür (`25`). Veritabanında su hareketleri özel (`Hydro Pump`, `Surf`) tanımlanıp 3. hamle olarak fiziksel `Body Slam` verildiğinde, savaş motoru hasar maksimizasyonu gereği 2.6 kat daha fazla vuran Body Slam'i (`8.925` vs `3.437`) seçiyor.
+* **Uygulanacak Çözüm:**
+  1. Krabby ve Kingler'a gerçek imza yeteneği olan `Crabhammer` (Su türü, Fiziksel / Physical, 100 Güç) eklenecek; böylece STAB + 105 Attack ile 13.125 hasar vurarak Body Slam'i tamamen saf dışı bırakacak.
+  2. Benzer stat uçurumu olan diğer fiziksel Pokémon'lar (Hitmonlee tekmeleri, Pinsir kıskaçları, Muk vb.) taranarak temalarına uygun fiziksel hamleler tanımlanacak.
+* **Test & Kabul Kriteri:**
+  * Krabby ve Kingler nötr hedeflere karşı Body Slam yerine kıskaçlarıyla Crabhammer vuracak.
 
 ---
 

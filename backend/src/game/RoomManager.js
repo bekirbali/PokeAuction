@@ -230,7 +230,7 @@ export class RoomManager {
     } else if (draftedCount <= 6) {
       tierWeights = { Meme: 0, Common: 25, Rare: 55, Epic: 20, Legendary: 0 };
     } else if (draftedCount <= 8) {
-      tierWeights = { Meme: 0, Common: 5, Rare: 30, Epic: 55, Legendary: 10 };
+      tierWeights = { Meme: 0, Common: 0, Rare: 30, Epic: 60, Legendary: 10 };
     } else {
       tierWeights = { Meme: 0, Common: 0, Rare: 15, Epic: 60, Legendary: 25 };
     }
@@ -314,7 +314,19 @@ export class RoomManager {
     this.nextAuctionRound(room);
   }
 
+  scheduleNextRound(room, delay = 1200) {
+    if (room.nextRoundTimeout) clearTimeout(room.nextRoundTimeout);
+    room.nextRoundTimeout = setTimeout(() => {
+      this.nextAuctionRound(room);
+    }, delay);
+  }
+
   nextAuctionRound(room) {
+    // If room was deleted or player disconnected, safely abort
+    if (!room || !this.rooms.has(room.code) || !room.players || room.players.length < 2) {
+      return;
+    }
+
     // Reset resolution lock
     room.isResolving = false;
 
@@ -336,7 +348,7 @@ export class RoomManager {
       this.addPokemonToTeam(p2, room.currentPokemon);
       room.history.unshift({ pokemon: room.currentPokemon, winnerName: p2.name, price: 0, forced: true });
       this.broadcastRoom(room);
-      setTimeout(() => this.nextAuctionRound(room), 1200);
+      this.scheduleNextRound(room, 1200);
       return;
     }
     if (p2.team.length >= 5) {
@@ -344,7 +356,7 @@ export class RoomManager {
       this.addPokemonToTeam(p1, room.currentPokemon);
       room.history.unshift({ pokemon: room.currentPokemon, winnerName: p1.name, price: 0, forced: true });
       this.broadcastRoom(room);
-      setTimeout(() => this.nextAuctionRound(room), 1200);
+      this.scheduleNextRound(room, 1200);
       return;
     }
 
@@ -361,7 +373,7 @@ export class RoomManager {
       this.addPokemonToTeam(target, room.currentPokemon);
       room.history.unshift({ pokemon: room.currentPokemon, winnerName: target.name, price: 0, forced: true });
       this.broadcastRoom(room);
-      setTimeout(() => this.nextAuctionRound(room), 1200);
+      this.scheduleNextRound(room, 1200);
       return;
     }
 
@@ -581,7 +593,7 @@ export class RoomManager {
 
     room.starvationMode = null;
     this.broadcastRoom(room);
-    setTimeout(() => this.nextAuctionRound(room), 1200);
+    this.scheduleNextRound(room, 1200);
   }
 
   resolveAuctionRound(room) {
@@ -606,12 +618,17 @@ export class RoomManager {
     }
 
     this.broadcastRoom(room);
-    setTimeout(() => this.nextAuctionRound(room), 1200);
+    this.scheduleNextRound(room, 1200);
   }
 
   // --- LINEUP PHASE ---
   startLineupPhase(room) {
+    if (!room || !this.rooms.has(room.code) || !room.players || room.players.length < 2) return;
     if (room.timerInterval) clearInterval(room.timerInterval);
+    if (room.nextRoundTimeout) {
+      clearTimeout(room.nextRoundTimeout);
+      room.nextRoundTimeout = null;
+    }
     room.state = 'LINEUP';
     room.timer = this.getTimerDuration(room, 'LINEUP');
     room.players.forEach(p => {
@@ -699,7 +716,12 @@ export class RoomManager {
 
   // --- BATTLE PHASE ---
   startBattlePhase(room) {
+    if (!room || !this.rooms.has(room.code) || !room.players || room.players.length < 2) return;
     if (room.timerInterval) clearInterval(room.timerInterval);
+    if (room.nextRoundTimeout) {
+      clearTimeout(room.nextRoundTimeout);
+      room.nextRoundTimeout = null;
+    }
     room.state = 'BATTLE';
 
     const p1 = room.players[0];
@@ -786,6 +808,11 @@ export class RoomManager {
     if (!room) return;
 
     if (room.timerInterval) clearInterval(room.timerInterval);
+    if (room.botActionTimeout) clearTimeout(room.botActionTimeout);
+    if (room.nextRoundTimeout) {
+      clearTimeout(room.nextRoundTimeout);
+      room.nextRoundTimeout = null;
+    }
 
     // If battle is in progress or completed, give a 45-second grace period before destroying the room
     if (room.state === 'BATTLE' || room.battleResult) {
@@ -803,6 +830,10 @@ export class RoomManager {
     room.players = room.players.filter(p => p.id !== socketId);
 
     if (room.botActionTimeout) clearTimeout(room.botActionTimeout);
+    if (room.nextRoundTimeout) {
+      clearTimeout(room.nextRoundTimeout);
+      room.nextRoundTimeout = null;
+    }
     if (room.players.length === 0 || room.players.every(p => p.isBot)) {
       this.rooms.delete(room.code);
     } else {
