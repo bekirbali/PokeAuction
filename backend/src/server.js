@@ -49,8 +49,8 @@ if (fs.existsSync(frontendDist)) {
 io.on('connection', (socket) => {
   console.log(`[Socket] User connected: ${socket.id}`);
 
-  socket.on('CREATE_ROOM', ({ name }) => {
-    const room = roomManager.createRoom(name, socket);
+  socket.on('CREATE_ROOM', ({ name, settings }) => {
+    const room = roomManager.createRoom(name, socket, settings);
     socket.emit('ROOM_CREATED', {
       code: room.code,
       playerId: socket.id
@@ -71,8 +71,8 @@ io.on('connection', (socket) => {
     roomManager.broadcastRoom(result.room);
   });
 
-  socket.on('START_BOT_GAME', ({ name, difficulty }) => {
-    const result = roomManager.createBotRoom(name, socket, difficulty);
+  socket.on('START_BOT_GAME', ({ name, difficulty, settings }) => {
+    const result = roomManager.createBotRoom(name, socket, difficulty, settings);
     socket.emit('ROOM_CREATED', {
       code: result.room.code,
       playerId: socket.id
@@ -130,6 +130,18 @@ io.on('connection', (socket) => {
     const room = roomManager.getRoomBySocket(socket.id);
     if (!room) return;
     roomManager.handlePlayerReady(room, socket.id);
+  });
+
+  socket.on('PLAYER_UNREADY', () => {
+    const room = roomManager.getRoomBySocket(socket.id);
+    if (!room) return;
+    roomManager.handlePlayerUnready(room, socket.id);
+  });
+
+  socket.on('SET_BATTLE_SPEED', ({ speed }) => {
+    const room = roomManager.getRoomBySocket(socket.id);
+    if (!room) return;
+    roomManager.handleSetBattleSpeed(room, socket.id, speed);
   });
 
   socket.on('REQUEST_REMATCH', (payload) => {

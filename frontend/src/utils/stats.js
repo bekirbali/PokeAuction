@@ -1,11 +1,11 @@
 // Centralized Rank, Streak, and Type Effectiveness Utility
 
 export const RANKS = [
-  { id: 'novice', name: 'Acemi Eğitmen', minRp: 0, maxRp: 100, badge: '🌱', color: 'text-emerald-400', border: 'border-emerald-500/40', bg: 'bg-emerald-950/30' },
-  { id: 'gym', name: 'Salon Meydan Okuyucusu', minRp: 101, maxRp: 250, badge: '⚡', color: 'text-amber-400', border: 'border-amber-500/40', bg: 'bg-amber-950/30' },
-  { id: 'badge_master', name: 'Rozet Ustası', minRp: 251, maxRp: 500, badge: '🎖️', color: 'text-blue-400', border: 'border-blue-500/40', bg: 'bg-blue-950/30' },
-  { id: 'elite_four', name: 'Elit Dörtlü Adayı', minRp: 501, maxRp: 850, badge: '🔮', color: 'text-purple-400', border: 'border-purple-500/40', bg: 'bg-purple-950/30' },
-  { id: 'champion', name: 'Kanto Şampiyonu', minRp: 851, maxRp: Infinity, badge: '👑', color: 'text-rose-400', border: 'border-rose-500/40', bg: 'bg-rose-950/30' }
+  { id: 'novice', name: 'Acemi Eğitmen', minRp: 0, maxRp: 100, color: 'text-emerald-400', border: 'border-emerald-500/40', bg: 'bg-emerald-950/30' },
+  { id: 'gym', name: 'Salon Meydan Okuyucusu', minRp: 101, maxRp: 250, color: 'text-amber-400', border: 'border-amber-500/40', bg: 'bg-amber-950/30' },
+  { id: 'badge_master', name: 'Rozet Ustası', minRp: 251, maxRp: 500, color: 'text-blue-400', border: 'border-blue-500/40', bg: 'bg-blue-950/30' },
+  { id: 'elite_four', name: 'Elit Dörtlü Adayı', minRp: 501, maxRp: 850, color: 'text-purple-400', border: 'border-purple-500/40', bg: 'bg-purple-950/30' },
+  { id: 'champion', name: 'Kanto Şampiyonu', minRp: 851, maxRp: Infinity, color: 'text-rose-400', border: 'border-rose-500/40', bg: 'bg-rose-950/30' }
 ];
 
 export function getRankDetails(rp) {
@@ -29,6 +29,27 @@ export function getRankDetails(rp) {
 }
 
 export function getUserStats() {
+  // Tek seferlik veri düzeltme (Migration):
+  // Daha önce RoomManager broadcastRoom içinde isBotGame bayrağı istemciye iletilmediği için,
+  // kullanıcının bot maçlarından kazandığı puanlar yanlışlıkla poke_pvp_* anahtarlarına yazılmıştı.
+  // Eğer botRp 0 ve pvpRp > 0 ise, kullanıcının bot maçlarından kazandığı bu puanları bot ligine taşıyoruz.
+  if (typeof window !== 'undefined' && localStorage.getItem('poke_bot_rp_migrated_v1') !== 'true') {
+    const rawPvpRp = parseInt(localStorage.getItem('poke_pvp_rp') || '0', 10);
+    const rawPvpStreak = parseInt(localStorage.getItem('poke_pvp_streak') || '0', 10);
+    const rawPvpBest = parseInt(localStorage.getItem('poke_pvp_best_streak') || '0', 10);
+    const rawBotRp = parseInt(localStorage.getItem('poke_bot_rp') || '0', 10);
+
+    if (rawBotRp === 0 && rawPvpRp > 0) {
+      localStorage.setItem('poke_bot_rp', rawPvpRp.toString());
+      localStorage.setItem('poke_bot_streak', rawPvpStreak.toString());
+      localStorage.setItem('poke_bot_best_streak', rawPvpBest.toString());
+      localStorage.setItem('poke_pvp_rp', '0');
+      localStorage.setItem('poke_pvp_streak', '0');
+      localStorage.setItem('poke_pvp_best_streak', '0');
+    }
+    localStorage.setItem('poke_bot_rp_migrated_v1', 'true');
+  }
+
   return {
     pvpRp: parseInt(localStorage.getItem('poke_pvp_rp') || '0', 10),
     pvpStreak: parseInt(localStorage.getItem('poke_pvp_streak') || '0', 10),

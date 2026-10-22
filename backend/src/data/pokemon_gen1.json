@@ -85,21 +85,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -138,21 +138,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -242,7 +242,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -288,14 +288,14 @@
       {
         "name": "Fire Blast",
         "type": "Fire",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -309,7 +309,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -399,7 +399,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -451,7 +451,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -555,7 +555,7 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -608,7 +608,7 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -622,7 +622,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -714,21 +714,21 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -767,21 +767,21 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -873,7 +873,7 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -887,7 +887,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -926,7 +926,7 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -940,7 +940,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -1030,21 +1030,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -1136,7 +1136,7 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -1150,7 +1150,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -1240,7 +1240,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -1344,7 +1344,7 @@
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -1448,7 +1448,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
@@ -1552,7 +1552,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -1598,14 +1598,14 @@
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 100,
         "category": "physical",
         "accuracy": 100
       },
@@ -1619,7 +1619,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       }
@@ -1709,7 +1709,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -1755,14 +1755,14 @@
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 100,
         "category": "physical",
         "accuracy": 100
       },
@@ -1776,7 +1776,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       }
@@ -1866,7 +1866,7 @@
       {
         "name": "Dazzling Gleam",
         "type": "Fairy",
-        "power": 80,
+        "power": 95,
         "category": "special",
         "accuracy": 100
       },
@@ -1970,7 +1970,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -2076,21 +2076,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Moonblast",
         "type": "Fairy",
-        "power": 95,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Dazzling Gleam",
         "type": "Fairy",
-        "power": 80,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       }
@@ -2175,14 +2175,14 @@
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -2196,7 +2196,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -2288,21 +2288,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -2341,21 +2341,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -2447,7 +2447,7 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -2461,7 +2461,7 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       }
@@ -2553,21 +2553,21 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -2657,7 +2657,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
@@ -2761,21 +2761,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -2865,7 +2865,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -2969,7 +2969,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
@@ -3073,7 +3073,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -3177,7 +3177,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -3223,14 +3223,14 @@
       {
         "name": "Hydro Pump",
         "type": "Water",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -3244,7 +3244,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       }
@@ -3334,7 +3334,7 @@
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 90,
         "category": "special",
         "accuracy": 100
       },
@@ -3386,7 +3386,7 @@
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 90,
         "category": "special",
         "accuracy": 100
       },
@@ -3490,7 +3490,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
@@ -3542,7 +3542,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
@@ -3648,21 +3648,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -3701,21 +3701,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -3807,21 +3807,21 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Sludge Bomb",
         "type": "Poison",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 110,
         "category": "physical",
         "accuracy": 100
       }
@@ -3913,7 +3913,7 @@
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 100,
         "category": "physical",
         "accuracy": 90
       },
@@ -3927,7 +3927,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       }
@@ -3966,7 +3966,7 @@
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 100,
         "category": "physical",
         "accuracy": 90
       },
@@ -3980,7 +3980,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       }
@@ -4070,7 +4070,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -4176,21 +4176,21 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -4282,21 +4282,21 @@
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Flash Cannon",
         "type": "Steel",
-        "power": 80,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Iron Head",
         "type": "Steel",
-        "power": 80,
+        "power": 110,
         "category": "physical",
         "accuracy": 100
       }
@@ -4335,7 +4335,7 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -4349,7 +4349,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -4441,7 +4441,7 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
@@ -4455,7 +4455,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -4546,7 +4546,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -4560,7 +4560,7 @@
       {
         "name": "Ice Beam",
         "type": "Ice",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -4650,7 +4650,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -4755,7 +4755,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -4769,7 +4769,7 @@
       {
         "name": "Ice Beam",
         "type": "Ice",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -4854,14 +4854,14 @@
       {
         "name": "Shadow Ball",
         "type": "Ghost",
-        "power": 80,
+        "power": 90,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Shadow Claw",
         "type": "Ghost",
-        "power": 70,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -4875,7 +4875,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       }
@@ -4907,14 +4907,14 @@
       {
         "name": "Shadow Ball",
         "type": "Ghost",
-        "power": 80,
+        "power": 90,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Shadow Claw",
         "type": "Ghost",
-        "power": 70,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -4928,7 +4928,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       }
@@ -4967,7 +4967,7 @@
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 100,
         "category": "physical",
         "accuracy": 90
       },
@@ -4981,7 +4981,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       }
@@ -5071,7 +5071,7 @@
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 90,
         "category": "special",
         "accuracy": 100
       },
@@ -5175,7 +5175,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -5279,7 +5279,7 @@
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -5385,21 +5385,21 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       }
@@ -5489,7 +5489,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
@@ -5541,7 +5541,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
@@ -5593,7 +5593,7 @@
       {
         "name": "Cross Chop",
         "type": "Fighting",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
@@ -5645,21 +5645,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -5749,7 +5749,7 @@
       {
         "name": "Poison Jab",
         "type": "Poison",
-        "power": 80,
+        "power": 90,
         "category": "physical",
         "accuracy": 100
       },
@@ -5855,7 +5855,7 @@
       {
         "name": "Earth Power",
         "type": "Ground",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
@@ -5869,7 +5869,7 @@
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 100,
         "category": "physical",
         "accuracy": 90
       }
@@ -5907,21 +5907,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -5959,7 +5959,7 @@
       {
         "name": "Energy Ball",
         "type": "Grass",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -6011,21 +6011,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -6115,7 +6115,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -6219,7 +6219,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -6324,21 +6324,21 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -6370,14 +6370,14 @@
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 95,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 95,
         "category": "special",
         "accuracy": 100
       },
@@ -6391,7 +6391,7 @@
       {
         "name": "Dazzling Gleam",
         "type": "Fairy",
-        "power": 80,
+        "power": 95,
         "category": "special",
         "accuracy": 100
       }
@@ -6430,7 +6430,7 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -6444,7 +6444,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -6483,21 +6483,21 @@
       {
         "name": "Ice Beam",
         "type": "Ice",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
       {
         "name": "Psyshock",
         "type": "Psychic",
-        "power": 80,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -6535,7 +6535,7 @@
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -6587,7 +6587,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -6639,7 +6639,7 @@
       {
         "name": "Bug Buzz",
         "type": "Bug",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -6691,21 +6691,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -6782,14 +6782,14 @@
       {
         "name": "Hydro Pump",
         "type": "Water",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -6803,7 +6803,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -6842,7 +6842,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -6856,7 +6856,7 @@
       {
         "name": "Ice Beam",
         "type": "Ice",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -6901,21 +6901,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -7005,7 +7005,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -7057,7 +7057,7 @@
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -7109,7 +7109,7 @@
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       },
@@ -7161,21 +7161,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -7260,14 +7260,14 @@
       {
         "name": "Stone Edge",
         "type": "Rock",
-        "power": 100,
+        "power": 110,
         "category": "physical",
         "accuracy": 85
       },
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 110,
         "category": "physical",
         "accuracy": 90
       },
@@ -7281,7 +7281,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -7366,14 +7366,14 @@
       {
         "name": "Stone Edge",
         "type": "Rock",
-        "power": 100,
+        "power": 110,
         "category": "physical",
         "accuracy": 85
       },
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 110,
         "category": "physical",
         "accuracy": 90
       },
@@ -7387,7 +7387,7 @@
       {
         "name": "Surf",
         "type": "Water",
-        "power": 90,
+        "power": 110,
         "category": "special",
         "accuracy": 100
       }
@@ -7419,14 +7419,14 @@
       {
         "name": "Stone Edge",
         "type": "Rock",
-        "power": 100,
+        "power": 120,
         "category": "physical",
         "accuracy": 85
       },
       {
         "name": "Rock Slide",
         "type": "Rock",
-        "power": 75,
+        "power": 120,
         "category": "physical",
         "accuracy": 90
       },
@@ -7440,7 +7440,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -7478,21 +7478,21 @@
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Body Slam",
         "type": "Normal",
-        "power": 85,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       },
       {
         "name": "Quick Attack",
         "type": "Normal",
-        "power": 40,
+        "power": 120,
         "category": "physical",
         "accuracy": 100
       }
@@ -7524,14 +7524,14 @@
       {
         "name": "Blizzard",
         "type": "Ice",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Ice Beam",
         "type": "Ice",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -7545,7 +7545,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -7577,14 +7577,14 @@
       {
         "name": "Thunder",
         "type": "Electric",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Thunderbolt",
         "type": "Electric",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -7598,7 +7598,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -7630,14 +7630,14 @@
       {
         "name": "Fire Blast",
         "type": "Fire",
-        "power": 110,
+        "power": 120,
         "category": "special",
         "accuracy": 85
       },
       {
         "name": "Flamethrower",
         "type": "Fire",
-        "power": 90,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -7651,7 +7651,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -7741,7 +7741,7 @@
       {
         "name": "Dragon Pulse",
         "type": "Dragon",
-        "power": 85,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -7794,7 +7794,7 @@
       {
         "name": "Dragon Pulse",
         "type": "Dragon",
-        "power": 85,
+        "power": 120,
         "category": "special",
         "accuracy": 100
       },
@@ -7808,7 +7808,7 @@
       {
         "name": "Air Slash",
         "type": "Flying",
-        "power": 75,
+        "power": 120,
         "category": "special",
         "accuracy": 95
       }
@@ -7839,29 +7839,29 @@
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Psyshock",
+        "name": "Psystrike",
         "type": "Psychic",
-        "power": 80,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Body Slam",
-        "type": "Normal",
-        "power": 85,
-        "category": "physical",
+        "name": "Aura Sphere",
+        "type": "Fighting",
+        "power": 100,
+        "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Quick Attack",
-        "type": "Normal",
-        "power": 40,
-        "category": "physical",
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "power": 100,
+        "category": "special",
         "accuracy": 100
       }
     ]
@@ -7891,29 +7891,29 @@
       {
         "name": "Psychic",
         "type": "Psychic",
-        "power": 90,
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Psyshock",
-        "type": "Psychic",
-        "power": 80,
+        "name": "Aura Sphere",
+        "type": "Fighting",
+        "power": 100,
         "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Body Slam",
-        "type": "Normal",
-        "power": 85,
-        "category": "physical",
+        "name": "Shadow Ball",
+        "type": "Ghost",
+        "power": 100,
+        "category": "special",
         "accuracy": 100
       },
       {
-        "name": "Quick Attack",
-        "type": "Normal",
-        "power": 40,
-        "category": "physical",
+        "name": "Dazzling Gleam",
+        "type": "Fairy",
+        "power": 100,
+        "category": "special",
         "accuracy": 100
       }
     ]

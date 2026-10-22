@@ -34,9 +34,10 @@ export default function MatchSummary({
     recordedRef.current = true;
 
     // Record rank & streak once per match end
+    const isBotMatch = !!(room?.isBotGame || room?.players?.some(p => p.isBot));
     const outcome = updateStatsOnMatchEnd({
       isWinner,
-      isBot: !!room?.isBotGame,
+      isBot: isBotMatch,
       botDifficulty: room?.botDifficulty || 'medium'
     });
     setMatchStatOutcome(outcome);

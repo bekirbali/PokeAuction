@@ -163,6 +163,8 @@ export default function App() {
             <BattleArena
               battleData={battleData}
               playerId={playerId}
+              room={room}
+              socket={socket}
               onBattleEnd={handleBattleEnd}
               onMuteToggle={handleMuteToggle}
               isMuted={isMuted}

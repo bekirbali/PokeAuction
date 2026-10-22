@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FastForward, Play, Pause, Volume2, VolumeX, Menu, X, Sparkles } from 'lucide-react';
+import { FastForward, Play, Pause, Volume2, VolumeX, Menu, X, Info } from 'lucide-react';
 import MoveAnimation from './MoveAnimation.jsx';
 import TypeRadarModal from './TypeRadarModal.jsx';
 import { sound } from '../utils/sound.js';
@@ -7,6 +7,8 @@ import { sound } from '../utils/sound.js';
 export default function BattleArena({
   battleData,
   playerId,
+  room,
+  socket,
   onBattleEnd,
   onMuteToggle,
   isMuted
@@ -14,11 +16,32 @@ export default function BattleArena({
   const { team1, team2, timeline, winnerId, mvp, matchId } = battleData;
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [speed, setSpeed] = useState(1);
+  const [speed, setSpeed] = useState(() => battleData?.battleSpeed || room?.battleSpeed || 1);
   const [isPaused, setIsPaused] = useState(false);
   const [isRadarOpen, setIsRadarOpen] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const menuRef = useRef(null);
+
+  const isHost = Boolean(room?.isBotGame || !room || room.players?.[0]?.id === playerId || room.players?.some(p => p.isBot));
+
+  useEffect(() => {
+    if (!socket) return;
+    const handleSpeedUpdate = ({ speed: newSpeed }) => {
+      if (newSpeed) setSpeed(newSpeed);
+    };
+    socket.on('BATTLE_SPEED_UPDATED', handleSpeedUpdate);
+    return () => {
+      socket.off('BATTLE_SPEED_UPDATED', handleSpeedUpdate);
+    };
+  }, [socket]);
+
+  const handleSpeedChange = (newSpeed) => {
+    if (!isHost) return;
+    setSpeed(newSpeed);
+    if (socket) {
+      socket.emit('SET_BATTLE_SPEED', { speed: newSpeed });
+    }
+  };
 
   // Active Battle State
   const [p1Active, setP1Active] = useState(null);
@@ -366,18 +389,29 @@ export default function BattleArena({
             className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-bold flex items-center gap-1 transition cursor-pointer"
             title="Element Üstünlük Radarı"
           >
-            <Sparkles className="w-3 h-3 text-amber-400" />
+            <Info className="w-3.5 h-3.5 text-amber-400" />
             <span className="hidden md:inline">Elementler</span>
           </button>
 
           {/* Speed Toggle */}
           <button
-            onClick={() => setSpeed(s => (s === 1 ? 1.5 : s === 1.5 ? 2 : 1))}
-            className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 text-xs font-mono font-bold flex items-center gap-1 transition cursor-pointer"
-            title="Oynatma Hızı"
+            onClick={() => {
+              if (isHost) {
+                const nextSpeed = speed === 1 ? 1.5 : speed === 1.5 ? 2 : 1;
+                handleSpeedChange(nextSpeed);
+              }
+            }}
+            disabled={!isHost}
+            className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold flex items-center gap-1 transition ${
+              isHost
+                ? 'bg-slate-800 hover:bg-slate-700 text-amber-300 cursor-pointer'
+                : 'bg-slate-800/40 text-slate-500 cursor-not-allowed border border-slate-800'
+            }`}
+            title={isHost ? "Oynatma Hızı" : "Hız ayarı oda kurucusu (Host) kontrolündedir"}
           >
             <FastForward className="w-3 h-3" />
             {speed}x
+            {!isHost && <span className="text-[9px] text-slate-500 font-sans font-normal ml-0.5">(Host)</span>}
           </button>
 
           {/* Pause / Resume */}
@@ -433,7 +467,7 @@ export default function BattleArena({
                 className="w-full py-1.5 px-3 rounded-xl bg-amber-950/30 border border-amber-500/40 text-xs font-bold flex items-center justify-between text-amber-300 hover:bg-amber-950/50 transition cursor-pointer"
               >
                 <div className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <Info className="w-3.5 h-3.5 text-amber-400" />
                   <span>Element Rehberi</span>
                 </div>
                 <span className="text-[10px] text-amber-400/80 font-mono">15 Tip</span>
@@ -442,18 +476,21 @@ export default function BattleArena({
               {/* Speed Controller */}
               <div className="bg-slate-950/70 rounded-xl p-1.5 border border-slate-800">
                 <div className="text-[9px] text-slate-400 font-semibold mb-1 flex items-center justify-between">
-                  <span>Hız</span>
+                  <span>Hız {!isHost && <span className="text-slate-500 text-[8px]">(Host)</span>}</span>
                   <span className="font-mono text-amber-400 font-bold">{speed}x</span>
                 </div>
                 <div className="grid grid-cols-3 gap-1">
                   {[1, 1.5, 2].map(s => (
                     <button
                       key={s}
-                      onClick={() => setSpeed(s)}
-                      className={`py-1 rounded-lg text-xs font-mono font-bold transition cursor-pointer ${
+                      disabled={!isHost}
+                      onClick={() => handleSpeedChange(s)}
+                      className={`py-1 rounded-lg text-xs font-mono font-bold transition ${
                         speed === s
                           ? 'bg-amber-500 text-slate-950 shadow-sm'
-                          : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                          : isHost
+                          ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer'
+                          : 'bg-slate-900/40 text-slate-600 cursor-not-allowed'
                       }`}
                     >
                       {s}x

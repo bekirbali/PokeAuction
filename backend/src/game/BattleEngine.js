@@ -51,20 +51,35 @@ export class BattleEngine {
   }
 
   static selectBestMove(attacker, defender) {
-    let bestMove = attacker.moves[0];
+    if (!attacker.moves || attacker.moves.length === 0) return null;
+
     let highestExpected = -1;
+    const scoredMoves = [];
 
     for (const move of attacker.moves) {
       const eff = this.getEffectiveness(move.type, defender.types);
       const isSpecial = move.category === 'special';
       const stat = isSpecial ? attacker.stats.sp_attack : attacker.stats.attack;
       const expected = move.power * eff * (attacker.types.includes(move.type) ? 1.25 : 1.0) * stat;
+      scoredMoves.push({ move, expected });
       if (expected > highestExpected) {
         highestExpected = expected;
-        bestMove = move;
       }
     }
-    return bestMove;
+
+    // Top damage moves that are within 2% of the highest expected damage
+    const topMoves = scoredMoves
+      .filter(sm => sm.expected >= highestExpected * 0.98)
+      .map(sm => sm.move);
+
+    // If multiple top moves exist, alternate away from the previously used move for dynamic visual variety
+    const candidates = topMoves.length > 1 && attacker.lastUsedMove
+      ? topMoves.filter(m => m.name !== attacker.lastUsedMove)
+      : topMoves;
+
+    const chosen = (candidates.length > 0 ? candidates : topMoves)[Math.floor(Math.random() * (candidates.length > 0 ? candidates.length : topMoves.length))] || attacker.moves[0];
+    attacker.lastUsedMove = chosen.name;
+    return chosen;
   }
 
   static simulate(p1, p2) {

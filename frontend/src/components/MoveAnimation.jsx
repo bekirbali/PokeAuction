@@ -46,7 +46,7 @@ export default function MoveAnimation({
 
     const doneTimer = setTimeout(() => {
       setPhase('done');
-    }, 1050 / speed);
+    }, 1250 / speed);
 
     return () => {
       clearTimeout(impactTimer);

@@ -301,6 +301,10 @@ export class BotAI {
     const config = this.getDifficultyConfig(difficulty);
 
     // --- 1. DUPLICATE & EVOLUTION FAMILY REDUNDANCY CHECK ---
+    // --- 1. DUPLICATE & EVOLUTION FAMILY REDUNDANCY CHECK ---
+    let isEvolutionUpgrade = false;
+    let upgradedFromMember = null;
+
     if (botPlayer && Array.isArray(botPlayer.team) && botPlayer.team.length > 0) {
       const currentFam = EVOLUTION_FAMILIES[pokemon.id];
       const currentStage = currentFam?.stage || 1;
@@ -318,19 +322,16 @@ export class BotAI {
 
         if (currentFamily && memberFamily === currentFamily) {
           // If bot already has a higher or equal evolution stage:
-          // E.g. bot has Charizard (stage 3) and Charmander (stage 1) appears:
+          // E.g. bot has Blastoise (stage 3) and Squirtle (stage 1) appears:
           // Perceived value is strictly 0!
           if (memberStage >= currentStage) {
             return 0;
           }
 
-          // If bot has lower stage (e.g. Charmander) and higher appears (Charizard):
-          // Charizard is an upgrade, but having two members of the same family consumes 2/5 of team slots
-          if (difficulty === 'hard') {
-            if (pokemon.tier !== 'Legendary' && pokemon.tier !== 'Epic') {
-              return 0;
-            }
-          }
+          // If bot has lower stage (e.g. Squirtle stage 1) and higher appears (e.g. Blastoise stage 3):
+          // This is a direct UPGRADE! Bot should eagerly bid on and obtain the stronger evolution.
+          isEvolutionUpgrade = true;
+          upgradedFromMember = member;
         }
       }
     }
@@ -373,6 +374,11 @@ export class BotAI {
     const statBonus = Math.round((bst - 320) / 75);
     baseVal += statBonus;
 
+    // Evolution upgrade bonus (e.g. Squirtle -> Blastoise or Charmander -> Charizard)
+    if (isEvolutionUpgrade) {
+      baseVal += 2;
+    }
+
     // --- 4. TEAM SYNERGY & TYPE BALANCE ---
     if (botPlayer && Array.isArray(botPlayer.team) && botPlayer.team.length > 0) {
       const teamTypes = {};
@@ -384,9 +390,15 @@ export class BotAI {
 
       let overlapPenalty = 0;
       let diversityBonus = 0;
+      const upgradedTypes = upgradedFromMember ? (upgradedFromMember.types || []) : [];
 
       (pokemon.types || []).forEach(t => {
-        const count = teamTypes[t] || 0;
+        let count = teamTypes[t] || 0;
+        // If this is an evolution upgrade (e.g. Squirtle -> Blastoise), don't count the weaker form as an overlap penalty
+        if (isEvolutionUpgrade && upgradedTypes.includes(t)) {
+          count = Math.max(0, count - 1);
+        }
+
         if (count >= 2) {
           overlapPenalty += (difficulty === 'hard' ? 3 : 2); // 3rd Pokemon of same type is heavily penalized
         } else if (count === 1) {
@@ -497,6 +509,28 @@ export class BotAI {
     // If perceived value is 0 (duplicate family, redundant monotype, or useless meme):
     // Bot NEVER bids or raises! Immediately PASS!
     if (perceivedValue <= 0) {
+      return { action: 'PASS' };
+    }
+
+    // --- MADDE 6: COMMON İTELEME & YUVA KORUMA KURALI ---
+    const isCommonOrStage1 = (() => {
+      const p = room.currentPokemon;
+      if (!p) return false;
+      if (p.tier === 'Common' || p.tier === 'Meme') return true;
+      const fam = EVOLUTION_FAMILIES[p.id];
+      if (fam && fam.stage === 1 && !fam.isFinal) return true;
+      return false;
+    })();
+
+    // 1. İteleme: Eğer rakip oyuncu Common / Seviye-1 karta 1G açılış yaptıysa,
+    // bot 2G basarak araya girmez; hemen PAS diyerek kartı 1G'ye rakibe kilitler.
+    if (isCommonOrStage1 && room.currentBid === 1 && room.highestBidderId !== botPlayer.id) {
+      return { action: 'PASS' };
+    }
+
+    // 2. Yuva Koruma: Botun takımında 3 veya daha fazla Pokémon varsa (kalan yuva <= 2),
+    // son yuvalar çok değerlidir; Common / Seviye-1 kartlara karşı teklif vermek tamamen engellenir.
+    if (isCommonOrStage1 && botPlayer.team.length >= 3 && room.highestBidderId !== botPlayer.id) {
       return { action: 'PASS' };
     }
 

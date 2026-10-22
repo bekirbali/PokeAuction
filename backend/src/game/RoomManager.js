@@ -1,4 +1,4 @@
-import { BotAI } from './BotAI.js';
+import { BotAI, EVOLUTION_FAMILIES } from './BotAI.js';
 ﻿import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -46,11 +46,16 @@ export class RoomManager {
     return arr;
   }
 
-  createRoom(hostName, socket) {
+  createRoom(hostName, socket, settings = {}) {
     const code = this.generateRoomCode();
     const room = {
       code,
       state: 'LOBBY',
+      settings: {
+        disableMagikarp: !!settings?.disableMagikarp,
+        disableStage1: !!settings?.disableStage1
+      },
+      battleSpeed: 1,
       players: [
         {
           id: socket.id,
@@ -86,8 +91,8 @@ export class RoomManager {
     return room;
   }
 
-    createBotRoom(hostName, socket, difficulty = 'medium') {
-    const room = this.createRoom(hostName, socket);
+  createBotRoom(hostName, socket, difficulty = 'medium', settings = {}) {
+    const room = this.createRoom(hostName, socket, settings);
     room.isBotGame = true;
     room.botDifficulty = difficulty;
 
@@ -193,7 +198,22 @@ export class RoomManager {
   // Turlar ilerledikçe Epik ve Efsanevi Pokémon çıkma olasılığı katlanarak artar!
   getUniquePokemon(room) {
     const draftedCount = room.players.reduce((sum, p) => sum + p.team.length, 0);
-    const available = ALL_POKEMON.filter(p => !room.usedPokemonIds.has(p.id));
+    let available = ALL_POKEMON.filter(p => !room.usedPokemonIds.has(p.id));
+
+    // Host Room Settings Filtering
+    if (room.settings?.disableMagikarp) {
+      available = available.filter(p => p.id !== 129 && p.tier !== 'Meme');
+    }
+
+    if (room.settings?.disableStage1) {
+      // Exclude Stage 1 base forms of evolving families (e.g. Squirtle, Charmander, Pidgey)
+      available = available.filter(p => {
+        const fam = EVOLUTION_FAMILIES[p.id];
+        if (!fam) return p.tier !== 'Common';
+        if (fam.stage === 1 && !fam.isFinal) return false;
+        return true;
+      });
+    }
 
     if (available.length === 0) {
       return ALL_POKEMON[0];
@@ -215,24 +235,55 @@ export class RoomManager {
       tierWeights = { Meme: 0, Common: 0, Rare: 15, Epic: 60, Legendary: 25 };
     }
 
-    const roll = Math.random() * 100;
-    let cumulative = 0;
-    let selectedTier = 'Common';
+    if (room.settings?.disableMagikarp) {
+      tierWeights.Meme = 0;
+    }
+
+    if (room.settings?.disableStage1) {
+      tierWeights.Common = 0;
+      tierWeights.Meme = 0;
+      if (draftedCount <= 3) {
+        tierWeights.Rare = 75;
+        tierWeights.Epic = 25;
+      } else if (draftedCount <= 6) {
+        tierWeights.Rare = 40;
+        tierWeights.Epic = 50;
+        tierWeights.Legendary = 10;
+      }
+    }
+
+    // Sadece havuzda en az 1 adet kalan tier'ları dikkate al (Meme vb. tükenirse ağırlığı sıfırlanır ve diğerlerine dağılır)
+    const activeWeights = {};
     for (const [tier, weight] of Object.entries(tierWeights)) {
-      cumulative += weight;
-      if (roll <= cumulative) {
-        selectedTier = tier;
-        break;
+      if (weight > 0 && available.some(p => p.tier === tier)) {
+        activeWeights[tier] = weight;
+      }
+    }
+
+    const totalWeight = Object.values(activeWeights).reduce((sum, w) => sum + w, 0);
+    let selectedTier = 'Common';
+    if (totalWeight > 0) {
+      const roll = Math.random() * totalWeight;
+      let cumulative = 0;
+      for (const [tier, weight] of Object.entries(activeWeights)) {
+        cumulative += weight;
+        if (roll <= cumulative) {
+          selectedTier = tier;
+          break;
+        }
       }
     }
 
     // Seçilen tier'dan kullanılmamış bir Pokémon bul
     let candidates = available.filter(p => p.tier === selectedTier);
 
-    // Seçilen tier tükendiyse en yakın uygun tier'dan seç
+    // Seçilen tier tükendiyse en yakın uygun tier'dan seç (Erken turlarda asla Legendary'ye atlamaz)
     if (candidates.length === 0) {
-      const fallbackOrder = ['Legendary', 'Epic', 'Rare', 'Common', 'Meme'];
-      for (const t of fallbackOrder) {
+      const safeFallbackOrder = ['Common', 'Rare', 'Epic', 'Legendary', 'Meme'];
+      for (const t of safeFallbackOrder) {
+        if (tierWeights[t] === 0 && draftedCount <= 3 && (t === 'Legendary' || t === 'Epic')) {
+          continue;
+        }
         const fallbacks = available.filter(p => p.tier === t);
         if (fallbacks.length > 0) {
           candidates = fallbacks;
@@ -625,6 +676,27 @@ export class RoomManager {
     }
   }
 
+  handlePlayerUnready(room, socketId) {
+    if (room.state !== 'LINEUP') return;
+    const player = room.players.find(p => p.id === socketId);
+    if (!player) return;
+
+    player.ready = false;
+    this.broadcastRoom(room);
+  }
+
+  handleSetBattleSpeed(room, socketId, speed) {
+    if (!room) return;
+    // Sadece oda sahibi (host) PvP savaş hızını değiştirebilir
+    if (room.players[0]?.id !== socketId) return;
+
+    const validSpeeds = [1, 1.5, 2];
+    const newSpeed = validSpeeds.includes(speed) ? speed : 1;
+    room.battleSpeed = newSpeed;
+
+    this.io.to(room.code).emit('BATTLE_SPEED_UPDATED', { speed: newSpeed });
+  }
+
   // --- BATTLE PHASE ---
   startBattlePhase(room) {
     if (room.timerInterval) clearInterval(room.timerInterval);
@@ -645,6 +717,7 @@ export class RoomManager {
       timeline: battleResult.timeline,
       winnerId: battleResult.winnerId,
       mvp: battleResult.mvp,
+      battleSpeed: room.battleSpeed || 1,
       matchId
     });
   }
@@ -743,13 +816,18 @@ export class RoomManager {
     this.io.to(room.code).emit('ROOM_UPDATE', {
       code: room.code,
       state: room.state,
+      isBotGame: !!room.isBotGame,
+      botDifficulty: room.botDifficulty || null,
+      settings: room.settings || {},
+      battleSpeed: room.battleSpeed || 1,
       players: room.players.map(p => ({
         id: p.id,
         name: p.name,
         gold: p.gold,
         teamCount: p.team.length,
         team: p.team,
-        ready: p.ready
+        ready: p.ready,
+        isBot: !!p.isBot
       })),
       currentPokemon: room.currentPokemon,
       roundPhase: room.roundPhase,

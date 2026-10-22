@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUp, ArrowDown, Check, Clock, Volume2, VolumeX, GripVertical } from 'lucide-react';
+import { ArrowUp, ArrowDown, Check, Clock, Volume2, VolumeX, GripVertical, RotateCcw } from 'lucide-react';
 import PokemonCard from './PokemonCard.jsx';
 import { sound } from '../utils/sound.js';
 
@@ -76,6 +76,12 @@ export default function LineupPhase({
     socket.emit('PLAYER_READY');
   };
 
+  const handleUnready = () => {
+    sound.playTick();
+    setIsReady(false);
+    socket.emit('PLAYER_UNREADY');
+  };
+
   const slotLabels = [
     { title: '1. Öncü (Lead)', desc: 'Arenaya ilk çıkacak Pokémon', color: 'border-red-500/50 bg-red-950/20 text-red-400' },
     { title: '2. Savaşçı', desc: 'İkinci savunma hattı', color: 'border-amber-500/40 bg-amber-950/10 text-amber-400' },
@@ -119,24 +125,37 @@ export default function LineupPhase({
           </span>
         </div>
 
-        <button
-          onClick={handleReady}
-          disabled={isReady}
-          className={`py-2 sm:py-2.5 px-5 sm:px-6 rounded-xl font-bold text-xs sm:text-sm transition shadow-lg flex items-center justify-center gap-2 ${
-            isReady
-              ? 'bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 cursor-default'
-              : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/30 cursor-pointer'
-          }`}
-        >
-          {isReady ? (
-            <>
-              <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-              Hazırsın
-            </>
-          ) : (
-            'Dizilimi Onayla'
+        <div className="flex items-center gap-2 self-end sm:self-auto">
+          {isReady && !opp?.ready && (
+            <button
+              onClick={handleUnready}
+              className="py-2 sm:py-2.5 px-4 rounded-xl font-bold text-xs sm:text-sm transition shadow-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 flex items-center justify-center gap-1.5 cursor-pointer"
+              title="Sıralamayı yeniden düzenlemek için hazır durumunu geri al"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              Sıralamayı Değiştir
+            </button>
           )}
-        </button>
+
+          <button
+            onClick={isReady ? undefined : handleReady}
+            disabled={isReady}
+            className={`py-2 sm:py-2.5 px-5 sm:px-6 rounded-xl font-bold text-xs sm:text-sm transition shadow-lg flex items-center justify-center gap-2 ${
+              isReady
+                ? 'bg-emerald-600/30 border border-emerald-500/40 text-emerald-300 cursor-default'
+                : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-emerald-600/30 cursor-pointer'
+            }`}
+          >
+            {isReady ? (
+              <>
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                Hazırsın
+              </>
+            ) : (
+              'Dizilimi Onayla'
+            )}
+          </button>
+        </div>
       </div>
 
       {/* 5 Pokemon Slot Cards with Drag-and-Drop + Up/Down Arrows */}
