@@ -54,8 +54,8 @@ export default function BattleCanvasVFX({
     // Ground-level stadium platform coordinates (physically beneath the combatants' feet)
     const p1GroundX = width * 0.21;
     const p1GroundY = height * 0.88;
-    const p2GroundX = width * 0.77;
-    const p2GroundY = height * 0.585;
+    const p2GroundX = width * 0.76;
+    const p2GroundY = height * 0.435;
 
     const groundStartX = isP1 ? p1GroundX : p2GroundX;
     const groundStartY = isP1 ? p1GroundY : p2GroundY;
@@ -881,13 +881,15 @@ export default function BattleCanvasVFX({
           if (progress >= 0.24) {
             const gx = groundTargetX;
             const gy = groundTargetY;
+            // Perspective depth factor: P2 (background) pedestal is scaled ~82% of P1 (foreground)
+            const depthScale = isP1 ? 0.82 : 1.0;
 
             ctx.save();
 
             // A. Fractured impact crater basin on the defender's pedestal
             ctx.globalCompositeOperation = 'source-over';
             ctx.beginPath();
-            ctx.ellipse(gx, gy, 46, 15, 0, 0, Math.PI * 2);
+            ctx.ellipse(gx, gy, (isMobile ? 36 : 46) * depthScale, (isMobile ? 12 : 15) * depthScale, 0, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(15, 7, 2, ${eqAlpha * 0.95})`;
             ctx.fill();
             ctx.strokeStyle = `rgba(217, 119, 6, ${eqAlpha * 0.85})`;
@@ -896,13 +898,13 @@ export default function BattleCanvasVFX({
 
             // Molten magma core leaking from pedestal crater
             ctx.globalCompositeOperation = 'lighter';
-            const craterGlow = ctx.createRadialGradient(gx, gy, 0, gx, gy, 36);
+            const craterGlow = ctx.createRadialGradient(gx, gy, 0, gx, gy, 36 * depthScale);
             craterGlow.addColorStop(0, `rgba(254, 240, 138, ${eqAlpha * 0.9})`);
             craterGlow.addColorStop(0.45, `rgba(245, 158, 11, ${eqAlpha * 0.6})`);
             craterGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
             ctx.fillStyle = craterGlow;
             ctx.beginPath();
-            ctx.ellipse(gx, gy, 36, 12, 0, 0, Math.PI * 2);
+            ctx.ellipse(gx, gy, 36 * depthScale, 12 * depthScale, 0, 0, Math.PI * 2);
             ctx.fill();
 
             // B. 5 Organic 3D Faceted Rock Spires / Stalagmites
@@ -919,12 +921,12 @@ export default function BattleCanvasVFX({
                 const sProg = Math.min(1, (progress - 0.24 - s.delay) / 0.11);
                 // Elastic explosive upward eruption with slight overshoot bounce
                 const bounceH = Math.sin(sProg * Math.PI * 0.5) * (1 + 0.10 * (1 - sProg));
-                const currentH = s.h * bounceH * (isMobile ? 0.8 : 1.0);
-                const baseX = gx + s.xOff;
-                const baseY = gy + s.yOff;
-                const tipX = baseX + s.lean;
+                const currentH = s.h * bounceH * (isMobile ? 0.8 : 1.0) * depthScale;
+                const baseX = gx + s.xOff * depthScale;
+                const baseY = gy + s.yOff * depthScale;
+                const tipX = baseX + s.lean * depthScale;
                 const tipY = baseY - currentH;
-                const halfW = s.w * 0.5;
+                const halfW = s.w * 0.5 * depthScale;
 
                 // 1. Left Lit Facet (Golden terracotta rock caught by arena light)
                 ctx.globalCompositeOperation = 'source-over';
@@ -966,11 +968,11 @@ export default function BattleCanvasVFX({
             // Violent rock shards & billowing dust bursts during eruption phase
             if (progress < 0.50 && Math.random() < 0.7) {
               spawnParticle({
-                x: gx + (Math.random() - 0.5) * 55,
-                y: gy + (Math.random() - 0.5) * 10,
+                x: gx + (Math.random() - 0.5) * 55 * depthScale,
+                y: gy + (Math.random() - 0.5) * 10 * depthScale,
                 vx: (Math.random() - 0.5) * 6,
                 vy: -Math.random() * 8 - 3,
-                size: Math.random() * 8 + 4,
+                size: (Math.random() * 8 + 4) * depthScale,
                 color: Math.random() > 0.4 ? '#b45309' : '#78350f',
                 maxLife: 26,
                 decay: 0.04,
